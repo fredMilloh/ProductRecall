@@ -23,6 +23,7 @@
 		B606D59127E8E46B00573498 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D59027E8E46B00573498 /* RecordViewModel.swift */; };
 		B606D59327E8E9B700573498 /* record.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D59227E8E9B700573498 /* record.swift */; };
 		B606D59627E90A3000573498 /* RecordRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D59527E90A3000573498 /* RecordRow.swift */; };
+		B606D59827E9142300573498 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D59727E9142300573498 /* HomeListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		B606D59027E8E46B00573498 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		B606D59227E8E9B700573498 /* record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = record.swift; sourceTree = "<group>"; };
 		B606D59527E90A3000573498 /* RecordRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRow.swift; sourceTree = "<group>"; };
+		B606D59727E9142300573498 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				B606D59427E909E800573498 /* RecordRow */,
+				B606D59727E9142300573498 /* HomeListView.swift */,
 			);
 			path = HomeList;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				B606D58627E8DF2700573498 /* HTTPClient.swift in Sources */,
 				B606D55127E8DAA500573498 /* ContentView.swift in Sources */,
 				B606D54F27E8DAA500573498 /* ProductRecallApp.swift in Sources */,
+				B606D59827E9142300573498 /* HomeListView.swift in Sources */,
 				B606D57A27E8DC1300573498 /* Product.swift in Sources */,
 				B606D59627E90A3000573498 /* RecordRow.swift in Sources */,
 			);
