@@ -14,6 +14,7 @@
 		B606D56027E8DAA800573498 /* ProductRecallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D55F27E8DAA800573498 /* ProductRecallTests.swift */; };
 		B606D56A27E8DAA800573498 /* ProductRecallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D56927E8DAA800573498 /* ProductRecallUITests.swift */; };
 		B606D56C27E8DAA800573498 /* ProductRecallUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D56B27E8DAA800573498 /* ProductRecallUITestsLaunchTests.swift */; };
+		B606D57A27E8DC1300573498 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D57927E8DC1300573498 /* Product.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		B606D56527E8DAA800573498 /* ProductRecallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProductRecallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B606D56927E8DAA800573498 /* ProductRecallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRecallUITests.swift; sourceTree = "<group>"; };
 		B606D56B27E8DAA800573498 /* ProductRecallUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRecallUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B606D57927E8DC1300573498 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		B606D57B27E8DC6400573498 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				B606D54E27E8DAA500573498 /* ProductRecallApp.swift */,
+				B606D57827E8DC0400573498 /* Model */,
 				B606D55027E8DAA500573498 /* ContentView.swift */,
-				B606D55227E8DAA800573498 /* Assets.xcassets */,
+				B606D57C27E8DC7900573498 /* Resources */,
 				B606D55427E8DAA800573498 /* Preview Content */,
 			);
 			path = ProductRecall;
@@ -125,6 +129,23 @@
 				B606D56B27E8DAA800573498 /* ProductRecallUITestsLaunchTests.swift */,
 			);
 			path = ProductRecallUITests;
+			sourceTree = "<group>";
+		};
+		B606D57827E8DC0400573498 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B606D57927E8DC1300573498 /* Product.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B606D57C27E8DC7900573498 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B606D57B27E8DC6400573498 /* Info.plist */,
+				B606D55227E8DAA800573498 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +280,7 @@
 			files = (
 				B606D55127E8DAA500573498 /* ContentView.swift in Sources */,
 				B606D54F27E8DAA500573498 /* ProductRecallApp.swift in Sources */,
+				B606D57A27E8DC1300573498 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +442,7 @@
 				DEVELOPMENT_TEAM = 8ZU2A8P99A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ProductRecall/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -449,6 +472,7 @@
 				DEVELOPMENT_TEAM = 8ZU2A8P99A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ProductRecall/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
