@@ -1,0 +1,533 @@
+{
+    "total_count": 5101,
+    "links": [
+        {
+            "rel": "self",
+            "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records?order_by=date_ref+desc&limit=10&offset=0&timezone=Europe%2FParis"
+        },
+        {
+            "rel": "first",
+            "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records?order_by=date_ref+desc&limit=10&offset=0&timezone=Europe%2FParis"
+        },
+        {
+            "rel": "last",
+            "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records?order_by=date_ref+desc&limit=10&offset=5100&timezone=Europe%2FParis"
+        },
+        {
+            "rel": "next",
+            "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records?order_by=date_ref+desc&limit=10&offset=10&timezone=Europe%2FParis"
+        }
+    ],
+    "records": [
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records/21003c48e2c680dcc37dcb78df7df659d3f3807f"
+                },
+                {
+                    "rel": "dataset",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0"
+                },
+                {
+                    "rel": "datasets",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets"
+                }
+            ],
+            "record": {
+                "id": "21003c48e2c680dcc37dcb78df7df659d3f3807f",
+                "timestamp": "2022-03-16T14:00:06.502+01:00",
+                "size": 2125,
+                "fields": {
+                    "reference_fiche": "2022-03-0002",
+                    "ndeg_de_version": 1,
+                    "nature_juridique_du_rappel": "Volontaire (sans arrêté préfectoral)",
+                    "categorie_de_produit": "Bébés-Enfants (hors alimentaire)",
+                    "sous_categorie_de_produit": "Articles pour enfants et puériculture",
+                    "nom_de_la_marque_du_produit": "BIBS",
+                    "noms_des_modeles_ou_references": "BIBS BabyGlassBottle 225ml Ivoire\r\nBIBS BabyGlassBottle 225ml Blush\r\nBIBS BabyGlassBottle 225ml Sauge\r\nBIBS BabyGlassBottle  110ml Ivoire\r\nBIBS BabyGlassBottle  110ml Blush\r\nBIBS BabyGlassBottle 110ml Sauge",
+                    "identification_des_produits": "5713795220915 Tous les lots  5713795220922 Tous les lots  5713795220939 Tous les lots  5713795220885 Tous les lots  5713795220892 Tous les lots",
+                    "conditionnements": "Biberon 110 ml ou 225 ml dans leur emballage individuel",
+                    "date_debut_fin_de_commercialisation": "Du 20/01/2022 au 28/02/2022",
+                    "temperature_de_conservation": null,
+                    "marque_de_salubrite": null,
+                    "informations_complementaires": "Biberons complet en verre, comprenant 1 capuchon, 1 tétine, 1 anneau de vissage et 1 support  BUMPER",
+                    "zone_geographique_de_vente": "France entière",
+                    "distributeurs": "Voir la liste des points de vente en France Métropolitaine.",
+                    "motif_du_rappel": "Le BUMPER accessoire, non indispensable au biberon, se déforme lorsqu'il est en contact avec une chaleur très élevée. En se déformant,  il rend la bouteille instable au moment du remplissage.",
+                    "risques_encourus_par_le_consommateur": "Blessures externes",
+                    "preconisations_sanitaires": null,
+                    "description_complementaire_du_risque": "L'eau chaude du Biberon peut se renverser au moment du remplissage. L'eau trop chaude peut provoquer des brulures. Nous rappelons qu'il faut vérifier la température des aliments avant de nourrir bébé.",
+                    "conduites_a_tenir_par_le_consommateur": "Contacter le point de vente Contacter le service consommateur",
+                    "numero_de_contact": "0134285708",
+                    "modalites_de_compensation": "Autre (voir informations complémentaires)",
+                    "date_de_fin_de_la_procedure_de_rappel": "jeudi 31 mars 2022",
+                    "informations_complementaires_publiques": "Si vous souhaitez garder les produits : \r\nJetez simplement le pare-chocs et utilisez le produit comme d'habitude sans la partie inférieure appelée  BUMPER . Le biberon et ses autres caractéristiques sont parfaitement sûrs sans cet élément.",
+                    "liens_vers_les_images": "http://rappel.conso.gouv.fr/image/998281b2-5ede-450b-b3a4-666c9903db63.jpg http://rappel.conso.gouv.fr/image/d5d9105b-961a-4159-bf21-35c08045f69d.jpg http://rappel.conso.gouv.fr/image/390c421b-9aac-4d12-b242-4206d9c69261.jpg",
+                    "lien_vers_la_liste_des_produits": "http://rappel.conso.gouv.fr/document/2f1b8d02-db59-4d04-ae0d-96c6c2f5476f/Interne/ListeDesProduits",
+                    "lien_vers_affichette_pdf": "http://rappel.conso.gouv.fr/affichettePDF/6347/Interne",
+                    "date_ref": "2022-03"
+                }
+            }
+        },
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records/e19b737cc4842f2077c8f2d7ec56997f93cd82d4"
+                },
+                {
+                    "rel": "dataset",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0"
+                },
+                {
+                    "rel": "datasets",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets"
+                }
+            ],
+            "record": {
+                "id": "e19b737cc4842f2077c8f2d7ec56997f93cd82d4",
+                "timestamp": "2022-03-16T14:00:06.502+01:00",
+                "size": 1563,
+                "fields": {
+                    "reference_fiche": "2022-03-0003",
+                    "ndeg_de_version": 1,
+                    "nature_juridique_du_rappel": "Volontaire (sans arrêté préfectoral)",
+                    "categorie_de_produit": "Automobiles et moyens de déplacement",
+                    "sous_categorie_de_produit": "Tous types d'accessoires",
+                    "nom_de_la_marque_du_produit": "MAXXE",
+                    "noms_des_modeles_ou_references": "NETTOYANT MOTO. Marque MAXXE. Contenance 1L. Référence NETTOYANTMOTOMAXXE.",
+                    "identification_des_produits": "201577800065 Tous les lots",
+                    "conditionnements": null,
+                    "date_debut_fin_de_commercialisation": "Du 04/06/2015 au 04/04/2022",
+                    "temperature_de_conservation": null,
+                    "marque_de_salubrite": null,
+                    "informations_complementaires": "Nettoyant moto sous forme de vaporisateur noir.",
+                    "zone_geographique_de_vente": "France entière",
+                    "distributeurs": "Magasins de motos MAXXESS et MOTOAXXE ainsi que magasins spécialisés en équipement de motos",
+                    "motif_du_rappel": "Produit non conforme et dangereux. Produit corrosif, absence d’une fermeture de sécurité pour les enfants et absence de l’indication de danger détectable au toucher.",
+                    "risques_encourus_par_le_consommateur": "Blessures externes Dommages internes Intoxication",
+                    "preconisations_sanitaires": null,
+                    "description_complementaire_du_risque": "Produit corrosif, absence d’une fermeture de sécurité pour les enfants et absence de l’indication de danger détectable au toucher.",
+                    "conduites_a_tenir_par_le_consommateur": "Ne plus consommer Ne plus utiliser le produit Rapporter le produit au point de vente Contacter le point de vente Contacter le service consommateur",
+                    "numero_de_contact": "0473451880",
+                    "modalites_de_compensation": "Remboursement",
+                    "date_de_fin_de_la_procedure_de_rappel": "samedi 31 décembre 2022",
+                    "informations_complementaires_publiques": null,
+                    "liens_vers_les_images": "http://rappel.conso.gouv.fr/image/64fb2748-9123-496b-85a4-12c9554e21df.jpg http://rappel.conso.gouv.fr/image/45d14a44-75d9-4b03-9024-d4b8e1ac090d.jpg http://rappel.conso.gouv.fr/image/bc876352-0cfb-4bbb-9bbb-b6951f37de70.jpg http://rappel.conso.gouv.fr/image/034bd586-8b97-4922-b6e0-8a39db41039b.jpg http://rappel.conso.gouv.fr/image/9c579ca0-4a34-40d8-b026-b10986cdcaa2.jpg",
+                    "lien_vers_la_liste_des_produits": null,
+                    "lien_vers_affichette_pdf": "http://rappel.conso.gouv.fr/affichettePDF/6348/Interne",
+                    "date_ref": "2022-03"
+                }
+            }
+        },
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records/a6e5a2d721f21356eba49bc7f627b6f1d04c6689"
+                },
+                {
+                    "rel": "dataset",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0"
+                },
+                {
+                    "rel": "datasets",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets"
+                }
+            ],
+            "record": {
+                "id": "a6e5a2d721f21356eba49bc7f627b6f1d04c6689",
+                "timestamp": "2022-03-16T14:00:06.502+01:00",
+                "size": 890,
+                "fields": {
+                    "reference_fiche": "2022-03-0004",
+                    "ndeg_de_version": 1,
+                    "nature_juridique_du_rappel": "Volontaire (sans arrêté préfectoral)",
+                    "categorie_de_produit": "Alimentation",
+                    "sous_categorie_de_produit": "Soupes, sauces et condiments",
+                    "nom_de_la_marque_du_produit": "ORIENTAL KITCHEN",
+                    "noms_des_modeles_ou_references": "POUDRE DE SATE 1.05kg\r\nPOUDRE DE SATE 250g",
+                    "identification_des_produits": "3447571405167 Poudre de Saté 1.05kg DDM 09/12/2022 Date de durabilité minimale 09/12/2022 3447571405112 Poudre de Saté 250g DDM 09/12/2022 Date de durabilité minimale 09/12/2022",
+                    "conditionnements": "Sachets de 250g et Sachets de 1.05 kg",
+                    "date_debut_fin_de_commercialisation": "Depuis le 11/12/2021",
+                    "temperature_de_conservation": "Produit à conserver à température ambiante",
+                    "marque_de_salubrite": null,
+                    "informations_complementaires": null,
+                    "zone_geographique_de_vente": "France entière",
+                    "distributeurs": "Tang Frères, épiceries asiatiques",
+                    "motif_du_rappel": "Présence d'oxyde d'éthylène",
+                    "risques_encourus_par_le_consommateur": "Autres contaminants chimiques",
+                    "preconisations_sanitaires": null,
+                    "description_complementaire_du_risque": null,
+                    "conduites_a_tenir_par_le_consommateur": "Ne plus consommer Rapporter le produit au point de vente",
+                    "numero_de_contact": null,
+                    "modalites_de_compensation": "Remboursement",
+                    "date_de_fin_de_la_procedure_de_rappel": null,
+                    "informations_complementaires_publiques": null,
+                    "liens_vers_les_images": "http://rappel.conso.gouv.fr/image/81840213-9721-405d-b90f-5798f09de149.jpg",
+                    "lien_vers_la_liste_des_produits": null,
+                    "lien_vers_affichette_pdf": "http://rappel.conso.gouv.fr/affichettePDF/6349/Interne",
+                    "date_ref": "2022-03"
+                }
+            }
+        },
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records/b42d721a6b82ea5e33ff907327289ba7eddd924d"
+                },
+                {
+                    "rel": "dataset",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0"
+                },
+                {
+                    "rel": "datasets",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets"
+                }
+            ],
+            "record": {
+                "id": "b42d721a6b82ea5e33ff907327289ba7eddd924d",
+                "timestamp": "2022-03-16T14:00:06.502+01:00",
+                "size": 1519,
+                "fields": {
+                    "reference_fiche": "2022-03-0005",
+                    "ndeg_de_version": 1,
+                    "nature_juridique_du_rappel": "Volontaire (sans arrêté préfectoral)",
+                    "categorie_de_produit": "Alimentation",
+                    "sous_categorie_de_produit": "Lait et produits laitiers",
+                    "nom_de_la_marque_du_produit": "Le Pic",
+                    "noms_des_modeles_ou_references": "ROCHER",
+                    "identification_des_produits": "18012224 Date de durabilité minimale entre le 04/03/2022 et le 27/03/2022",
+                    "conditionnements": null,
+                    "date_debut_fin_de_commercialisation": "Du 24/01/2022 au 01/03/2022",
+                    "temperature_de_conservation": "Produit à conserver au réfrigérateur",
+                    "marque_de_salubrite": "81.206.009",
+                    "informations_complementaires": "rayon coupe ou frais emballé",
+                    "zone_geographique_de_vente": "France entière",
+                    "distributeurs": "GMS\r\nGROSSISTE",
+                    "motif_du_rappel": "Suspicion de présence Listéria Monocytogenes",
+                    "risques_encourus_par_le_consommateur": "Listeria monocytogenes (agent responsable de la listériose)",
+                    "preconisations_sanitaires": "Les personnes qui auraient consommé les « produits » mentionnés ci-dessus et qui présenteraient de la fièvre, isolée ou accompagnée de maux de tête, et des courbatures, sont invitées à consulter leur médecin traitant en lui signalant cette consommation.  Des formes graves avec des complications neurologiques et des atteintes maternelles ou fœtales chez la femme enceinte peuvent également parfois survenir. Les femmes enceintes ainsi que les personnes immunodéprimées et les personnes âgées doivent être particulièrement attentives à ces symptômes. La listériose est une maladie qui peut être grave et dont le délai d'incubation peut aller jusqu'à huit semaines.",
+                    "description_complementaire_du_risque": null,
+                    "conduites_a_tenir_par_le_consommateur": "Ne plus consommer",
+                    "numero_de_contact": "0563563364",
+                    "modalites_de_compensation": "Remboursement",
+                    "date_de_fin_de_la_procedure_de_rappel": null,
+                    "informations_complementaires_publiques": null,
+                    "liens_vers_les_images": "http://rappel.conso.gouv.fr/image/8b6be17a-faf9-417f-86ad-acdf4487597b.jpg",
+                    "lien_vers_la_liste_des_produits": null,
+                    "lien_vers_affichette_pdf": "http://rappel.conso.gouv.fr/affichettePDF/6350/Interne",
+                    "date_ref": "2022-03"
+                }
+            }
+        },
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records/39329709aa0781e30937e68efc1533873959f50e"
+                },
+                {
+                    "rel": "dataset",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0"
+                },
+                {
+                    "rel": "datasets",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets"
+                }
+            ],
+            "record": {
+                "id": "39329709aa0781e30937e68efc1533873959f50e",
+                "timestamp": "2022-03-16T14:00:06.502+01:00",
+                "size": 1530,
+                "fields": {
+                    "reference_fiche": "2022-03-0006",
+                    "ndeg_de_version": 1,
+                    "nature_juridique_du_rappel": "Volontaire (sans arrêté préfectoral)",
+                    "categorie_de_produit": "Alimentation",
+                    "sous_categorie_de_produit": "Lait et produits laitiers",
+                    "nom_de_la_marque_du_produit": "Le Pic",
+                    "noms_des_modeles_ou_references": "BUCHE BLANCHE LS",
+                    "identification_des_produits": "3548783000017 18012224 Date de durabilité minimale 02/03/2022",
+                    "conditionnements": "Barquette bois",
+                    "date_debut_fin_de_commercialisation": "Du 01/02/2022 au 01/03/2022",
+                    "temperature_de_conservation": "Produit à conserver au réfrigérateur",
+                    "marque_de_salubrite": "81.206.009",
+                    "informations_complementaires": "rayon LS",
+                    "zone_geographique_de_vente": "Régions: Nouvelle-Aquitaine Occitanie",
+                    "distributeurs": "GMS\r\nGROSSISTE",
+                    "motif_du_rappel": "Suspicion de présence Listéria Monocytogenes",
+                    "risques_encourus_par_le_consommateur": "Listeria monocytogenes (agent responsable de la listériose)",
+                    "preconisations_sanitaires": "Les personnes qui auraient consommé les « produits » mentionnés ci-dessus et qui présenteraient de la fièvre, isolée ou accompagnée de maux de tête, et des courbatures, sont invitées à consulter leur médecin traitant en lui signalant cette consommation.  Des formes graves avec des complications neurologiques et des atteintes maternelles ou fœtales chez la femme enceinte peuvent également parfois survenir. Les femmes enceintes ainsi que les personnes immunodéprimées et les personnes âgées doivent être particulièrement attentives à ces symptômes. La listériose est une maladie qui peut être grave et dont le délai d'incubation peut aller jusqu'à huit semaines.",
+                    "description_complementaire_du_risque": null,
+                    "conduites_a_tenir_par_le_consommateur": "Ne plus consommer",
+                    "numero_de_contact": "0563563364",
+                    "modalites_de_compensation": "Remboursement",
+                    "date_de_fin_de_la_procedure_de_rappel": null,
+                    "informations_complementaires_publiques": null,
+                    "liens_vers_les_images": "http://rappel.conso.gouv.fr/image/5342e750-f375-4a66-ac84-7b1871a1489c.jpg",
+                    "lien_vers_la_liste_des_produits": null,
+                    "lien_vers_affichette_pdf": "http://rappel.conso.gouv.fr/affichettePDF/6351/Interne",
+                    "date_ref": "2022-03"
+                }
+            }
+        },
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records/5393777fd00ac510ebea4180c4c58010faef9af5"
+                },
+                {
+                    "rel": "dataset",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0"
+                },
+                {
+                    "rel": "datasets",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets"
+                }
+            ],
+            "record": {
+                "id": "5393777fd00ac510ebea4180c4c58010faef9af5",
+                "timestamp": "2022-03-16T14:00:06.502+01:00",
+                "size": 1462,
+                "fields": {
+                    "reference_fiche": "2022-03-0007",
+                    "ndeg_de_version": 1,
+                    "nature_juridique_du_rappel": "Volontaire (sans arrêté préfectoral)",
+                    "categorie_de_produit": "Alimentation",
+                    "sous_categorie_de_produit": "Lait et produits laitiers",
+                    "nom_de_la_marque_du_produit": "Le Pic",
+                    "noms_des_modeles_ou_references": "BUCHE CENDREE",
+                    "identification_des_produits": "1801224 Date de durabilité minimale 16/03/2022",
+                    "conditionnements": null,
+                    "date_debut_fin_de_commercialisation": "Du 15/02/2022 au 01/03/2022",
+                    "temperature_de_conservation": "Produit à conserver au réfrigérateur",
+                    "marque_de_salubrite": "81.206.009",
+                    "informations_complementaires": "rayon coupe ou frais emballé",
+                    "zone_geographique_de_vente": null,
+                    "distributeurs": "GMS",
+                    "motif_du_rappel": "Suspicion de présence Listéria Monocytogenes",
+                    "risques_encourus_par_le_consommateur": "Listeria monocytogenes (agent responsable de la listériose)",
+                    "preconisations_sanitaires": "Les personnes qui auraient consommé les « produits » mentionnés ci-dessus et qui présenteraient de la fièvre, isolée ou accompagnée de maux de tête, et des courbatures, sont invitées à consulter leur médecin traitant en lui signalant cette consommation.  Des formes graves avec des complications neurologiques et des atteintes maternelles ou fœtales chez la femme enceinte peuvent également parfois survenir. Les femmes enceintes ainsi que les personnes immunodéprimées et les personnes âgées doivent être particulièrement attentives à ces symptômes. La listériose est une maladie qui peut être grave et dont le délai d'incubation peut aller jusqu'à huit semaines.",
+                    "description_complementaire_du_risque": null,
+                    "conduites_a_tenir_par_le_consommateur": "Ne plus consommer",
+                    "numero_de_contact": "0563563364",
+                    "modalites_de_compensation": "Remboursement",
+                    "date_de_fin_de_la_procedure_de_rappel": null,
+                    "informations_complementaires_publiques": null,
+                    "liens_vers_les_images": "http://rappel.conso.gouv.fr/image/82618010-c923-4164-b50b-52547f2d64a1.jpg",
+                    "lien_vers_la_liste_des_produits": null,
+                    "lien_vers_affichette_pdf": "http://rappel.conso.gouv.fr/affichettePDF/6352/Interne",
+                    "date_ref": "2022-03"
+                }
+            }
+        },
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records/3bdb3b05e866b0d575faab095f9cc4cc8560e656"
+                },
+                {
+                    "rel": "dataset",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0"
+                },
+                {
+                    "rel": "datasets",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets"
+                }
+            ],
+            "record": {
+                "id": "3bdb3b05e866b0d575faab095f9cc4cc8560e656",
+                "timestamp": "2022-03-16T14:00:06.502+01:00",
+                "size": 1526,
+                "fields": {
+                    "reference_fiche": "2022-03-0008",
+                    "ndeg_de_version": 1,
+                    "nature_juridique_du_rappel": "Volontaire (sans arrêté préfectoral)",
+                    "categorie_de_produit": "Alimentation",
+                    "sous_categorie_de_produit": "Lait et produits laitiers",
+                    "nom_de_la_marque_du_produit": "Le Pic",
+                    "noms_des_modeles_ou_references": "BUCHE BLANCHE",
+                    "identification_des_produits": "18012224 Date de durabilité minimale entre le 23/03/2022 et le 27/03/2022",
+                    "conditionnements": null,
+                    "date_debut_fin_de_commercialisation": "Du 24/01/2022 au 01/03/2022",
+                    "temperature_de_conservation": "Produit à conserver au réfrigérateur",
+                    "marque_de_salubrite": "81.206.009",
+                    "informations_complementaires": "rayon coupe ou frais emballé",
+                    "zone_geographique_de_vente": "France entière",
+                    "distributeurs": "GMS\r\nGROSSISTE",
+                    "motif_du_rappel": "Suspicion de présence Listéria Monocytogenes",
+                    "risques_encourus_par_le_consommateur": "Listeria monocytogenes (agent responsable de la listériose)",
+                    "preconisations_sanitaires": "Les personnes qui auraient consommé les « produits » mentionnés ci-dessus et qui présenteraient de la fièvre, isolée ou accompagnée de maux de tête, et des courbatures, sont invitées à consulter leur médecin traitant en lui signalant cette consommation.  Des formes graves avec des complications neurologiques et des atteintes maternelles ou fœtales chez la femme enceinte peuvent également parfois survenir. Les femmes enceintes ainsi que les personnes immunodéprimées et les personnes âgées doivent être particulièrement attentives à ces symptômes. La listériose est une maladie qui peut être grave et dont le délai d'incubation peut aller jusqu'à huit semaines.",
+                    "description_complementaire_du_risque": null,
+                    "conduites_a_tenir_par_le_consommateur": "Ne plus consommer",
+                    "numero_de_contact": "0563563364",
+                    "modalites_de_compensation": "Remboursement",
+                    "date_de_fin_de_la_procedure_de_rappel": null,
+                    "informations_complementaires_publiques": null,
+                    "liens_vers_les_images": "http://rappel.conso.gouv.fr/image/bff16e38-45c2-49dd-ae4f-d7928dd153b7.jpg",
+                    "lien_vers_la_liste_des_produits": null,
+                    "lien_vers_affichette_pdf": "http://rappel.conso.gouv.fr/affichettePDF/6353/Interne",
+                    "date_ref": "2022-03"
+                }
+            }
+        },
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records/b7d020ed75329ca6eea03139b5b82340060d5924"
+                },
+                {
+                    "rel": "dataset",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0"
+                },
+                {
+                    "rel": "datasets",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets"
+                }
+            ],
+            "record": {
+                "id": "b7d020ed75329ca6eea03139b5b82340060d5924",
+                "timestamp": "2022-03-16T14:00:06.502+01:00",
+                "size": 909,
+                "fields": {
+                    "reference_fiche": "2022-03-0009",
+                    "ndeg_de_version": 1,
+                    "nature_juridique_du_rappel": "Volontaire (sans arrêté préfectoral)",
+                    "categorie_de_produit": "Bébés-Enfants (hors alimentaire)",
+                    "sous_categorie_de_produit": "Jouets",
+                    "nom_de_la_marque_du_produit": "CANAL TOYS",
+                    "noms_des_modeles_ou_references": "3555801358876",
+                    "identification_des_produits": "LOT 33019",
+                    "conditionnements": null,
+                    "date_debut_fin_de_commercialisation": "Du 15/11/2021 au 07/02/2022",
+                    "temperature_de_conservation": null,
+                    "marque_de_salubrite": null,
+                    "informations_complementaires": null,
+                    "zone_geographique_de_vente": "68000 COLMAR, 29170 FOUESNANT, 63370 LEMPDES, 64230 LESCAR, 87050 COUZEIX, 72230 MULSANNE, 24430 MARSAC SUR L ISLE, 22950 TREGUEUX, 56880 PLOEREN, 17640 VAUX SUR MER",
+                    "distributeurs": "MAX PLUS",
+                    "motif_du_rappel": "NON CONFORME ET DANGEREUX",
+                    "risques_encourus_par_le_consommateur": "Blessures externes",
+                    "preconisations_sanitaires": null,
+                    "description_complementaire_du_risque": "Risques allergènes suite à la présence  d'alcool benzylique (CAS 100-51-6) dans le colorant bleu.",
+                    "conduites_a_tenir_par_le_consommateur": "Ne plus utiliser le produit Rapporter le produit au point de vente",
+                    "numero_de_contact": null,
+                    "modalites_de_compensation": "Remboursement",
+                    "date_de_fin_de_la_procedure_de_rappel": "mardi 31 mai 2022",
+                    "informations_complementaires_publiques": null,
+                    "liens_vers_les_images": "http://rappel.conso.gouv.fr/image/5839249d-2bfd-4a2a-a37f-7e1fe0ab3a7d.jpg",
+                    "lien_vers_la_liste_des_produits": "http://rappel.conso.gouv.fr/document/c204fa3e-511a-41ac-b17b-7af816ff4aee/Interne/ListeDesProduits",
+                    "lien_vers_affichette_pdf": "http://rappel.conso.gouv.fr/affichettePDF/6354/Interne",
+                    "date_ref": "2022-03"
+                }
+            }
+        },
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records/53f97bc50dadf1e83c69a23dbcbbf1fadb9b1c8e"
+                },
+                {
+                    "rel": "dataset",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0"
+                },
+                {
+                    "rel": "datasets",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets"
+                }
+            ],
+            "record": {
+                "id": "53f97bc50dadf1e83c69a23dbcbbf1fadb9b1c8e",
+                "timestamp": "2022-03-16T14:00:06.502+01:00",
+                "size": 855,
+                "fields": {
+                    "reference_fiche": "2022-03-0010",
+                    "ndeg_de_version": 1,
+                    "nature_juridique_du_rappel": "Volontaire (sans arrêté préfectoral)",
+                    "categorie_de_produit": "Vêtements, Mode, EPI",
+                    "sous_categorie_de_produit": "Equipements de Protection Individuels",
+                    "nom_de_la_marque_du_produit": "ELECTRA PLUS taille 12",
+                    "noms_des_modeles_ou_references": "Modèle 52502HPA3 taille 12",
+                    "identification_des_produits": "790  3526170007023 790",
+                    "conditionnements": "Carton de 100 paires",
+                    "date_debut_fin_de_commercialisation": "Du 27/04/2021 au 02/12/2021",
+                    "temperature_de_conservation": null,
+                    "marque_de_salubrite": null,
+                    "informations_complementaires": null,
+                    "zone_geographique_de_vente": "France entière",
+                    "distributeurs": "France sécurité",
+                    "motif_du_rappel": "Le niveaux des performances mécaniques indiqués sur les gants est non-conformes aux résultats obtenus suite aux tests réalisés par l'IFTH",
+                    "risques_encourus_par_le_consommateur": "Blessures externes",
+                    "preconisations_sanitaires": null,
+                    "description_complementaire_du_risque": null,
+                    "conduites_a_tenir_par_le_consommateur": "Rapporter le produit au point de vente",
+                    "numero_de_contact": null,
+                    "modalites_de_compensation": "Remboursement",
+                    "date_de_fin_de_la_procedure_de_rappel": "jeudi 30 juin 2022",
+                    "informations_complementaires_publiques": null,
+                    "liens_vers_les_images": "http://rappel.conso.gouv.fr/image/dfb4cbd0-7b07-4ccd-8c65-3d15ecccc6b3.jpg",
+                    "lien_vers_la_liste_des_produits": "http://rappel.conso.gouv.fr/document/dba429c4-b1eb-44ad-ba3b-25ba23a39daf/Interne/ListeDesProduits",
+                    "lien_vers_affichette_pdf": "http://rappel.conso.gouv.fr/affichettePDF/6355/Interne",
+                    "date_ref": "2022-03"
+                }
+            }
+        },
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0/records/86ad76a71545e489fac0d6cbc422f98835f94876"
+                },
+                {
+                    "rel": "dataset",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets/rappelconso0"
+                },
+                {
+                    "rel": "datasets",
+                    "href": "https://data.economie.gouv.fr/api/v2/catalog/datasets"
+                }
+            ],
+            "record": {
+                "id": "86ad76a71545e489fac0d6cbc422f98835f94876",
+                "timestamp": "2022-03-16T14:00:06.502+01:00",
+                "size": 725,
+                "fields": {
+                    "reference_fiche": "2022-03-0011",
+                    "ndeg_de_version": 1,
+                    "nature_juridique_du_rappel": "Volontaire (sans arrêté préfectoral)",
+                    "categorie_de_produit": "Sports-loisirs",
+                    "sous_categorie_de_produit": "Equipements de sports et de loisirs",
+                    "nom_de_la_marque_du_produit": "pafuluo",
+                    "noms_des_modeles_ou_references": "pafuluo x20",
+                    "identification_des_produits": "00000000 00000000",
+                    "conditionnements": null,
+                    "date_debut_fin_de_commercialisation": "Du 01/03/2021 au 01/09/2021",
+                    "temperature_de_conservation": null,
+                    "marque_de_salubrite": null,
+                    "informations_complementaires": "x20",
+                    "zone_geographique_de_vente": "Régions: Réunion",
+                    "distributeurs": "irep 17 rue roger eugene de louise 97419 la possession",
+                    "motif_du_rappel": "PRODUIT NON CONFORME ET DANGEREUX",
+                    "risques_encourus_par_le_consommateur": "Blessures externes Choc électrique Dommages internes Incendie",
+                    "preconisations_sanitaires": null,
+                    "description_complementaire_du_risque": "Choc électriques et Risques d'ingestion ou d'obstruction",
+                    "conduites_a_tenir_par_le_consommateur": "Ne plus utiliser le produit Rapporter le produit au point de vente",
+                    "numero_de_contact": "0692671446",
+                    "modalites_de_compensation": "Remboursement Echange",
+                    "date_de_fin_de_la_procedure_de_rappel": null,
+                    "informations_complementaires_publiques": null,
+                    "liens_vers_les_images": "http://rappel.conso.gouv.fr/image/ff0593eb-635b-4863-acbc-755f5eb4c207.jpg",
+                    "lien_vers_la_liste_des_produits": null,
+                    "lien_vers_affichette_pdf": "http://rappel.conso.gouv.fr/affichettePDF/6356/Interne",
+                    "date_ref": "2022-03"
+                }
+            }
+        }
+    ]
+}
