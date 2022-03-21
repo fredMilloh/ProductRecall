@@ -15,6 +15,10 @@
 		B606D56A27E8DAA800573498 /* ProductRecallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D56927E8DAA800573498 /* ProductRecallUITests.swift */; };
 		B606D56C27E8DAA800573498 /* ProductRecallUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D56B27E8DAA800573498 /* ProductRecallUITestsLaunchTests.swift */; };
 		B606D57A27E8DC1300573498 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D57927E8DC1300573498 /* Product.swift */; };
+		B606D58027E8DE9F00573498 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D57F27E8DE9F00573498 /* RequestError.swift */; };
+		B606D58227E8DEB400573498 /* ProductUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D58127E8DEB400573498 /* ProductUrl.swift */; };
+		B606D58427E8DEF700573498 /* HTTPUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D58327E8DEF700573498 /* HTTPUrl.swift */; };
+		B606D58627E8DF2700573498 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D58527E8DF2700573498 /* HTTPClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		B606D56B27E8DAA800573498 /* ProductRecallUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRecallUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B606D57927E8DC1300573498 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		B606D57B27E8DC6400573498 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B606D57F27E8DE9F00573498 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		B606D58127E8DEB400573498 /* ProductUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUrl.swift; sourceTree = "<group>"; };
+		B606D58327E8DEF700573498 /* HTTPUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPUrl.swift; sourceTree = "<group>"; };
+		B606D58527E8DF2700573498 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				B606D54E27E8DAA500573498 /* ProductRecallApp.swift */,
+				B606D57D27E8DE6C00573498 /* Networking */,
 				B606D57827E8DC0400573498 /* Model */,
 				B606D55027E8DAA500573498 /* ContentView.swift */,
 				B606D57C27E8DC7900573498 /* Resources */,
@@ -146,6 +155,25 @@
 				B606D55227E8DAA800573498 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B606D57D27E8DE6C00573498 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B606D58527E8DF2700573498 /* HTTPClient.swift */,
+				B606D57E27E8DE7700573498 /* Base */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		B606D57E27E8DE7700573498 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B606D58327E8DEF700573498 /* HTTPUrl.swift */,
+				B606D58127E8DEB400573498 /* ProductUrl.swift */,
+				B606D57F27E8DE9F00573498 /* RequestError.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +306,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B606D58027E8DE9F00573498 /* RequestError.swift in Sources */,
+				B606D58427E8DEF700573498 /* HTTPUrl.swift in Sources */,
+				B606D58227E8DEB400573498 /* ProductUrl.swift in Sources */,
+				B606D58627E8DF2700573498 /* HTTPClient.swift in Sources */,
 				B606D55127E8DAA500573498 /* ContentView.swift in Sources */,
 				B606D54F27E8DAA500573498 /* ProductRecallApp.swift in Sources */,
 				B606D57A27E8DC1300573498 /* Product.swift in Sources */,
