@@ -201,8 +201,8 @@
 		B606D58827E8E1FA00573498 /* HomeList */ = {
 			isa = PBXGroup;
 			children = (
-				B606D59427E909E800573498 /* RecordRow */,
 				B606D59727E9142300573498 /* HomeListView.swift */,
+				B606D59427E909E800573498 /* RecordRow */,
 			);
 			path = HomeList;
 			sourceTree = "<group>";
