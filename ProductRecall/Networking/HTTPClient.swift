@@ -20,7 +20,7 @@ class HTTPClient : ObservableObject {
         get()
     }
     
-    var urlType: HTTPUrl = ProductUrl.allProduct
+    var endPoint: Endpoint = ProductsEndpoint.whereCategoryIs(search: "Hygiène-Beauté")
     
     /// Tgis method decides when to trigger the next API request while the user is scrolling.
     /// It is called during `onAppear` on the rows of the list
@@ -38,17 +38,9 @@ class HTTPClient : ObservableObject {
         /// Pending a result, the status is loading
         pageStatus = .loading(offset: offset)
         
-        var url: URL? {
-            var component = URLComponents()
-            component.scheme = urlType.scheme
-            component.host = urlType.host
-            component.path = urlType.path
-            component.queryItems = urlType.parameters(offset: offset)
-            return component.url
-        }
-        guard let url = url else { return }
-
-        let request = URLRequest(url: url)
+        guard let url = URL(string: endPoint.baseURL + endPoint.path) else { return }
+        var request = URLRequest(url: endPoint.addURLQueryParameters(toUrl: url, offset: offset))
+        request.httpMethod = endPoint.method.rawValue
   
         URLSession.shared.dataTaskPublisher(for: request)
             
