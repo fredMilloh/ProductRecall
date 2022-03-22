@@ -15,8 +15,6 @@
 		B606D56C27E8DAA800573498 /* ProductRecallUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D56B27E8DAA800573498 /* ProductRecallUITestsLaunchTests.swift */; };
 		B606D57A27E8DC1300573498 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D57927E8DC1300573498 /* Product.swift */; };
 		B606D58027E8DE9F00573498 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D57F27E8DE9F00573498 /* RequestError.swift */; };
-		B606D58227E8DEB400573498 /* ProductUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D58127E8DEB400573498 /* ProductUrl.swift */; };
-		B606D58427E8DEF700573498 /* HTTPUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D58327E8DEF700573498 /* HTTPUrl.swift */; };
 		B606D58627E8DF2700573498 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D58527E8DF2700573498 /* HTTPClient.swift */; };
 		B606D58A27E8E34600573498 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D58927E8E34600573498 /* TestCase.swift */; };
 		B606D58F27E8E3F600573498 /* RecordViewModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D58E27E8E3F600573498 /* RecordViewModel+Tests.swift */; };
@@ -24,6 +22,9 @@
 		B606D59327E8E9B700573498 /* record.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D59227E8E9B700573498 /* record.swift */; };
 		B606D59627E90A3000573498 /* RecordRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D59527E90A3000573498 /* RecordRow.swift */; };
 		B606D59827E9142300573498 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D59727E9142300573498 /* HomeListView.swift */; };
+		B606D5A027EA4B7700573498 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D59F27EA4B7700573498 /* Endpoint.swift */; };
+		B606D5A227EA4B9A00573498 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5A127EA4B9A00573498 /* RequestMethod.swift */; };
+		B606D5A427EA4BD400573498 /* ProductsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5A327EA4BD400573498 /* ProductsEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +57,6 @@
 		B606D57927E8DC1300573498 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		B606D57B27E8DC6400573498 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B606D57F27E8DE9F00573498 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
-		B606D58127E8DEB400573498 /* ProductUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUrl.swift; sourceTree = "<group>"; };
-		B606D58327E8DEF700573498 /* HTTPUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPUrl.swift; sourceTree = "<group>"; };
 		B606D58527E8DF2700573498 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		B606D58927E8E34600573498 /* TestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase.swift; sourceTree = "<group>"; };
 		B606D58C27E8E3A900573498 /* product.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = product.json; sourceTree = "<group>"; };
@@ -66,6 +65,9 @@
 		B606D59227E8E9B700573498 /* record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = record.swift; sourceTree = "<group>"; };
 		B606D59527E90A3000573498 /* RecordRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRow.swift; sourceTree = "<group>"; };
 		B606D59727E9142300573498 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
+		B606D59F27EA4B7700573498 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		B606D5A127EA4B9A00573498 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
+		B606D5A327EA4BD400573498 /* ProductsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				B606D58527E8DF2700573498 /* HTTPClient.swift */,
+				B606D5A327EA4BD400573498 /* ProductsEndpoint.swift */,
 				B606D57E27E8DE7700573498 /* Base */,
 			);
 			path = Networking;
@@ -183,8 +186,8 @@
 		B606D57E27E8DE7700573498 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				B606D58327E8DEF700573498 /* HTTPUrl.swift */,
-				B606D58127E8DEB400573498 /* ProductUrl.swift */,
+				B606D59F27EA4B7700573498 /* Endpoint.swift */,
+				B606D5A127EA4B9A00573498 /* RequestMethod.swift */,
 				B606D57F27E8DE9F00573498 /* RequestError.swift */,
 			);
 			path = Base;
@@ -364,14 +367,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B606D58027E8DE9F00573498 /* RequestError.swift in Sources */,
-				B606D58427E8DEF700573498 /* HTTPUrl.swift in Sources */,
-				B606D58227E8DEB400573498 /* ProductUrl.swift in Sources */,
+				B606D5A427EA4BD400573498 /* ProductsEndpoint.swift in Sources */,
 				B606D59127E8E46B00573498 /* RecordViewModel.swift in Sources */,
+				B606D5A227EA4B9A00573498 /* RequestMethod.swift in Sources */,
 				B606D58627E8DF2700573498 /* HTTPClient.swift in Sources */,
 				B606D55127E8DAA500573498 /* ContentView.swift in Sources */,
 				B606D54F27E8DAA500573498 /* ProductRecallApp.swift in Sources */,
 				B606D59827E9142300573498 /* HomeListView.swift in Sources */,
 				B606D57A27E8DC1300573498 /* Product.swift in Sources */,
+				B606D5A027EA4B7700573498 /* Endpoint.swift in Sources */,
 				B606D59627E90A3000573498 /* RecordRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
