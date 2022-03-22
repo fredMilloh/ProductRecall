@@ -13,8 +13,14 @@ struct HomeListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(recordsFeed.productsRecall) { record in
-                    RecordRow(recordViewModel: RecordViewModel(record: record))
+                List {
+                    ForEach(recordsFeed.productsRecall) { record in
+                        NavigationLink {
+                            ProductDetail(recordViewModel: RecordViewModel(record: record))
+                        } label: {
+                            let viewModel = RecordViewModel(record: record)
+                            RecordRow(recordViewModel: viewModel)
+                        }
                         .onAppear(perform: {
                             if !self.recordsFeed.endOfList {
                                 if self.recordsFeed.shouldLoadMore(recordItem: record) {
@@ -22,11 +28,11 @@ struct HomeListView: View {
                                 }
                             }
                         })
-                    
                         .alert(isPresented: $recordsFeed.endOfList) {
                             Alert(title: Text("Oups"), message: Text("An error Occurred"), dismissButton: .default(Text("ok")))
                         }
                         .navigationTitle("Rappels Produits")
+                    }
                 }
             }
             
