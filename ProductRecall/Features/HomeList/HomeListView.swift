@@ -15,30 +15,18 @@ struct HomeListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    TextField("Rechercher un produit, une marque, ...", text: $viewModel.searchText)
-                        .textFieldStyle(.roundedBorder)
-                    if viewModel.isSearchEnabled {
-                        Button {
-                            
-                            recordsFeed.endPoint = ProductsEndpoint.whereSearchIs(string: viewModel.searchText
-                            )
-                            recordsFeed.pageStatus = PageStatus.ready(nextOffset: 0)
-                            recordsFeed.productsRecall.removeAll()
-                            recordsFeed.get()
-                            
-                        } label: {
-                            Text("Go")
-                        }
-                        .buttonStyle(.bordered)
-                        .foregroundColor(.blue)
-                    } else {
-                        Image(systemName: "magnifyingglass.circle")
-                            .foregroundColor(.blue)
+                if viewModel.isSearchEnabled {
+                    Button {
+                        recordsFeed.endPoint = ProductsEndpoint.whereSearchIs(string: viewModel.searchText)
+                        recordsFeed.pageStatus = PageStatus.ready(nextOffset: 0)
+                        recordsFeed.productsRecall.removeAll()
+                        recordsFeed.get()
+                    } label: {
+                        Text("Lancer le recherche ...")
                     }
+                    .buttonStyle(.bordered)
+                    .foregroundColor(.blue)
                 }
-                .padding()
-                
                 List {
                     ForEach(recordsFeed.productsRecall) { record in
                         NavigationLink {
@@ -61,7 +49,11 @@ struct HomeListView: View {
                     }
                 }
             }
-            
+            .searchable(
+                text: $viewModel.searchText,
+                placement: .navigationBarDrawer(displayMode: .automatic),
+                prompt: "Rechercher un produit, une marque, ..."
+            )
         }
     }
 }
