@@ -10,13 +10,14 @@ import Foundation
 enum ProductsEndpoint {
     case allProduct
     case whereCategoryIs(search: String)
+    case whereSearchIs(string: String)
 }
 
 extension ProductsEndpoint: Endpoint {
     
     var path: String {
         switch self {
-        case .allProduct, .whereCategoryIs:
+        case .allProduct, .whereCategoryIs, .whereSearchIs:
             return "catalog/datasets/rappelconso0/records?"
         }
     }
@@ -27,34 +28,41 @@ extension ProductsEndpoint: Endpoint {
             resolvingAgainstBaseURL: false
         ) else { return url }
         
-        var queryItems = [URLQueryItem]()
+        var queryItems = [
+            URLQueryItem(name: "order_by", value: "date_ref desc"),
+            URLQueryItem(name: "limit", value: "100"),
+            URLQueryItem(name: "offset", value: String(offset))
+        ]
         switch self {
         case .allProduct:
-            queryItems = [
-                URLQueryItem(name: "order_by", value: "reference_fiche desc"),
-                URLQueryItem(name: "limit", value: "100"),
-                URLQueryItem(name: "offset", value: String(offset))
-            ]
             urlComponents.queryItems = queryItems
             guard let updatedUrl = urlComponents.url else { return url }
             return updatedUrl
             
         case .whereCategoryIs(let search):
-            queryItems = [
+            let queryItem = [
                 URLQueryItem(name: "where", value: "categorie_de_produit = \"\(search)\""),
-                URLQueryItem(name: "order_by", value: "reference_fiche desc"),
-                URLQueryItem(name: "limit", value: "100"),
-                URLQueryItem(name: "offset", value: String(offset))
             ]
+            queryItems.append(contentsOf: queryItem)
             urlComponents.queryItems = queryItems
             guard let updatedUrl = urlComponents.url else { return url }
             return updatedUrl
+            
+        case .whereSearchIs(let search):
+            let queryItem = [
+                URLQueryItem(name: "where", value: "\"\(search)\""),
+            ]
+            queryItems.append(contentsOf: queryItem)
+            urlComponents.queryItems = queryItems
+            guard let updatedUrl = urlComponents.url else { return url }
+            return updatedUrl
+            
         }
     }
 
     var method: RequestMethod {
         switch self {
-        case .allProduct, .whereCategoryIs:
+        case .allProduct, .whereCategoryIs, .whereSearchIs:
             return .get
         }
     }

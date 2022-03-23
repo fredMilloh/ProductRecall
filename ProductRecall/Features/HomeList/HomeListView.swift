@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct HomeListView: View {
+    
     @ObservedObject var recordsFeed = HTTPClient()
+    @StateObject var viewModel = SearchViewModel()
     
     var body: some View {
         NavigationView {
