@@ -10,7 +10,7 @@ import SwiftUI
 
 class SearchViewModel: ObservableObject {
     
-    @ObservedObject var recordFeed = HTTPClient()
+    @ObservedObject var recordsFeed = HTTPClient()
     
     @Published var isSearchEnabled = false
     @Published var searchText: String = "" {

@@ -12,6 +12,16 @@ struct HomeListView: View {
     @ObservedObject var recordsFeed = HTTPClient()
     @StateObject var viewModel = SearchViewModel()
     
+    var filteredRecords: [Record] {
+        if viewModel.searchText.isEmpty {
+            return recordsFeed.productsRecall
+        } else {
+            return recordsFeed.productsRecall.filter { record in
+                guard let item = record.modelName else { return false }
+                return item.localizedCaseInsensitiveContains(viewModel.searchText.localizedLowercase)
+            }
+        }
+    }
     var body: some View {
         NavigationView {
             VStack {
@@ -22,13 +32,13 @@ struct HomeListView: View {
                         recordsFeed.productsRecall.removeAll()
                         recordsFeed.get()
                     } label: {
-                        Text("Lancer le recherche ...")
+                        Text("Lancer une recherche dans l'historique")
                     }
                     .buttonStyle(.bordered)
                     .foregroundColor(.blue)
                 }
                 List {
-                    ForEach(recordsFeed.productsRecall) { record in
+                    ForEach(filteredRecords) { record in
                         NavigationLink {
                             ProductDetail(recordViewModel: RecordViewModel(record: record))
                         } label: {
@@ -45,16 +55,17 @@ struct HomeListView: View {
                         .alert(isPresented: $recordsFeed.endOfList) {
                             Alert(title: Text("Oups"), message: Text("An error Occurred"), dismissButton: .default(Text("ok")))
                         }
-                        .navigationTitle("Rappels Produits")
                     }
                 }
+                .listStyle(PlainListStyle())
             }
-            .searchable(
-                text: $viewModel.searchText,
-                placement: .navigationBarDrawer(displayMode: .automatic),
-                prompt: "Rechercher un produit, une marque, ..."
-            )
+            .navigationTitle("Rappels Produits")
         }
+        .searchable(
+            text: $viewModel.searchText,
+            placement: .navigationBarDrawer(displayMode: .always),
+            prompt: "Rechercher un produit, une marque, ..."
+        )
     }
 }
 

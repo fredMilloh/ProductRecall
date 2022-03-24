@@ -29,7 +29,7 @@ extension ProductsEndpoint: Endpoint {
         ) else { return url }
         
         var queryItems = [
-            URLQueryItem(name: "order_by", value: "date_ref desc"),
+            URLQueryItem(name: "order_by", value: "reference_fiche desc"),
             URLQueryItem(name: "limit", value: "100"),
             URLQueryItem(name: "offset", value: String(offset))
         ]
