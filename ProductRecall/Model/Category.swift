@@ -24,5 +24,6 @@ extension Category {
         Category(name: "Maison-Habitat"),
         Category(name: "Appareils électriques, Outils"),
         Category(name: "Equipements de communication"),
-        Category(name: "Autres")]
+        Category(name: "Autres")
+    ]
 }

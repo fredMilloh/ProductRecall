@@ -22,9 +22,9 @@ class HTTPClient : ObservableObject {
     
     var endPoint: Endpoint = ProductsEndpoint.whereCategoryIs(search: "Alimentation")
     
-    /// Tgis method decides when to trigger the next API request while the user is scrolling.
+    /// This method decides when to trigger the next API request while the user is scrolling.
     /// It is called during `onAppear` on the rows of the list
-    func shouldLoadMore(recordItem : Record) -> Bool{
+    func shouldLoadMore(recordItem : Record) -> Bool {
         if let lastId = productsRecall.last?.id {
             return recordItem.id == lastId ? true : false
         }

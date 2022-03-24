@@ -34,6 +34,7 @@
 		B606D5BA27EB687900573498 /* SearchViewModel+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5B927EB687900573498 /* SearchViewModel+Test.swift */; };
 		B606D5BC27EB68CD00573498 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5BB27EB68CD00573498 /* SearchViewModel.swift */; };
 		B606D5C027ECD22200573498 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5BF27ECD22200573498 /* Category.swift */; };
+		B606D5C427ECF11200573498 /* OptionalString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5C327ECF11200573498 /* OptionalString+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		B606D5B927EB687900573498 /* SearchViewModel+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewModel+Test.swift"; sourceTree = "<group>"; };
 		B606D5BB27EB68CD00573498 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		B606D5BF27ECD22200573498 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		B606D5C327ECF11200573498 /* OptionalString+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionalString+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		B606D54D27E8DAA500573498 /* ProductRecall */ = {
 			isa = PBXGroup;
 			children = (
+				B606D5C127ECF0C500573498 /* Utils */,
 				B606D54E27E8DAA500573498 /* ProductRecallApp.swift */,
 				B606D57D27E8DE6C00573498 /* Networking */,
 				B606D57827E8DC0400573498 /* Model */,
@@ -311,6 +314,22 @@
 			path = RecordRow;
 			sourceTree = "<group>";
 		};
+		B606D5C127ECF0C500573498 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B606D5C227ECF0E600573498 /* Extension */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		B606D5C227ECF0E600573498 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B606D5C327ECF11200573498 /* OptionalString+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -453,6 +472,7 @@
 				B606D5A227EA4B9A00573498 /* RequestMethod.swift in Sources */,
 				B606D58627E8DF2700573498 /* HTTPClient.swift in Sources */,
 				B606D55127E8DAA500573498 /* ContentView.swift in Sources */,
+				B606D5C427ECF11200573498 /* OptionalString+.swift in Sources */,
 				B606D54F27E8DAA500573498 /* ProductRecallApp.swift in Sources */,
 				B606D5AF27EA5D2800573498 /* DetailCondition.swift in Sources */,
 				B606D5A927EA5C3500573498 /* DetailDescription.swift in Sources */,
