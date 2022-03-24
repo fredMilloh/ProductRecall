@@ -33,6 +33,7 @@
 		B606D5B327EA5DFA00573498 /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5B227EA5DFA00573498 /* ProductDetail.swift */; };
 		B606D5BA27EB687900573498 /* SearchViewModel+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5B927EB687900573498 /* SearchViewModel+Test.swift */; };
 		B606D5BC27EB68CD00573498 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5BB27EB68CD00573498 /* SearchViewModel.swift */; };
+		B606D5C027ECD22200573498 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5BF27ECD22200573498 /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		B606D5B227EA5DFA00573498 /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
 		B606D5B927EB687900573498 /* SearchViewModel+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewModel+Test.swift"; sourceTree = "<group>"; };
 		B606D5BB27EB68CD00573498 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		B606D5BF27ECD22200573498 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				B606D57927E8DC1300573498 /* Product.swift */,
+				B606D5BF27ECD22200573498 /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 			files = (
 				B606D5AD27EA5CE700573498 /* DetailRecall.swift in Sources */,
 				B606D5AB27EA5C9F00573498 /* DetailDistribution.swift in Sources */,
+				B606D5C027ECD22200573498 /* Category.swift in Sources */,
 				B606D5B327EA5DFA00573498 /* ProductDetail.swift in Sources */,
 				B606D58027E8DE9F00573498 /* RequestError.swift in Sources */,
 				B606D5A427EA4BD400573498 /* ProductsEndpoint.swift in Sources */,
