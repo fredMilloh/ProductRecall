@@ -14,57 +14,57 @@ struct RecordViewModel {
 // MARK: - Description
     
     var category: String {
-        record.category ?? ""
+        record.category.orEmpty
     }
     
     var subCategory: String {
-        record.subCategory ?? ""
+        record.subCategory.orEmpty
     }
  
     var brandName: String {
-        record.brandName ?? ""
+        record.brandName.orEmpty
     }
     
     var modelName: String {
-        record.modelName ?? ""
+        record.modelName.orEmpty
     }
  
     var productID: String {
-        record.productId ?? ""
+        record.productId.orEmpty
     }
     
     var packaging: String {
-        record.packaging ?? ""
+        record.packaging.orEmpty
     }
     
     var infos: String {
-        record.infos ?? ""
+        record.infos.orEmpty
     }
     
     var marketingDates: String {
-        record.marketingDates ?? ""
+        record.marketingDates.orEmpty
     }
     
     var storageTemperature: String {
-        record.storageTemperature ?? ""
+        record.storageTemperature.orEmpty
     }
     
     var healthMark: String {
-        record.healthMark ?? ""
+        record.healthMark.orEmpty
     }
     
 // MARK: - Distribution
     
     var distributor: String {
-        record.distributor ?? ""
+        record.distributor.orEmpty
     }
     
     var saleGeoArea: String {
-        record.saleGeoArea ?? ""
+        record.saleGeoArea.orEmpty
     }
     
     var contactNumber: String {
-        record.contactNumber ?? ""
+        record.contactNumber.orEmpty
     }
     
 // MARK: - Images
@@ -82,47 +82,47 @@ struct RecordViewModel {
     }
     
     var flyerImageLink: URL? {
-        URL(string: record.flyerLink ?? "")
+        URL(string: record.flyerLink.orEmpty)
     }
     
 // MARK: - Recall informations
     
     var reasonRecall: String {
-        record.reasonRecall ?? ""
+        record.reasonRecall.orEmpty
     }
     
     var risksIncurred: String {
-        record.risksIncurred ?? ""
+        record.risksIncurred.orEmpty
     }
     
     var healthRecommendations: String {
-        record.healthRecommendations ?? ""
+        record.healthRecommendations.orEmpty
     }
     
     var additionalRiskDescription: String {
-        record.additionalRiskDescription ?? ""
+        record.additionalRiskDescription.orEmpty
     }
    
 // MARK: - Conditions
     
     var actionToTake: String {
-        record.actionsToTake ?? ""
+        record.actionsToTake.orEmpty
     }
     
     var compensationTerms: String {
-        record.compensationTerms ?? ""
+        record.compensationTerms.orEmpty
     }
     
     var endDateRecall: String {
-        record.endDateRecall ?? ""
+        record.endDateRecall.orEmpty
     }
     
     var otherInfos: String {
-        record.otherInfos ?? ""
+        record.otherInfos.orEmpty
     }
     
     var legalCharacter: String {
-        record.legalCharacter ?? ""
+        record.legalCharacter.orEmpty
     }
     
 // MARK: - Example
