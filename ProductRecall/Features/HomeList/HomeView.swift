@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeListView: View {
+struct HomeView: View {
     
     @StateObject var viewModel = HomeListViewModel()
     
@@ -23,28 +23,7 @@ struct HomeListView: View {
 //    }
     var body: some View {
         NavigationView {
-            List(viewModel.recordList) { record in
-                    NavigationLink {
-                        ProductDetail(
-                            recordViewModel: RecordViewModel(record: record)
-                        )
-                    } label: {
-                        let viewModel = RecordViewModel(record: record)
-                        RecordRow(recordViewModel: viewModel)
-                    }
-                    .onAppear(perform: {
-                        viewModel.requestProduct()
-                        viewModel.getNewRecords(recordItem: record)
-                    })
-                    .alert(isPresented: $viewModel.endOfList) {
-                        Alert(title: Text("Oups"),
-                              message: Text("An error Occurred"),
-                              dismissButton: .default(Text("ok")))
-                    }
-            }
-            .onAppear(perform: {
-                viewModel.requestProduct()
-            })
+            HomeListView()
             .navigationTitle("Rappels Produits")
             .refreshable {
                 viewModel.requestProduct()
@@ -90,8 +69,8 @@ struct HomeListView: View {
     }
 }
 
-struct HomeListView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeListView()
+        HomeView()
     }
 }
