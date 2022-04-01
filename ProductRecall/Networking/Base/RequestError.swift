@@ -10,17 +10,17 @@ import Foundation
 enum RequestError: Error {
     case decode
     case invalidURL
-    case noResponse
     case unauthorized
-    case unexpectedStatusCode
     case unknown
 
     var customMessage: String {
         switch self {
         case .decode:
             return "Decode error"
+        case .invalidURL:
+            return "Invalid URL"
         case .unauthorized:
-            return "Session expired"
+            return "Offline or expired session"
         default:
             return "Unknown error"
         }

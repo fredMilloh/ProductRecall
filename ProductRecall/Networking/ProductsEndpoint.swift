@@ -22,7 +22,7 @@ extension ProductsEndpoint: Endpoint {
         }
     }
     
-    func addURLQueryParameters(toUrl url: URL, offset: Int) -> URL {
+    func addURLQuery(toUrl url: URL, paginationOffset: Int) -> URL {
         guard var urlComponents = URLComponents(
             url: url,
             resolvingAgainstBaseURL: false
@@ -31,7 +31,7 @@ extension ProductsEndpoint: Endpoint {
         var queryItems = [
             URLQueryItem(name: "order_by", value: "reference_fiche desc"),
             URLQueryItem(name: "limit", value: "100"),
-            URLQueryItem(name: "offset", value: String(offset))
+            URLQueryItem(name: "offset", value: String(paginationOffset))
         ]
         switch self {
         case .allProduct:
@@ -67,3 +67,4 @@ extension ProductsEndpoint: Endpoint {
         }
     }
 }
+
