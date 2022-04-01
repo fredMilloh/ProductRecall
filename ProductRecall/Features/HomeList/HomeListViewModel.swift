@@ -18,7 +18,7 @@ enum PageStatus {
 
 class HomeListViewModel: ObservableObject {
     
-    @ObservedObject var recordsFeed = HTTPClient()
+    @ObservedObject var client = HTTPClient()
     
     @Published var isSearchEnabled = false
     @Published var searchText: String = "" {
@@ -38,7 +38,7 @@ class HomeListViewModel: ObservableObject {
         /// Pending a result, the status is loading
         pageStatus = .loading(paginationOffset: offset)
         
-        recordsFeed.get(dataType: Product.self, endPoint: endpoint, paginationOffset: offset)
+        client.get(dataType: Product.self, endPoint: endpoint, paginationOffset: offset)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] response in
                 if case let .failure(error) = response {
@@ -57,5 +57,20 @@ class HomeListViewModel: ObservableObject {
                 self.recordList.append(contentsOf: product.records)
             }
             .store(in: &cancellable)
+    }
+    
+    func getNewRecords(recordItem: Record) {
+        if !endOfList, shouldLoadMore(recordItem: recordItem) {
+                requestProduct()
+        }
+    }
+    
+    private func shouldLoadMore(recordItem: Record) -> Bool {
+        print("recordList count = ", recordList.last?.id as Any)
+        if let lastId = recordList.last?.id {
+            print("item id = ", recordItem.id as Any)
+            return recordItem.id == lastId ? true : false
+        }
+        return false
     }
 }

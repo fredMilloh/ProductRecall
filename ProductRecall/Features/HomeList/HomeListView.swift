@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeListView: View {
     
-//    @ObservedObject var recordsFeed = HTTPClient()
     @StateObject var viewModel = HomeListViewModel()
     
 //    var filteredRecords: [Record] {
@@ -35,11 +34,7 @@ struct HomeListView: View {
                     }
                     .onAppear(perform: {
                         viewModel.requestProduct()
-//                        if !self.recordsFeed.endOfList {
-//                            if self.recordsFeed.shouldLoadMore(recordItem: record) {
-//                                self.recordsFeed.get()
-//                            }
-//                        }
+                        viewModel.getNewRecords(recordItem: record)
                     })
                     .alert(isPresented: $viewModel.endOfList) {
                         Alert(title: Text("Oups"),
