@@ -10,78 +10,41 @@ import Combine
 
 class HTTPClient : ObservableObject {
     
-    @Published var productsRecall = [Record]()
-    @Published var endOfList = false
+    private var session = URLSession.shared
     
-    var pageStatus = PageStatus.ready(nextOffset: 0)
-    var cancellable : Set<AnyCancellable> = Set()
-    
-    init() {
-        get()
-    }
-    
-    var endPoint: Endpoint = ProductsEndpoint.whereCategoryIs(search: "Alimentation")
-    
-    /// This method decides when to trigger the next API request while the user is scrolling.
-    /// It is called during `onAppear` on the rows of the list
-    func shouldLoadMore(recordItem : Record) -> Bool {
-        if let lastId = productsRecall.last?.id {
-            return recordItem.id == lastId ? true : false
-        }
-        return false
-    }
-    
-    func get() {
-        guard case let .ready(offset) = pageStatus else {
-            return
-        }
-        /// Pending a result, the status is loading
-        pageStatus = .loading(offset: offset)
-        
-        guard let url = URL(string: endPoint.baseURL + endPoint.path) else { return }
-        var request = URLRequest(url: endPoint.addURLQueryParameters(toUrl: url, offset: offset))
-        request.httpMethod = endPoint.method.rawValue
-  
-        URLSession.shared.dataTaskPublisher(for: request)
-            
-            .tryMap { output in
-                guard let _ = output.response as? HTTPURLResponse else {
-                    throw RequestError.noResponse
-                }
-                return output.data
+    private func parse<T: Decodable>(_ data: Data) -> AnyPublisher<T, RequestError> {
+        return Just(data)
+            .decode(type: T.self, decoder: JSONDecoder())
+            .mapError { error in
+                RequestError.decode
             }
-            .decode(type: Product.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    print("completed")
-                    break
-                case .failure(let error):
-                    print(error)
-                    self.endOfList = true
-                    self.pageStatus = .done
-                }
-        }) { product in
-            if product.totalCount == 0 {
-                self.pageStatus = .done
-            } else {
-                guard let totalCount = product.totalCount else { return }
-                let remainingOccurences = totalCount - self.productsRecall.count
-                self.pageStatus = remainingOccurences > 100 ?
-                    .ready(nextOffset: offset + 100) :
-                    .ready(nextOffset: offset + remainingOccurences)
-                self.productsRecall.append(contentsOf: product.records)
-            }
-        }
-        .store(in: &cancellable)
     }
 }
 
-/// allows to monitor the status of network requests
-enum PageStatus {
-    case ready (nextOffset: Int)
-    case loading (offset: Int)
-    case done
+extension HTTPClient: ClientProtocol {
+    
+    func get<T: Decodable>(
+        dataType: T.Type,
+        endPoint: Endpoint,
+        paginationOffset: Int
+    ) -> AnyPublisher<T, RequestError> {
+        
+        guard let url = URL(string: endPoint.baseURL + endPoint.path) else {
+            let urlError = RequestError.invalidURL
+            return Fail(error: urlError).eraseToAnyPublisher()
+        }
+        var request = URLRequest(url: endPoint.addURLQuery(toUrl: url, paginationOffset: paginationOffset))
+        request.httpMethod = endPoint.method.rawValue
+  print("request = ", request)
+        
+        return session.dataTaskPublisher(for: request)
+            .mapError { error in
+                RequestError.unauthorized
+            }
+            .flatMap(maxPublishers: .unlimited) { output in
+                self.parse(output.data)
+            }
+            .eraseToAnyPublisher()
+    }
 }

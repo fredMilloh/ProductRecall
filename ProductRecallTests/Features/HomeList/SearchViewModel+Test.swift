@@ -10,10 +10,10 @@ import XCTest
 
 class SearchViewModel_Test: XCTestCase {
     
-    var sut: SearchViewModel?
+    var sut: HomeListViewModel?
 
     override func setUpWithError() throws {
-        sut = SearchViewModel()
+        sut = HomeListViewModel()
         try super.setUpWithError()
     }
 

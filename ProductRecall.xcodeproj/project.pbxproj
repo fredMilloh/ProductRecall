@@ -32,9 +32,10 @@
 		B606D5AF27EA5D2800573498 /* DetailCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5AE27EA5D2800573498 /* DetailCondition.swift */; };
 		B606D5B327EA5DFA00573498 /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5B227EA5DFA00573498 /* ProductDetail.swift */; };
 		B606D5BA27EB687900573498 /* SearchViewModel+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5B927EB687900573498 /* SearchViewModel+Test.swift */; };
-		B606D5BC27EB68CD00573498 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5BB27EB68CD00573498 /* SearchViewModel.swift */; };
+		B606D5BC27EB68CD00573498 /* HomeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5BB27EB68CD00573498 /* HomeListViewModel.swift */; };
 		B606D5C027ECD22200573498 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5BF27ECD22200573498 /* Category.swift */; };
 		B606D5C427ECF11200573498 /* OptionalString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5C327ECF11200573498 /* OptionalString+.swift */; };
+		B695C9C927F6FD060098597B /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B695C9C827F6FD060098597B /* ClientProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,9 +86,10 @@
 		B606D5AE27EA5D2800573498 /* DetailCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCondition.swift; sourceTree = "<group>"; };
 		B606D5B227EA5DFA00573498 /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
 		B606D5B927EB687900573498 /* SearchViewModel+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewModel+Test.swift"; sourceTree = "<group>"; };
-		B606D5BB27EB68CD00573498 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		B606D5BB27EB68CD00573498 /* HomeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListViewModel.swift; sourceTree = "<group>"; };
 		B606D5BF27ECD22200573498 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B606D5C327ECF11200573498 /* OptionalString+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionalString+.swift"; sourceTree = "<group>"; };
+		B695C9C827F6FD060098597B /* ClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +140,8 @@
 		B606D54D27E8DAA500573498 /* ProductRecall */ = {
 			isa = PBXGroup;
 			children = (
-				B606D5C127ECF0C500573498 /* Utils */,
 				B606D54E27E8DAA500573498 /* ProductRecallApp.swift */,
+				B606D5C127ECF0C500573498 /* Utils */,
 				B606D57D27E8DE6C00573498 /* Networking */,
 				B606D57827E8DC0400573498 /* Model */,
 				B606D5A527EA5BB100573498 /* Views */,
@@ -199,6 +201,7 @@
 		B606D57D27E8DE6C00573498 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B695C9C827F6FD060098597B /* ClientProtocol.swift */,
 				B606D58527E8DF2700573498 /* HTTPClient.swift */,
 				B606D5A327EA4BD400573498 /* ProductsEndpoint.swift */,
 				B606D57E27E8DE7700573498 /* Base */,
@@ -229,7 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				B606D59727E9142300573498 /* HomeListView.swift */,
-				B606D5BB27EB68CD00573498 /* SearchViewModel.swift */,
+				B606D5BB27EB68CD00573498 /* HomeListViewModel.swift */,
 				B606D59427E909E800573498 /* RecordRow */,
 			);
 			path = HomeList;
@@ -467,11 +470,12 @@
 				B606D58027E8DE9F00573498 /* RequestError.swift in Sources */,
 				B606D5A427EA4BD400573498 /* ProductsEndpoint.swift in Sources */,
 				B606D5A727EA5BD200573498 /* DetailContainer.swift in Sources */,
-				B606D5BC27EB68CD00573498 /* SearchViewModel.swift in Sources */,
+				B606D5BC27EB68CD00573498 /* HomeListViewModel.swift in Sources */,
 				B606D59127E8E46B00573498 /* RecordViewModel.swift in Sources */,
 				B606D5A227EA4B9A00573498 /* RequestMethod.swift in Sources */,
 				B606D58627E8DF2700573498 /* HTTPClient.swift in Sources */,
 				B606D55127E8DAA500573498 /* ContentView.swift in Sources */,
+				B695C9C927F6FD060098597B /* ClientProtocol.swift in Sources */,
 				B606D5C427ECF11200573498 /* OptionalString+.swift in Sources */,
 				B606D54F27E8DAA500573498 /* ProductRecallApp.swift in Sources */,
 				B606D5AF27EA5D2800573498 /* DetailCondition.swift in Sources */,

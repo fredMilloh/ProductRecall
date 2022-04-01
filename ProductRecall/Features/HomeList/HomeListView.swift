@@ -9,22 +9,21 @@ import SwiftUI
 
 struct HomeListView: View {
     
-    @ObservedObject var recordsFeed = HTTPClient()
-    @StateObject var viewModel = SearchViewModel()
+    @StateObject var viewModel = HomeListViewModel()
     
-    var filteredRecords: [Record] {
-        if viewModel.searchText.isEmpty {
-            return recordsFeed.productsRecall
-        } else {
-            return recordsFeed.productsRecall.filter { record in
-                guard let item = record.modelName else { return false }
-                return item.localizedCaseInsensitiveContains(viewModel.searchText.localizedLowercase)
-            }
-        }
-    }
+//    var filteredRecords: [Record] {
+//        if viewModel.searchText.isEmpty {
+//            return recordsFeed.productsRecall
+//        } else {
+//            return recordsFeed.productsRecall.filter { record in
+//                guard let item = record.modelName else { return false }
+//                return item.localizedCaseInsensitiveContains(viewModel.searchText.localizedLowercase)
+//            }
+//        }
+//    }
     var body: some View {
         NavigationView {
-            List(filteredRecords) { record in
+            List(viewModel.recordList) { record in
                     NavigationLink {
                         ProductDetail(
                             recordViewModel: RecordViewModel(record: record)
@@ -34,21 +33,21 @@ struct HomeListView: View {
                         RecordRow(recordViewModel: viewModel)
                     }
                     .onAppear(perform: {
-                        if !self.recordsFeed.endOfList {
-                            if self.recordsFeed.shouldLoadMore(recordItem: record) {
-                                self.recordsFeed.get()
-                            }
-                        }
+                        viewModel.requestProduct()
+                        viewModel.getNewRecords(recordItem: record)
                     })
-                    .alert(isPresented: $recordsFeed.endOfList) {
+                    .alert(isPresented: $viewModel.endOfList) {
                         Alert(title: Text("Oups"),
                               message: Text("An error Occurred"),
                               dismissButton: .default(Text("ok")))
                     }
             }
+            .onAppear(perform: {
+                viewModel.requestProduct()
+            })
             .navigationTitle("Rappels Produits")
             .refreshable {
-                recordsFeed.get()
+                viewModel.requestProduct()
             }
         }
         .searchable(
@@ -59,10 +58,10 @@ struct HomeListView: View {
                 
                 if viewModel.isSearchEnabled {
                     Button {
-                        recordsFeed.endPoint = ProductsEndpoint.whereSearchIs(string: viewModel.searchText)
-                        recordsFeed.pageStatus = PageStatus.ready(nextOffset: 0)
-                        recordsFeed.productsRecall.removeAll()
-                        recordsFeed.get()
+//                        recordsFeed.endPoint = ProductsEndpoint.whereSearchIs(string: viewModel.searchText)
+//                        recordsFeed.pageStatus = PageStatus.ready(nextOffset: 0)
+//                        recordsFeed.productsRecall.removeAll()
+//                        recordsFeed.get()
                     } label: {
                         HStack {
                             Text("Lancer une recherche avec **\(viewModel.searchText)**")
@@ -74,11 +73,11 @@ struct HomeListView: View {
                 
                 Section(header: Text("Catégories").bold()) {
                     ForEach(Category.categories, id: \.id) { category in
-                        Button { [self] in
-                            recordsFeed.endPoint = ProductsEndpoint.whereCategoryIs(search: category.name)
-                            recordsFeed.pageStatus = PageStatus.ready(nextOffset: 0)
-                            recordsFeed.productsRecall.removeAll()
-                            recordsFeed.get()
+                        Button {
+//                            recordsFeed.endPoint = ProductsEndpoint.whereCategoryIs(search: category.name)
+//                            recordsFeed.pageStatus = PageStatus.ready(nextOffset: 0)
+//                            recordsFeed.productsRecall.removeAll()
+//                            recordsFeed.get()
                         } label: {
                             HStack {
                                 Image(systemName: "magnifyingglass")
