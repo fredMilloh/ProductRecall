@@ -16,7 +16,7 @@ enum PageStatus {
     case done
 }
 
-class SearchViewModel: ObservableObject {
+class HomeListViewModel: ObservableObject {
     
     @ObservedObject var recordsFeed = HTTPClient()
     

@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeListView: View {
     
 //    @ObservedObject var recordsFeed = HTTPClient()
-    @StateObject var viewModel = SearchViewModel()
+    @StateObject var viewModel = HomeListViewModel()
     
 //    var filteredRecords: [Record] {
 //        if viewModel.searchText.isEmpty {
