@@ -14,6 +14,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
+                CategoriesView(viewModel: viewModel)
                 HomeListView(viewModel: viewModel)
                 .navigationTitle("Rappels Produits")
                 .padding(.vertical, 0)

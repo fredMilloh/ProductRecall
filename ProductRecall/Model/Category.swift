@@ -14,9 +14,7 @@ struct Category: Identifiable {
     let icon: String
 }
 
-extension Category {
-    /// allows a search by category
-    static var categories = [
+var categories = [
         Category(name: "Toutes", description: "All", icon: "all"),
         Category(name: "Alimentation", description: "Alimentation", icon: "supply"),
         Category(name: "Déplacement", description: "Automobiles et moyens de déplacement", icon: "vehicle"),
@@ -29,4 +27,3 @@ extension Category {
         Category(name: "Communication", description: "Equipements de communication", icon: "communication"),
         Category(name: "Autres", description: "Autres", icon: "other")
     ]
-}

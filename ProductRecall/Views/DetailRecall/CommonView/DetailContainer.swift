@@ -33,6 +33,7 @@ struct DetailContainer: View {
 struct Test_Previews: PreviewProvider {
     static var previews: some View {
         DetailContainer(title: "essai", content: "nom")
+            .previewLayout(.sizeThatFits)
     }
 }
 

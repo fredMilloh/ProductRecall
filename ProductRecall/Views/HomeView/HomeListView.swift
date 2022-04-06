@@ -31,7 +31,7 @@ struct HomeListView: View {
                           dismissButton: .default(Text("ok")))
                 }
         }
-        .listStyle(.inset)
+        .listStyle(.plain)
         .padding(.top, -10)
         .onAppear() {
             viewModel.requestProduct(endpoint: viewModel.getEdpoint())
@@ -46,6 +46,6 @@ struct HomeListView: View {
 
 struct HomeListView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeListView(viewModel: HomeViewModel())
+        HomeListView(viewModel: HomeViewModel()).previewLayout(.sizeThatFits)
     }
 }
