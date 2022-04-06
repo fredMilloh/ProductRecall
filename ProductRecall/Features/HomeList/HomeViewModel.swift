@@ -17,7 +17,7 @@ enum PageStatus {
 }
 
 class HomeViewModel: ObservableObject {
-    
+
     @ObservedObject var client = HTTPClient()
     
     @Published var isSearchEnabled = false
@@ -25,12 +25,14 @@ class HomeViewModel: ObservableObject {
         didSet { isSearchEnabled = searchText.count > 2 }
     }
     @Published var recordList: [Record] = []
-    @State var endpoint: Endpoint = ProductsEndpoint.whereCategoryIs(search: "Alimentation")
-    @State var endOfList = false
+    @Published var endOfList = false
+    
+    @Published var selectedCategory: String = ""
+    
     var cancellable = Set<AnyCancellable>()
     var pageStatus = PageStatus.ready(nextPaginationOffset: 0)
     
-    func requestProduct() {
+    func requestProduct(endpoint: ProductsEndpoint) {
         
         guard case let .ready(offset) = pageStatus else {
             return
@@ -59,16 +61,24 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellable)
     }
     
+    func getEdpoint() -> ProductsEndpoint {
+        print("selectedCategory before if >3 = ", selectedCategory)
+        if selectedCategory.count > 3 {
+            print("new selectedCategory = ", selectedCategory)
+            return ProductsEndpoint.whereCategoryIs(search: selectedCategory)
+        } else {
+            return ProductsEndpoint.allProduct
+        }
+    }
+
     func getNewRecords(recordItem: Record) {
         if !endOfList, shouldLoadMore(recordItem: recordItem) {
-                requestProduct()
+            requestProduct(endpoint: getEdpoint())
         }
     }
     
     private func shouldLoadMore(recordItem: Record) -> Bool {
-        print("recordList count = ", recordList.last?.id as Any)
         if let lastId = recordList.last?.id {
-            print("item id = ", recordItem.id as Any)
             return recordItem.id == lastId ? true : false
         }
         return false
