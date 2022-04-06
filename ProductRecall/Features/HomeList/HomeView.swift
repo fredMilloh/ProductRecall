@@ -9,11 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @StateObject var viewModel = HomeListViewModel()
+    @StateObject var viewModel = HomeViewModel()
     
     var body: some View {
         NavigationView {
-            HomeListView()
+            HomeListView(viewModel: viewModel)
             .navigationTitle("Rappels Produits")
             .refreshable {
                 viewModel.requestProduct()

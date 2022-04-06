@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeListView: View {
     
-    @StateObject var viewModel = HomeListViewModel()
+    @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
         
@@ -23,7 +23,6 @@ struct HomeListView: View {
                     RecordRow(recordViewModel: viewModel)
                 }
                 .onAppear(perform: {
-                    viewModel.requestProduct()
                     viewModel.getNewRecords(recordItem: record)
                 })
                 .alert(isPresented: $viewModel.endOfList) {
@@ -40,6 +39,6 @@ struct HomeListView: View {
 
 struct HomeListView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeListView()
+        HomeListView(viewModel: HomeViewModel())
     }
 }

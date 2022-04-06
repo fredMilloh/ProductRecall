@@ -8,12 +8,12 @@
 import XCTest
 @testable import ProductRecall
 
-class SearchViewModel_Test: XCTestCase {
+class HomeViewModel_Test: XCTestCase {
     
-    var sut: HomeListViewModel?
+    var sut: HomeViewModel?
 
     override func setUpWithError() throws {
-        sut = HomeListViewModel()
+        sut = HomeViewModel()
         try super.setUpWithError()
     }
 

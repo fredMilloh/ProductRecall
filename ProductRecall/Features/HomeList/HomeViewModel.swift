@@ -16,7 +16,7 @@ enum PageStatus {
     case done
 }
 
-class HomeListViewModel: ObservableObject {
+class HomeViewModel: ObservableObject {
     
     @ObservedObject var client = HTTPClient()
     

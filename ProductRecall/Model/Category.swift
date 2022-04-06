@@ -8,22 +8,25 @@
 import Foundation
 
 struct Category: Identifiable {
-    var id = UUID()
+    var id = UUID().uuidString
     let name: String
+    let description: String
+    let icon: String
 }
 
 extension Category {
     /// allows a search by category
     static var categories = [
-        Category(name: "Alimentation"),
-        Category(name: "Automobiles et moyens de déplacement"),
-        Category(name: "Bébés-Enfants (hors alimentaire)"),
-        Category(name: "Hygiène-Beauté"),
-        Category(name: "Vêtements, Mode, EPI"),
-        Category(name: "Sports-loisirs"),
-        Category(name: "Maison-Habitat"),
-        Category(name: "Appareils électriques, Outils"),
-        Category(name: "Equipements de communication"),
-        Category(name: "Autres")
+        Category(name: "Toutes", description: "All", icon: "all"),
+        Category(name: "Alimentation", description: "Alimentation", icon: "supply"),
+        Category(name: "Déplacement", description: "Automobiles et moyens de déplacement", icon: "vehicle"),
+        Category(name: "Enfants", description: "Bébés-Enfants (hors alimentaire)", icon: "baby"),
+        Category(name: "Hygiène", description: "Hygiène-Beauté", icon: "hygiene"),
+        Category(name: "Vêtements", description: "Vêtements, Mode, EPI", icon: "clothing"),
+        Category(name: "Sports", description: "Sports-loisirs", icon: "sport"),
+        Category(name: "Maison", description: "Maison-Habitat", icon: "home"),
+        Category(name: "Outils", description: "Appareils électriques, Outils", icon: "electrical"),
+        Category(name: "Communication", description: "Equipements de communication", icon: "communication"),
+        Category(name: "Autres", description: "Autres", icon: "other")
     ]
 }
