@@ -13,12 +13,13 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            HomeListView(viewModel: viewModel)
-            .navigationTitle("Rappels Produits")
-            .refreshable {
-                viewModel.requestProduct()
+            VStack {
+                HomeListView(viewModel: viewModel)
+                .navigationTitle("Rappels Produits")
+                .padding(.vertical, 0)
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

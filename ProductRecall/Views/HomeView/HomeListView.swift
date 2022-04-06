@@ -27,13 +27,20 @@ struct HomeListView: View {
                 })
                 .alert(isPresented: $viewModel.endOfList) {
                     Alert(title: Text("Oups"),
-                          message: Text("An error Occurred"),
+                          message: Text("there is no more"),
                           dismissButton: .default(Text("ok")))
                 }
         }
-        .onAppear(perform: {
-            viewModel.requestProduct()
-        })
+        .listStyle(.inset)
+        .padding(.top, -10)
+        .onAppear() {
+            viewModel.requestProduct(endpoint: viewModel.getEdpoint())
+        }
+        .onChange(of: viewModel.selectedCategory) { newValue in
+            viewModel.pageStatus = PageStatus.ready(nextPaginationOffset: 0)
+            viewModel.recordList.removeAll()
+            viewModel.requestProduct(endpoint: viewModel.getEdpoint())
+        }
     }
 }
 
