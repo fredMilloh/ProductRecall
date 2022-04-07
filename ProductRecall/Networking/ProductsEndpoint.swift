@@ -9,15 +9,16 @@ import Foundation
 
 enum ProductsEndpoint {
     case allProduct
-    case whereCategoryIs(search: String)
-    case whereSearchIs(string: String)
+    case whereCategoryIs(category: String)
+    case whereItemInAllCategoryIs(item: String)
+    case whereItemInOneCategoryIs(item: String, category: String)
 }
 
 extension ProductsEndpoint: Endpoint {
     
     var path: String {
         switch self {
-        case .allProduct, .whereCategoryIs, .whereSearchIs:
+        case .allProduct, .whereCategoryIs, .whereItemInAllCategoryIs, .whereItemInOneCategoryIs:
             return "catalog/datasets/rappelconso0/records?"
         }
     }
@@ -39,18 +40,28 @@ extension ProductsEndpoint: Endpoint {
             guard let updatedUrl = urlComponents.url else { return url }
             return updatedUrl
             
-        case .whereCategoryIs(let search):
+        case .whereCategoryIs(let category):
             let queryItem = [
-                URLQueryItem(name: "where", value: "categorie_de_produit = \"\(search)\""),
+                URLQueryItem(name: "where", value: "categorie_de_produit = \"\(category)\""),
             ]
             queryItems.append(contentsOf: queryItem)
             urlComponents.queryItems = queryItems
             guard let updatedUrl = urlComponents.url else { return url }
             return updatedUrl
             
-        case .whereSearchIs(let search):
+        case .whereItemInAllCategoryIs(let item):
             let queryItem = [
-                URLQueryItem(name: "where", value: "\"\(search)\""),
+                URLQueryItem(name: "where", value: "\"\(item)\""),
+            ]
+            queryItems.append(contentsOf: queryItem)
+            urlComponents.queryItems = queryItems
+            guard let updatedUrl = urlComponents.url else { return url }
+            return updatedUrl
+            
+            
+        case .whereItemInOneCategoryIs(let item, let category):
+            let queryItem = [
+                URLQueryItem(name: "where", value: "\"\(item)\" and categorie_de_produit like \"\(category)\""),
             ]
             queryItems.append(contentsOf: queryItem)
             urlComponents.queryItems = queryItems
@@ -62,9 +73,8 @@ extension ProductsEndpoint: Endpoint {
 
     var method: RequestMethod {
         switch self {
-        case .allProduct, .whereCategoryIs, .whereSearchIs:
+        case .allProduct, .whereCategoryIs, .whereItemInAllCategoryIs, .whereItemInOneCategoryIs:
             return .get
         }
     }
 }
-

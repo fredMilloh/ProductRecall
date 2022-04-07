@@ -65,7 +65,7 @@ class HomeViewModel: ObservableObject {
         print("selectedCategory before if >3 = ", selectedCategory)
         if selectedCategory.count > 3 {
             print("new selectedCategory = ", selectedCategory)
-            return ProductsEndpoint.whereCategoryIs(search: selectedCategory)
+            return ProductsEndpoint.whereCategoryIs(category: selectedCategory)
         } else {
             return ProductsEndpoint.allProduct
         }

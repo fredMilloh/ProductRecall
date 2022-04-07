@@ -58,6 +58,9 @@ struct CategoriesView: View {
                 }
                 .padding(.horizontal, 30)
             }
+            .onAppear {
+                currentTab = categories.first?.id ?? ""
+            }
         }
         .padding(.top)
         .background(scheme == .dark ? Color.black : Color.white)
