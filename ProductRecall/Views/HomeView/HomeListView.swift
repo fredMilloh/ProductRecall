@@ -23,7 +23,7 @@ struct HomeListView: View {
                     RecordRow(recordViewModel: viewModel)
                 }
                 .onAppear(perform: {
-                    viewModel.getNewRecords(recordItem: record)
+                    viewModel.getFollowingRecords(recordItem: record)
                 })
                 .alert(isPresented: $viewModel.endOfList) {
                     Alert(title: Text("Oups"),
@@ -37,9 +37,7 @@ struct HomeListView: View {
             viewModel.requestProduct(endpoint: viewModel.getEdpoint())
         }
         .onChange(of: viewModel.selectedCategory) { newValue in
-            viewModel.pageStatus = PageStatus.ready(nextPaginationOffset: 0)
-            viewModel.recordList.removeAll()
-            viewModel.requestProduct(endpoint: viewModel.getEdpoint())
+            viewModel.getNewList()
         }
     }
 }

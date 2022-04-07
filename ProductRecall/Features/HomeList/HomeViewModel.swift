@@ -70,8 +70,14 @@ class HomeViewModel: ObservableObject {
             return ProductsEndpoint.allProduct
         }
     }
+    
+    func getNewList() {
+        pageStatus = PageStatus.ready(nextPaginationOffset: 0)
+        recordList.removeAll()
+        requestProduct(endpoint: getEdpoint())
+    }
 
-    func getNewRecords(recordItem: Record) {
+    func getFollowingRecords(recordItem: Record) {
         if !endOfList, shouldLoadMore(recordItem: recordItem) {
             requestProduct(endpoint: getEdpoint())
         }
