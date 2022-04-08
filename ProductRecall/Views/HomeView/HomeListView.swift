@@ -34,9 +34,9 @@ struct HomeListView: View {
         .listStyle(.plain)
         .padding(.top, -10)
         .onAppear() {
-            viewModel.requestProduct(endpoint: viewModel.getEdpoint())
+            viewModel.requestProduct(endpoint: viewModel.getEndpoint())
         }
-        .onChange(of: viewModel.selectedCategory) { newValue in
+        .onChange(of: viewModel.selectedCategory.name) { newValue in
             viewModel.getNewList()
         }
     }

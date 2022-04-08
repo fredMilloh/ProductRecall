@@ -20,15 +20,18 @@ class HomeViewModel: ObservableObject {
 
     @ObservedObject var client = HTTPClient()
     
-    @Published var isSearchEnabled = false
     @Published var searchText: String = "" {
-        didSet { isSearchEnabled = searchText.count > 2 }
+        didSet { searchWithText = searchText.count > 1 }
     }
     @Published var recordList: [Record] = []
     @Published var endOfList = false
     
-    @Published var selectedCategory: String = ""
+    @Published var selectedCategory = Category(id: 1, name: "Toutes", description: "Toutes catégories", icon: "all")
     
+    var searchInAllCategory: Bool {
+        selectedCategory.description == "Toutes catégories" ? true : false
+    }
+    var searchWithText = false
     var cancellable = Set<AnyCancellable>()
     var pageStatus = PageStatus.ready(nextPaginationOffset: 0)
     
@@ -61,25 +64,35 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellable)
     }
     
-    func getEdpoint() -> ProductsEndpoint {
-        print("selectedCategory before if >3 = ", selectedCategory)
-        if selectedCategory.count > 3 {
-            print("new selectedCategory = ", selectedCategory)
-            return ProductsEndpoint.whereCategoryIs(category: selectedCategory)
+    func getEndpoint() -> ProductsEndpoint {
+        if searchInAllCategory {
+            if searchWithText {
+                print("recherche \(searchText) dans toutes les catégories")
+                return ProductsEndpoint.whereItemInAllCategoryIs(item: searchText)
+            } else {
+                print("recherche toutes cat sans text")
+                return ProductsEndpoint.allProduct
+            }
         } else {
-            return ProductsEndpoint.allProduct
+            if searchWithText {
+                print("recherche \(searchText) dans catégorie \(selectedCategory.description)")
+                return ProductsEndpoint.whereItemInOneCategoryIs(item: searchText, category: selectedCategory.description)
+            } else {
+                print("recherche sans text dans catégory \(selectedCategory.description)")
+                return ProductsEndpoint.whereCategoryIs(category: selectedCategory.description)
+            }
         }
     }
     
     func getNewList() {
         pageStatus = PageStatus.ready(nextPaginationOffset: 0)
         recordList.removeAll()
-        requestProduct(endpoint: getEdpoint())
+        requestProduct(endpoint: getEndpoint())
     }
 
     func getFollowingRecords(recordItem: Record) {
         if !endOfList, shouldLoadMore(recordItem: recordItem) {
-            requestProduct(endpoint: getEdpoint())
+            requestProduct(endpoint: getEndpoint())
         }
     }
     

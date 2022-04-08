@@ -8,22 +8,23 @@
 import Foundation
 
 struct Category: Identifiable {
-    var id = UUID().uuidString
+    
+    var id: Int
     let name: String
     let description: String
     let icon: String
 }
 
 var categories = [
-        Category(name: "Toutes", description: "All", icon: "all"),
-        Category(name: "Alimentation", description: "Alimentation", icon: "supply"),
-        Category(name: "Déplacement", description: "Automobiles et moyens de déplacement", icon: "vehicle"),
-        Category(name: "Enfants", description: "Bébés-Enfants (hors alimentaire)", icon: "baby"),
-        Category(name: "Hygiène", description: "Hygiène-Beauté", icon: "hygiene"),
-        Category(name: "Vêtements", description: "Vêtements, Mode, EPI", icon: "clothing"),
-        Category(name: "Sports", description: "Sports-loisirs", icon: "sport"),
-        Category(name: "Maison", description: "Maison-Habitat", icon: "home"),
-        Category(name: "Outils", description: "Appareils électriques, Outils", icon: "electrical"),
-        Category(name: "Communication", description: "Equipements de communication", icon: "communication"),
-        Category(name: "Autres", description: "Autres", icon: "other")
-    ]
+    Category(id: 1, name: "Toutes", description: "Toutes catégories", icon: "all"),
+    Category(id: 2, name: "Alimentation", description: "Alimentation", icon: "supply"),
+    Category(id: 3, name: "Déplacement", description: "Automobiles et moyens de déplacement", icon: "vehicle"),
+    Category(id: 4, name: "Enfants", description: "Bébés-Enfants (hors alimentaire)", icon: "baby"),
+    Category(id: 5, name: "Hygiène", description: "Hygiène-Beauté", icon: "hygiene"),
+    Category(id: 6, name: "Vêtements", description: "Vêtements, Mode, EPI", icon: "clothing"),
+    Category(id: 7, name: "Sports", description: "Sports-loisirs", icon: "sport"),
+    Category(id: 8, name: "Maison", description: "Maison-Habitat", icon: "home"),
+    Category(id: 9, name: "Outils", description: "Appareils électriques, Outils", icon: "electrical"),
+    Category(id: 10, name: "Communication", description: "Equipements de communication", icon: "communication"),
+    Category(id: 11, name: "Autres", description: "Autres", icon: "other")
+]

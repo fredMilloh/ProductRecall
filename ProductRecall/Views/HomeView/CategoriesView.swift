@@ -9,9 +9,9 @@ import SwiftUI
 
 struct CategoriesView: View {
     
-    @ObservedObject var viewModel: HomeViewModel
+    @Binding var selectCategory: Category
     
-    @State var currentTab = ""
+    @State var currentTab = 1
     @Namespace var animation
     @Environment(\.colorScheme) var scheme
     
@@ -24,14 +24,25 @@ struct CategoriesView: View {
                     ForEach(categories) { category in
                         
                         VStack {
-                            Image(category.icon)
-                                .resizable()
-                                .renderingMode(.original)
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 25, height: 25)
-                            Text(category.name)
-                                .foregroundColor(currentTab == category.id ? .black : .gray)
-                                .font(.caption2)
+                            Button {
+                                currentTab = category.id
+                                selectCategory = category
+                            } label: {
+                                VStack {
+                                    Image(category.icon)
+                                        .resizable()
+                                        .renderingMode(.original)
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 25, height: 25)
+                                    Text(category.name)
+                                        .foregroundColor(
+                                            currentTab == category.id ? .black : .gray
+                                        )
+                                        .font(.caption2)
+                                        .allowsTightening(true)
+                                }
+                            }
+                            .frame(width: 70, height: 45, alignment: .center)
                             
                             /// line indicating the selected category
                             if currentTab == category.id {
@@ -48,18 +59,15 @@ struct CategoriesView: View {
                             }
                         }
                         .frame(width: 80, height: 60, alignment: .top)
-                        .onTapGesture {
-                            withAnimation(.easeInOut){
-                                currentTab = category.id
-                                viewModel.selectedCategory = category.description
-                            }
-                        }
                     }
                 }
                 .padding(.horizontal, 30)
             }
             .onAppear {
-                currentTab = categories.first?.id ?? ""
+                currentTab = selectCategory.id
+            }
+            .onChange(of: selectCategory.name) { newCategory in
+                currentTab = selectCategory.id
             }
         }
         .padding(.top)
@@ -74,6 +82,6 @@ struct CategoriesView: View {
 
 struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesView(viewModel: HomeViewModel()).previewLayout(.sizeThatFits)
+        CategoriesView(selectCategory: .constant(Category(id: 1, name: "Toutes", description: "Toutes", icon: "all"))).previewLayout(.sizeThatFits)
     }
 }
