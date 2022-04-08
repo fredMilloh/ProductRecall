@@ -26,8 +26,8 @@ struct HomeListView: View {
                     viewModel.getFollowingRecords(recordItem: record)
                 })
                 .alert(isPresented: $viewModel.endOfList) {
-                    Alert(title: Text("Oups"),
-                          message: Text("there is no more"),
+                    Alert(title: Text(""),
+                          message: Text("il n'y a pas d'autres résultats"),
                           dismissButton: .default(Text("ok")))
                 }
         }

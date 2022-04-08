@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var viewModel = HomeViewModel()
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
@@ -21,6 +22,17 @@ struct HomeView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .searchable(
+            text: $viewModel.searchText,
+            placement: .navigationBarDrawer(displayMode: .automatic),
+            prompt: "Rechercher un produit, une marque, ...",
+            suggestions: {
+                SearchView(viewModel: viewModel)
+        })
+        /// the search button on the keyboard makes the view disappear
+        .onSubmit {
+            presentationMode.wrappedValue.dismiss()
+        }
     }
 }
 
