@@ -26,7 +26,7 @@ class HomeViewModel: ObservableObject {
     @Published var recordList: [Record] = []
     @Published var endOfList = false
     
-    @Published var selectedCategory = Category(id: 1, name: "Toutes", description: "Toutes catégories", icon: "all")
+    @Published var selectedCategory = Category(id: 2, name: "Alimentation", description: "Alimentation", icon: "supply")
     
     var searchInAllCategory: Bool {
         selectedCategory.description == "Toutes catégories" ? true : false

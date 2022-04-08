@@ -1,0 +1,71 @@
+//
+//  AppNavigationView.swift
+//  ProductRecall
+//
+//  Created by fred on 08/04/2022.
+//
+
+import SwiftUI
+
+struct AppNavigationView: View {
+    
+    enum Tab {
+        case rappels
+        case retenus
+        case recherche
+    }
+    
+    @State private var selection: Tab = .rappels
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        TabView(selection: $selection) {
+            NavigationView {
+                HomeView()
+            }
+            .tabItem {
+                Label {
+                    Text("Rappels")
+                } icon: {
+                    Image(systemName: "list.bullet")
+                        .foregroundColor(.blue)
+                }
+            }
+            .tag(Tab.rappels)
+            .navigationViewStyle(StackNavigationViewStyle())
+            
+            NavigationView {
+                Text("A venir")
+            }
+            .tabItem {
+                Label {
+                    Text("Retenus")
+                } icon: {
+                    Image(systemName: "tray.and.arrow.down")
+                }
+            }
+            .tag(Tab.retenus)
+            .navigationViewStyle(StackNavigationViewStyle())
+            
+            NavigationView {
+                Text("A venir")
+            }
+            .tabItem {
+                Label {
+                    Text("Recherche")
+                } icon: {
+                    Image(systemName: "magnifyingglass")
+                }
+            }
+            .foregroundColor(.green)
+            .tag(Tab.recherche)
+            .navigationViewStyle(StackNavigationViewStyle())
+        }
+    }
+}
+
+struct AppNavigationView_Previews: PreviewProvider {
+    static var previews: some View {
+        AppNavigationView()
+    }
+}

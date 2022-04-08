@@ -13,7 +13,7 @@ struct HomeView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        NavigationView {
+        ScrollViewReader { proxy in
             VStack {
                 CategoriesView(selectCategory: $viewModel.selectedCategory)
                 HomeListView(viewModel: viewModel)
