@@ -31,7 +31,11 @@ struct SearchView: View {
             
             Spacer()
         }
+        .padding()
         .foregroundColor(.blue)
+        .onAppear() {
+            viewModel.searchWithNewCategory = true
+        }
     }
 }
 

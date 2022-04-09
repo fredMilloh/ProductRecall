@@ -27,7 +27,7 @@ struct HomeListView: View {
                 })
                 .alert(isPresented: $viewModel.endOfList) {
                     Alert(title: Text(""),
-                          message: Text("il n'y a pas d'autres résultats"),
+                          message: Text("Il n'y a pas d'autres résultats"),
                           dismissButton: .default(Text("ok")))
                 }
         }
@@ -38,6 +38,7 @@ struct HomeListView: View {
         }
         .onChange(of: viewModel.selectedCategory.name) { newValue in
             viewModel.getNewList()
+            viewModel.searchWithNewCategory = false
         }
     }
 }

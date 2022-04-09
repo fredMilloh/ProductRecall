@@ -31,6 +31,8 @@ struct HomeView: View {
         })
         /// the search button on the keyboard makes the view disappear
         .onSubmit {
+            viewModel.searchWithNewCategory ?
+            viewModel.getNewList() :
             presentationMode.wrappedValue.dismiss()
         }
     }
