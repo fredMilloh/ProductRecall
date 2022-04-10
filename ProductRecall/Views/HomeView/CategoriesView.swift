@@ -21,7 +21,7 @@ struct CategoriesView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 
                 HStack(spacing: 10) {
-                    ForEach(categories) { category in
+                    ForEach(Category.categories) { category in
                         
                         VStack {
                             Button {
@@ -65,9 +65,11 @@ struct CategoriesView: View {
             }
             .onAppear {
                 currentTab = selectCategory.id
+                proxy.scrollTo(selectCategory.id, anchor: .center)
             }
             .onChange(of: selectCategory.name) { newCategory in
                 currentTab = selectCategory.id
+                proxy.scrollTo(selectCategory.id, anchor: .center)
             }
         }
         .padding(.top)

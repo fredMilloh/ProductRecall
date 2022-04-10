@@ -27,12 +27,11 @@ struct SearchView: View {
                 .frame(height: 30, alignment: .center)
             
             CategoriesView(selectCategory: $viewModel.selectedCategory)
-                .padding()
             
             Spacer()
         }
         .padding()
-        .foregroundColor(.blue)
+        .foregroundColor(.primary)
         .onAppear() {
             viewModel.searchWithNewCategory = true
         }
