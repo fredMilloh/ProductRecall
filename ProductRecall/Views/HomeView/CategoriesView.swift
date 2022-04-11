@@ -36,7 +36,7 @@ struct CategoriesView: View {
                                         .frame(width: 25, height: 25)
                                     Text(category.name)
                                         .foregroundColor(
-                                            currentTab == category.id ? .black : .gray
+                                            currentTab == category.id ? .primary : Color("lightGray")
                                         )
                                         .font(.caption2)
                                         .allowsTightening(true)
@@ -47,7 +47,7 @@ struct CategoriesView: View {
                             /// line indicating the selected category
                             if currentTab == category.id {
                                 Capsule()
-                                    .fill(.black)
+                                    .fill(.primary)
                                     .matchedGeometryEffect(id: "TAB", in: animation)
                                     .frame(height: 3)
                                     .padding(.horizontal, 5)
