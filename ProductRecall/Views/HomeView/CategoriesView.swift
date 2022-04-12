@@ -12,7 +12,6 @@ struct CategoriesView: View {
     @Binding var selectCategory: Category
     
     @State var currentTab = 1
-    @Namespace var animation
     @Environment(\.colorScheme) var scheme
     
     var body: some View {
@@ -36,7 +35,7 @@ struct CategoriesView: View {
                                         .frame(width: 25, height: 25)
                                     Text(category.name)
                                         .foregroundColor(
-                                            currentTab == category.id ? .primary : Color("lightGray")
+                                            currentTab == category.id ? .primary : .secondary
                                         )
                                         .font(.caption2)
                                         .allowsTightening(true)
@@ -48,7 +47,6 @@ struct CategoriesView: View {
                             if currentTab == category.id {
                                 Capsule()
                                     .fill(.primary)
-                                    .matchedGeometryEffect(id: "TAB", in: animation)
                                     .frame(height: 3)
                                     .padding(.horizontal, 5)
                             } else {
@@ -84,6 +82,6 @@ struct CategoriesView: View {
 
 struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesView(selectCategory: .constant(Category(id: 1, name: "Toutes", description: "Toutes", icon: "all"))).previewLayout(.sizeThatFits)
+        CategoriesView(selectCategory: .constant(Category.categories[0])).previewLayout(.sizeThatFits)
     }
 }

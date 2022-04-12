@@ -12,7 +12,6 @@ struct AppNavigationView: View {
     enum Tab {
         case rappels
         case retenus
-        case recherche
     }
     
     @State private var selection: Tab = .rappels
@@ -45,20 +44,6 @@ struct AppNavigationView: View {
                 }
             }
             .tag(Tab.retenus)
-            .navigationViewStyle(StackNavigationViewStyle())
-            
-            NavigationView {
-                Text("A venir")
-            }
-            .tabItem {
-                Label {
-                    Text("Recherche")
-                } icon: {
-                    Image(systemName: "magnifyingglass")
-                }
-            }
-            .foregroundColor(.green)
-            .tag(Tab.recherche)
             .navigationViewStyle(StackNavigationViewStyle())
         }
     }

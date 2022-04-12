@@ -10,30 +10,19 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var viewModel = HomeViewModel()
-    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ScrollViewReader { proxy in
             VStack {
                 CategoriesView(selectCategory: $viewModel.selectedCategory)
+                
                 HomeListView(viewModel: viewModel)
-                .navigationTitle("Rappels Produits")
-                .padding(.vertical, 0)
+                
+                Divider()
+                
+                SearchButton(viewModel: viewModel)
             }
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-        .searchable(
-            text: $viewModel.searchText,
-            placement: .navigationBarDrawer(displayMode: .automatic),
-            prompt: "Rechercher un produit, une marque, ...",
-            suggestions: {
-                SearchView(viewModel: viewModel)
-        })
-        /// the search button on the keyboard makes the view disappear
-        .onSubmit {
-            viewModel.searchWithNewCategory ?
-            viewModel.getNewList() :
-            presentationMode.wrappedValue.dismiss()
+            .navigationTitle("Rappels Produits")
         }
     }
 }

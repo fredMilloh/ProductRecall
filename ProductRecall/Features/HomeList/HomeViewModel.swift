@@ -18,22 +18,30 @@ enum PageStatus {
 
 class HomeViewModel: ObservableObject {
 
-    @ObservedObject var client = HTTPClient()
-    
-    @Published var searchText: String = "" {
-        didSet { searchWithText = searchText.count > 1 }
-    }
-    @Published var recordList: [Record] = []
-    @Published var endOfList = false
-    @Published var selectedCategory = Category.categories[1]
-    
-    var searchInAllCategory: Bool {
-        selectedCategory.description == Category.categories[0].description
-    }
-    var searchWithText = false
-    var searchWithNewCategory = true
-    var cancellable = Set<AnyCancellable>()
-    var pageStatus = PageStatus.ready(nextPaginationOffset: 0)
+// MARK: - Network properties
+        
+        @ObservedObject var client = HTTPClient()
+        
+        @Published var recordList: [Record] = [] 
+        @Published var endOfList = false
+        var cancellable = Set<AnyCancellable>()
+        var pageStatus = PageStatus.ready(nextPaginationOffset: 0)
+     
+// MARK: - Search properties
+        
+        @Published var selectedCategory = Category.categories[1]
+        @Published var searchText: String = ""
+        
+        /// Avoids having two network calls, one when the category is selected, another when the display is requested
+        var searchWithNewCategory = true
+        var searchInAllCategory: Bool {
+            selectedCategory.description == Category.categories[0].description
+        }
+        var searchWithText: Bool {
+            searchText.count > 1 ? true : false
+        }
+     
+// MARK: - Request Methods
     
     func requestProduct(endpoint: ProductsEndpoint) {
         
