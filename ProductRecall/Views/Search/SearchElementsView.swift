@@ -13,7 +13,7 @@ struct SearchElementsView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            Text("Renseignez votre mot-clé et sélectionnez une catégorie pour affiner votre recherche")
+            Text("Renseignez votre mot-clé puis sélectionnez une catégorie pour affiner votre recherche")
                 .foregroundColor(.primary)
                 .font(.title3)
                 .minimumScaleFactor(0.5)

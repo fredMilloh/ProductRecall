@@ -33,7 +33,7 @@ struct SearchButton: View {
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.primary)
-                    Text("Rechercher un produit, par mot-clé, ...")
+                    Text("Rechercher un produit, une marque, ...")
                 }
                 .padding(.leading, 13)
             }

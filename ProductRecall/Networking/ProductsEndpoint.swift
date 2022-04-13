@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum ProductsEndpoint {
+enum ProductsEndpoint: Equatable {
+    case nothing
     case allProduct
     case whereCategoryIs(category: String)
     case whereItemInAllCategoryIs(item: String)
@@ -20,6 +21,7 @@ extension ProductsEndpoint: Endpoint {
         switch self {
         case .allProduct, .whereCategoryIs, .whereItemInAllCategoryIs, .whereItemInOneCategoryIs:
             return "catalog/datasets/rappelconso0/records?"
+        case .nothing: return ""
         }
     }
     
@@ -35,6 +37,11 @@ extension ProductsEndpoint: Endpoint {
             URLQueryItem(name: "offset", value: String(paginationOffset))
         ]
         switch self {
+        case .nothing:
+            urlComponents.queryItems = []
+            guard let updatedUrl = urlComponents.url else { return url }
+            return updatedUrl
+            
         case .allProduct:
             urlComponents.queryItems = queryItems
             guard let updatedUrl = urlComponents.url else { return url }
@@ -58,7 +65,6 @@ extension ProductsEndpoint: Endpoint {
             guard let updatedUrl = urlComponents.url else { return url }
             return updatedUrl
             
-            
         case .whereItemInOneCategoryIs(let item, let category):
             let queryItem = [
                 URLQueryItem(name: "where", value: "\"\(item)\" and categorie_de_produit like \"\(category)\""),
@@ -67,14 +73,15 @@ extension ProductsEndpoint: Endpoint {
             urlComponents.queryItems = queryItems
             guard let updatedUrl = urlComponents.url else { return url }
             return updatedUrl
-            
         }
     }
 
     var method: RequestMethod {
         switch self {
-        case .allProduct, .whereCategoryIs, .whereItemInAllCategoryIs, .whereItemInOneCategoryIs:
+        case .nothing, .allProduct, .whereCategoryIs, .whereItemInAllCategoryIs, .whereItemInOneCategoryIs:
             return .get
         }
     }
 }
+
+

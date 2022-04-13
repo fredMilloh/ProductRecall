@@ -16,7 +16,11 @@ enum PageStatus {
     case done
 }
 
-class HomeViewModel: ObservableObject {
+protocol HomeProtocol {
+    func requestProduct(endpoint: ProductsEndpoint)
+}
+
+class HomeViewModel: ObservableObject, HomeProtocol {
 
 // MARK: - Network properties
         
@@ -38,7 +42,7 @@ class HomeViewModel: ObservableObject {
             selectedCategory.description == Category.categories[0].description
         }
         var searchWithText: Bool {
-            searchText.count > 1 ? true : false
+            searchText.count > 1
         }
      
 // MARK: - Request Methods
@@ -75,18 +79,14 @@ class HomeViewModel: ObservableObject {
     func getEndpoint() -> ProductsEndpoint {
         if searchInAllCategory {
             if searchWithText {
-                print("recherche \(searchText) dans toutes les catégories")
                 return ProductsEndpoint.whereItemInAllCategoryIs(item: searchText)
             } else {
-                print("recherche toutes cat sans text")
                 return ProductsEndpoint.allProduct
             }
         } else {
             if searchWithText {
-                print("recherche \(searchText) dans catégorie \(selectedCategory.description)")
                 return ProductsEndpoint.whereItemInOneCategoryIs(item: searchText, category: selectedCategory.description)
             } else {
-                print("recherche sans text dans catégory \(selectedCategory.description)")
                 return ProductsEndpoint.whereCategoryIs(category: selectedCategory.description)
             }
         }
@@ -104,9 +104,9 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    private func shouldLoadMore(recordItem: Record) -> Bool {
+    func shouldLoadMore(recordItem: Record) -> Bool {
         if let lastId = recordList.last?.id {
-            return recordItem.id == lastId ? true : false
+            return recordItem.id == lastId
         }
         return false
     }

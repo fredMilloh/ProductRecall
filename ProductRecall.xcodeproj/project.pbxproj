@@ -35,6 +35,7 @@
 		B606D5BC27EB68CD00573498 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5BB27EB68CD00573498 /* HomeViewModel.swift */; };
 		B606D5C027ECD22200573498 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5BF27ECD22200573498 /* Category.swift */; };
 		B606D5C427ECF11200573498 /* OptionalString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5C327ECF11200573498 /* OptionalString+.swift */; };
+		B60DE5B928073F4700D03A81 /* recordListMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60DE5B828073F4700D03A81 /* recordListMock.swift */; };
 		B68B89F828008D1B004EC026 /* AppNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B89F728008D1B004EC026 /* AppNavigationView.swift */; };
 		B68B8A072805B978004EC026 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B8A062805B978004EC026 /* UIApplication.swift */; };
 		B68B8A092805BA02004EC026 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B8A082805BA02004EC026 /* SearchButton.swift */; };
@@ -97,6 +98,7 @@
 		B606D5BB27EB68CD00573498 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B606D5BF27ECD22200573498 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B606D5C327ECF11200573498 /* OptionalString+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionalString+.swift"; sourceTree = "<group>"; };
+		B60DE5B828073F4700D03A81 /* recordListMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordListMock.swift; sourceTree = "<group>"; };
 		B68B89F728008D1B004EC026 /* AppNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationView.swift; sourceTree = "<group>"; };
 		B68B8A062805B978004EC026 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		B68B8A082805BA02004EC026 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
@@ -180,9 +182,9 @@
 		B606D55E27E8DAA800573498 /* ProductRecallTests */ = {
 			isa = PBXGroup;
 			children = (
-				B606D5B627EB67FA00573498 /* Features */,
 				B606D58B27E8E37900573498 /* Helpers */,
 				B606D58D27E8E3BE00573498 /* DataMock */,
+				B606D5B627EB67FA00573498 /* Features */,
 			);
 			path = ProductRecallTests;
 			sourceTree = "<group>";
@@ -268,6 +270,7 @@
 			children = (
 				B606D58C27E8E3A900573498 /* product.json */,
 				B606D59227E8E9B700573498 /* record.swift */,
+				B60DE5B828073F4700D03A81 /* recordListMock.swift */,
 			);
 			path = DataMock;
 			sourceTree = "<group>";
@@ -310,18 +313,18 @@
 		B606D5B627EB67FA00573498 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				B606D5B727EB680D00573498 /* HomeList */,
+				B606D5B727EB680D00573498 /* HomeView */,
 			);
 			path = Features;
 			sourceTree = "<group>";
 		};
-		B606D5B727EB680D00573498 /* HomeList */ = {
+		B606D5B727EB680D00573498 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
 				B606D5B927EB687900573498 /* HomeViewModel+Test.swift */,
 				B606D5B827EB683400573498 /* RecordRow */,
 			);
-			path = HomeList;
+			path = HomeView;
 			sourceTree = "<group>";
 		};
 		B606D5B827EB683400573498 /* RecordRow */ = {
@@ -548,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B606D59327E8E9B700573498 /* record.swift in Sources */,
+				B60DE5B928073F4700D03A81 /* recordListMock.swift in Sources */,
 				B606D58A27E8E34600573498 /* TestCase.swift in Sources */,
 				B606D5BA27EB687900573498 /* HomeViewModel+Test.swift in Sources */,
 				B606D58F27E8E3F600573498 /* RecordViewModel+Tests.swift in Sources */,

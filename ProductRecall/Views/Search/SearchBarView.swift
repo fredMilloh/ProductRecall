@@ -48,7 +48,7 @@ struct SearchBarView: View {
                         Button {
                             searchText = ""
                         } label: {
-                            Image(systemName: "delete.left")
+                            Image(systemName: "xmark.circle")
                                 .foregroundColor(.primary)
                         }
                         .padding()

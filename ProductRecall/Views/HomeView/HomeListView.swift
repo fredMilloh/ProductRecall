@@ -25,11 +25,11 @@ struct HomeListView: View {
                 .onAppear(perform: {
                     viewModel.getFollowingRecords(recordItem: record)
                 })
-                .alert(isPresented: $viewModel.endOfList) {
-                    Alert(title: Text(""),
-                          message: Text("Il n'y a pas d'autres résultats"),
-                          dismissButton: .default(Text("ok")))
-                }
+//                .alert(isPresented: $viewModel.endOfList) {
+//                    Alert(title: Text(""),
+//                          message: Text("Il n'y a pas d'autres résultats"),
+//                          dismissButton: .default(Text("ok")))
+//                }
         }
         .listStyle(.plain)
         .padding(.top, -10)
