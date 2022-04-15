@@ -7,122 +7,126 @@
 
 import Foundation
 
-struct RecordViewModel {
+class RecordViewModel: ObservableObject {
     
-    let record: Record
+    let recall: Record
+    
+    init(recall: Record) {
+        self.recall = recall
+    }
  
 // MARK: - Description
     
     var category: String {
-        record.category.orEmpty
+        recall.category.orEmpty
     }
     
     var subCategory: String {
-        record.subCategory.orEmpty
+        recall.subCategory.orEmpty
     }
  
     var brandName: String {
-        record.brandName.orEmpty
+        recall.brandName.orEmpty
     }
     
     var modelName: String {
-        record.modelName.orEmpty
+        recall.modelName.orEmpty
     }
  
     var productID: String {
-        record.productId.orEmpty
+        recall.productId.orEmpty
     }
     
     var packaging: String {
-        record.packaging.orEmpty
+        recall.packaging.orEmpty
     }
     
     var infos: String {
-        record.infos.orEmpty
+        recall.infos.orEmpty
     }
     
     var marketingDates: String {
-        record.marketingDates.orEmpty
+        recall.marketingDates.orEmpty
     }
     
     var storageTemperature: String {
-        record.storageTemperature.orEmpty
+        recall.storageTemperature.orEmpty
     }
     
     var healthMark: String {
-        record.healthMark.orEmpty
+        recall.healthMark.orEmpty
     }
     
 // MARK: - Distribution
     
     var distributor: String {
-        record.distributor.orEmpty
+        recall.distributor.orEmpty
     }
     
     var saleGeoArea: String {
-        record.saleGeoArea.orEmpty
+        recall.saleGeoArea.orEmpty
     }
     
     var contactNumber: String {
-        record.contactNumber.orEmpty
+        recall.contactNumber.orEmpty
     }
     
 // MARK: - Images
     
     var imageUrl: URL? {
-        let links = record.imagesLink?.split(separator: " ").map {
+        let links = recall.imagesLink?.split(separator: " ").map {
             "\($0.trimmingCharacters(in: .whitespaces))"
         }
         return URL(string: links?[0] ?? "")
     }
     
     var productImageUrl: URL? {
-        guard let link = record.productsLink else { return imageUrl }
+        guard let link = recall.productsLink else { return imageUrl }
         return URL(string: link)
     }
     
     var flyerImageLink: URL? {
-        URL(string: record.flyerLink.orEmpty)
+        URL(string: recall.flyerLink.orEmpty)
     }
     
 // MARK: - Recall informations
     
     var reasonRecall: String {
-        record.reasonRecall.orEmpty
+        recall.reasonRecall.orEmpty
     }
     
     var risksIncurred: String {
-        record.risksIncurred.orEmpty
+        recall.risksIncurred.orEmpty
     }
     
     var healthRecommendations: String {
-        record.healthRecommendations.orEmpty
+        recall.healthRecommendations.orEmpty
     }
     
     var additionalRiskDescription: String {
-        record.additionalRiskDescription.orEmpty
+        recall.additionalRiskDescription.orEmpty
     }
    
 // MARK: - Conditions
     
     var actionToTake: String {
-        record.actionsToTake.orEmpty
+        recall.actionsToTake.orEmpty
     }
     
     var compensationTerms: String {
-        record.compensationTerms.orEmpty
+        recall.compensationTerms.orEmpty
     }
     
     var endDateRecall: String {
-        record.endDateRecall.orEmpty
+        recall.endDateRecall.orEmpty
     }
     
     var otherInfos: String {
-        record.otherInfos.orEmpty
+        recall.otherInfos.orEmpty
     }
     
     var legalCharacter: String {
-        record.legalCharacter.orEmpty
+        recall.legalCharacter.orEmpty
     }
     
 // MARK: - Example

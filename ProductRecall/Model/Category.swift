@@ -8,22 +8,24 @@
 import Foundation
 
 struct Category: Identifiable {
-    var id = UUID()
+    
+    var id: Int
     let name: String
+    let description: String
+    let icon: String
 }
-
 extension Category {
-    /// allows a search by category
     static var categories = [
-        Category(name: "Alimentation"),
-        Category(name: "Automobiles et moyens de déplacement"),
-        Category(name: "Bébés-Enfants (hors alimentaire)"),
-        Category(name: "Hygiène-Beauté"),
-        Category(name: "Vêtements, Mode, EPI"),
-        Category(name: "Sports-loisirs"),
-        Category(name: "Maison-Habitat"),
-        Category(name: "Appareils électriques, Outils"),
-        Category(name: "Equipements de communication"),
-        Category(name: "Autres")
+        Category(id: 1, name: "Toutes", description: "Toutes catégories", icon: "all"),
+        Category(id: 2, name: "Alimentation", description: "Alimentation", icon: "supply"),
+        Category(id: 3, name: "Déplacement", description: "Automobiles et moyens de déplacement", icon: "vehicle"),
+        Category(id: 4, name: "Enfants", description: "Bébés-Enfants (hors alimentaire)", icon: "baby"),
+        Category(id: 5, name: "Hygiène", description: "Hygiène-Beauté", icon: "hygiene"),
+        Category(id: 6, name: "Vêtements", description: "Vêtements, Mode, EPI", icon: "clothing"),
+        Category(id: 7, name: "Sports", description: "Sports-loisirs", icon: "sport"),
+        Category(id: 8, name: "Maison", description: "Maison-Habitat", icon: "home"),
+        Category(id: 9, name: "Outils", description: "Appareils électriques, Outils", icon: "electrical"),
+        Category(id: 10, name: "Communication", description: "Equipements de communication", icon: "communication"),
+        Category(id: 11, name: "Autres", description: "Autres", icon: "other")
     ]
 }

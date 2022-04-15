@@ -33,7 +33,11 @@ struct DetailRecall: View {
 
 struct DetailRecall_Previews: PreviewProvider {
     static var previews: some View {
-        DetailRecall(recordViewModel: RecordViewModel(record: RecordViewModel.example))
+        DetailRecall(
+            recordViewModel: RecordViewModel(
+                recall: RecordViewModel.example)
+        ).previewLayout(.sizeThatFits)
+        
     }
 }
 

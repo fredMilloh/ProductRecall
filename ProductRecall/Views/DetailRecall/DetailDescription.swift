@@ -40,6 +40,9 @@ struct DetailDescription: View {
 
 struct DescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailDescription(recordViewModel: RecordViewModel(record: RecordViewModel.example))
+        DetailDescription(
+            recordViewModel: RecordViewModel(
+                recall: RecordViewModel.example)
+        ).previewLayout(.sizeThatFits)
     }
 }
