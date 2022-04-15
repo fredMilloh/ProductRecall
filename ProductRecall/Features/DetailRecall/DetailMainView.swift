@@ -1,5 +1,5 @@
 //
-//  ProductDetail.swift
+//  DetailMainView.swift
 //  ProductRecall
 //
 //  Created by fred on 22/03/2022.
@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct ProductDetail: View {
+struct DetailMainView: View {
     
-    let recordViewModel: RecordViewModel
+    let recall: RecallViewModel
     
     var body: some View {
         ScrollView {
             
             VStack {
-                AsyncImage(url: recordViewModel.imageUrl) { image in
+                AsyncImage(url: recall.imageUrl) { image in
                     image.resizable()
                 } placeholder: {
                     Image(systemName: "camera.fill")
@@ -25,21 +25,21 @@ struct ProductDetail: View {
                 .cornerRadius(25)
                 .shadow(color: .gray, radius: 5, x: 1, y: 1)
                 .padding()
-                DetailDescription(recordViewModel: recordViewModel)
+                DetailDescription(recall: recall)
                     .padding()
-                DetailDistribution(recordViewModel: recordViewModel)
-                    .padding()
-                
-                DetailRecall(recordViewModel: recordViewModel)
+                DetailDistribution(recall: recall)
                     .padding()
                 
-                DetailCondition(recordViewModel: recordViewModel)
+                DetailRecall(recall: recall)
+                    .padding()
+                
+                DetailCondition(recall: recall)
                     .padding()
             }
         }
         .toolbar {
             ToolbarItem {
-                PersistenceButton(recordViewModel: recordViewModel)
+                PersistenceButton(recallViewModel: recall)
             }
         }
     }
@@ -47,7 +47,8 @@ struct ProductDetail: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetail(recordViewModel: RecordViewModel(recall: RecordViewModel.example))
+        DetailMainView(recall: RecallViewModel.example)
+            .previewLayout(.sizeThatFits)
     }
 }
 

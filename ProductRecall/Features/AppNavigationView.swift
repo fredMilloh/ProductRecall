@@ -34,7 +34,7 @@ struct AppNavigationView: View {
             .navigationViewStyle(StackNavigationViewStyle())
             
             NavigationView {
-                SelectedRecord()
+                SelectedMainView()
             }
             .tabItem {
                 Label {

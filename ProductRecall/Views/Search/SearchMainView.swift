@@ -1,5 +1,5 @@
 //
-//  SearchView.swift
+//  SearchMainView.swift
 //  ProductRecall
 //
 //  Created by fred on 12/04/2022.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct SearchView: View {
+struct SearchMainView: View {
     
-    @ObservedObject var viewModel: HomeViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
     @State var searching = false
     @Environment(\.presentationMode) var presentationMode
     
@@ -36,19 +36,19 @@ struct SearchView: View {
             Rectangle().frame(height: 1)
                 .foregroundColor(searching ? .blue : .gray.opacity(0.4))
             
-            SearchElementsView(viewModel: viewModel)
+            SearchElementsView(homeViewModel: homeViewModel)
             
-            CategoriesView(selectCategory: $viewModel.selectedCategory)
+            CategoriesView(selectCategory: $homeViewModel.selectedCategory)
             
-            SearchBarView(searching: $searching, searchText: $viewModel.searchText)
+            SearchBarView(searching: $searching, searchText: $homeViewModel.searchText)
     
         }
         .onAppear() {
-            viewModel.searchWithNewCategory = true
+            homeViewModel.searchWithNewCategory = true
         }
         .onSubmit {
-            viewModel.searchWithNewCategory ?
-            viewModel.getNewList() :
+            homeViewModel.searchWithNewCategory ?
+            homeViewModel.getNewList() :
             presentationMode.wrappedValue.dismiss()
         }
     }
@@ -56,6 +56,6 @@ struct SearchView: View {
 
 struct TextSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(viewModel: HomeViewModel()).previewLayout(.sizeThatFits)
+        SearchMainView(homeViewModel: HomeViewModel()).previewLayout(.sizeThatFits)
     }
 }

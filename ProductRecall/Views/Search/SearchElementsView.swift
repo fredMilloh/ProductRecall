@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchElementsView: View {
     
-    @ObservedObject var viewModel: HomeViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
     
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
@@ -24,11 +24,11 @@ struct SearchElementsView: View {
             
             VStack(alignment: .leading, spacing: 5) {
                 Text("Rechercher ") +
-                Text("**\(viewModel.searchText)**  ")
+                Text("**\(homeViewModel.searchText)**  ")
                     .foregroundColor(.pink).italic() +
                 Text(Image(systemName: "magnifyingglass.circle"))
                 Text("dans la catégorie ") +
-                Text("**\(viewModel.selectedCategory.description)** ?")
+                Text("**\(homeViewModel.selectedCategory.description)** ?")
                     .foregroundColor(.pink).italic()
             }
             .foregroundColor(.primary)
@@ -41,6 +41,6 @@ struct SearchElementsView: View {
 
 struct SearchElementsView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchElementsView(viewModel: HomeViewModel()).previewLayout(.sizeThatFits)
+        SearchElementsView(homeViewModel: HomeViewModel()).previewLayout(.sizeThatFits)
     }
 }

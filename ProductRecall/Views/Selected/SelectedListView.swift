@@ -1,5 +1,5 @@
 //
-//  SelectedRecord.swift
+//  SelectedListView.swift
 //  ProductRecall
 //
 //  Created by fred on 15/04/2022.
@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct SelectedRecord: View {
+struct SelectedListView: View {
+    
+    @StateObject var persistenceRepository = PersistenceRepository.shared
     
     @FetchRequest(sortDescriptors: [
         NSSortDescriptor(
@@ -21,20 +23,22 @@ struct SelectedRecord: View {
     
     var body: some View {
         List {
-            ForEach(selectedRecords) { record in
+            ForEach(selectedRecords) { selected in
+//                let persistent = persistenceRepository.convertIntoRecord(selected: selected)
+        
                 // condition si aucun retenus
                 VStack {
-                    Text(record.category ?? "")
-                    Text(record.brandName ?? "")
-                    Text(record.modelName ?? "")
+                    Text(selected.category ?? "")
+                    Text(selected.brandName ?? "")
+                    Text(selected.modelName ?? "")
                 }
             }
         }
     }
 }
 
-struct SelectedRecord_Previews: PreviewProvider {
+struct SelectedListView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectedRecord()
+        SelectedListView()
     }
 }

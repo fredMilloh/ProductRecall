@@ -9,22 +9,16 @@ import SwiftUI
 
 struct PersistenceButton: View {
     
-    @ObservedObject var recordViewModel: RecordViewModel
+    @ObservedObject var recallViewModel: RecallViewModel
     
     var body: some View {
         Button {
-            recordViewModel.togglePersistence()
+            recallViewModel.togglePersistence()
         } label: {
-            recordViewModel.isSelected ?
+            recallViewModel.isSelected ?
             Image(systemName: "tray.and.arrow.down.fill") :
             Image(systemName: "tray.and.arrow.down")
         }
         .foregroundColor(.pink)
-    }
-}
-
-struct PersistenceButton_Previews: PreviewProvider {
-    static var previews: some View {
-        PersistenceButton(recordViewModel: RecordViewModel(recall: RecordViewModel.example))
     }
 }

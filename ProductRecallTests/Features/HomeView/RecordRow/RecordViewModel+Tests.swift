@@ -10,11 +10,11 @@ import XCTest
 
 class RecordViewModel_Tests: XCTestCase {
     
-    var sut: RecordViewModel?
+    var sut: RecallViewModel?
     let record = example
 
     override func setUpWithError() throws {
-        sut = RecordViewModel(record: record)
+        sut = RecallViewModel(record: record)
         try super.setUpWithError()
     }
 

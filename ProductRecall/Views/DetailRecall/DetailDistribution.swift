@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailDistribution: View {
     
-    let recordViewModel: RecordViewModel
+    let recall: RecallViewModel
     
     var body: some View {
         VStack {
@@ -19,9 +19,9 @@ struct DetailDistribution: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(Color.primary.opacity(0.5))
             
-            DetailContainer(title: "Magasin", content: recordViewModel.distributor)
-            DetailContainer(title: "Région", content: recordViewModel.saleGeoArea)
-            DetailContainer(title: "Contact", content: recordViewModel.contactNumber)
+            DetailContainer(title: "Magasin", content: recall.distributor)
+            DetailContainer(title: "Région", content: recall.saleGeoArea)
+            DetailContainer(title: "Contact", content: recall.contactNumber)
         }
         .padding()
         .background(.ultraThinMaterial)
@@ -33,10 +33,7 @@ struct DetailDistribution: View {
 
 struct DetailDistribution_Previews: PreviewProvider {
     static var previews: some View {
-        DetailDistribution(
-            recordViewModel: RecordViewModel(
-                recall: RecordViewModel.example)
-        ).previewLayout(.sizeThatFits)
+        DetailDistribution(recall: RecallViewModel.example).previewLayout(.sizeThatFits)
     }
 }
 

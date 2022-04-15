@@ -1,5 +1,5 @@
 //
-//  RecordViewModel.swift
+//  RecallViewModel.swift
 //  ProductRecall
 //
 //  Created by fred on 21/03/2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class RecordViewModel: ObservableObject {
+class RecallViewModel: ObservableObject {
     
     @ObservedObject var persistenceRepository = PersistenceRepository.shared
     @Published var isPersistent = false
@@ -149,7 +149,7 @@ class RecordViewModel: ObservableObject {
     
 // MARK: - Example
     #if DEBUG
-    static let example = Record(
+    static let example = RecallViewModel(recall: Record(
         id: "",
         timestamp: "",
         cardRef: "2022-03-0002",
@@ -179,6 +179,6 @@ class RecordViewModel: ObservableObject {
         productsLink: "http://rappel.conso.gouv.fr/document/2f1b8d02-db59-4d04-ae0d-96c6c2f5476f/Interne/ListeDesProduits",
         flyerLink: "http://rappel.conso.gouv.fr/affichettePDF/6347/Interne",
         dateRef: "2022-03"
-    )
+    ))
     #endif
 }
