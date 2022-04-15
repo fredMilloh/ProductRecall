@@ -31,7 +31,7 @@ struct HomeListView: View {
 //                          dismissButton: .default(Text("ok")))
 //                }
         }
-        .listStyle(.plain)
+        .listStyle(.inset)
         .padding(.top, -10)
         .onAppear() {
             viewModel.requestProduct(endpoint: viewModel.getEndpoint())

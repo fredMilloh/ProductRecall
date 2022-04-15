@@ -19,6 +19,7 @@ struct PersistenceButton: View {
             Image(systemName: "tray.and.arrow.down.fill") :
             Image(systemName: "tray.and.arrow.down")
         }
+        .foregroundColor(.pink)
     }
 }
 
