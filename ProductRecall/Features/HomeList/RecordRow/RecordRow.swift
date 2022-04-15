@@ -46,6 +46,6 @@ struct RecordRow: View {
 
 struct RecordRow_Previews: PreviewProvider {
     static var previews: some View {
-        RecordRow(recordViewModel: RecordViewModel(record: RecordViewModel.example))
+        RecordRow(recordViewModel: RecordViewModel(recall: RecordViewModel.example))
     }
 }

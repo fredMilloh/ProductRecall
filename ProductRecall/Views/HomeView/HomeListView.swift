@@ -16,10 +16,10 @@ struct HomeListView: View {
         List(viewModel.recordList) { record in
                 NavigationLink {
                     ProductDetail(
-                        recordViewModel: RecordViewModel(record: record)
+                        recordViewModel: RecordViewModel(recall: record)
                     )
                 } label: {
-                    let viewModel = RecordViewModel(record: record)
+                    let viewModel = RecordViewModel(recall: record)
                     RecordRow(recordViewModel: viewModel)
                 }
                 .onAppear(perform: {

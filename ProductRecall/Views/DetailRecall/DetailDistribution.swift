@@ -35,7 +35,7 @@ struct DetailDistribution_Previews: PreviewProvider {
     static var previews: some View {
         DetailDistribution(
             recordViewModel: RecordViewModel(
-                record: RecordViewModel.example)
+                recall: RecordViewModel.example)
         ).previewLayout(.sizeThatFits)
     }
 }

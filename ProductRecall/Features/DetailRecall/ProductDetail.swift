@@ -42,7 +42,7 @@ struct ProductDetail: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetail(recordViewModel: RecordViewModel(record: RecordViewModel.example))
+        ProductDetail(recordViewModel: RecordViewModel(recall: RecordViewModel.example))
     }
 }
 

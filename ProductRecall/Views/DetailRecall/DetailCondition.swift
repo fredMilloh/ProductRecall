@@ -35,8 +35,7 @@ struct DetailCondition: View {
 struct DetailCondition_Previews: PreviewProvider {
     static var previews: some View {
         DetailCondition(
-            recordViewModel: RecordViewModel(
-                record: RecordViewModel.example)
+            recordViewModel: RecordViewModel(recall: RecordViewModel.example)
         ).previewLayout(.sizeThatFits)
     }
 }

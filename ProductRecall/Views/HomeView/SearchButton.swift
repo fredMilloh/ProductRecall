@@ -24,6 +24,7 @@ struct SearchButton: View {
                     Text(viewModel.searchText)
                     Button {
                         viewModel.searchText = ""
+                        viewModel.getNewList()
                     } label: {
                         Image(systemName: "delete.left.fill")
                     }
