@@ -13,17 +13,18 @@ struct ProductDetail: View {
     
     var body: some View {
         ScrollView {
-            AsyncImage(url: recordViewModel.imageUrl) { image in
-                image.resizable()
-            } placeholder: {
-                Image(systemName: "camera.fill")
-            }
-            .frame(height: 300)
-            .cornerRadius(25)
-            .shadow(color: .gray, radius: 5, x: 1, y: 1)
-            .padding()
-                
+            
             VStack {
+                AsyncImage(url: recordViewModel.imageUrl) { image in
+                    image.resizable()
+                } placeholder: {
+                    Image(systemName: "camera.fill")
+                }
+                .background(Color("lightGray"))
+                .aspectRatio(contentMode: .fill)
+                .cornerRadius(25)
+                .shadow(color: .gray, radius: 5, x: 1, y: 1)
+                .padding()
                 DetailDescription(recordViewModel: recordViewModel)
                     .padding()
                 DetailDistribution(recordViewModel: recordViewModel)
@@ -41,7 +42,7 @@ struct ProductDetail: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetail(recordViewModel: RecordViewModel(record: RecordViewModel.example))
+        ProductDetail(recordViewModel: RecordViewModel(recall: RecordViewModel.example))
     }
 }
 

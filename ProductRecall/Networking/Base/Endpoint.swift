@@ -10,9 +10,8 @@ import Foundation
 protocol Endpoint {
     var baseURL: String { get }
     var path: String { get }
-    func addURLQueryParameters(toUrl url: URL, offset: Int) -> URL
+    func addURLQuery(toUrl url: URL, paginationOffset: Int) -> URL
     var method: RequestMethod { get }
-    
 }
 
 extension Endpoint {
