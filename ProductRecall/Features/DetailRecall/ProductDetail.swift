@@ -35,9 +35,14 @@ struct ProductDetail: View {
                 
                 DetailCondition(recordViewModel: recordViewModel)
                     .padding()
-                }
             }
         }
+        .toolbar {
+            ToolbarItem {
+                PersistenceButton(recordViewModel: recordViewModel)
+            }
+        }
+    }
 }
 
 struct DetailView_Previews: PreviewProvider {

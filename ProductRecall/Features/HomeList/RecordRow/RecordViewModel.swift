@@ -5,16 +5,30 @@
 //  Created by fred on 21/03/2022.
 //
 
-import Foundation
+import SwiftUI
 
 class RecordViewModel: ObservableObject {
+    
+    @ObservedObject var persistenceRepository = PersistenceRepository.shared
+    @Published var isPersistent = false
     
     let recall: Record
     
     init(recall: Record) {
         self.recall = recall
     }
- 
+    
+    var isSelected: Bool {
+        persistenceRepository.isSelected(cardRef: cardRef)
+    }
+    
+    func togglePersistence() {
+        isSelected ?
+        persistenceRepository.delete(cardRef: cardRef) :
+        persistenceRepository.save(record: recall)
+        
+        isPersistent.toggle()
+    }
 // MARK: - Description
     
     var category: String {
@@ -55,6 +69,10 @@ class RecordViewModel: ObservableObject {
     
     var healthMark: String {
         recall.healthMark.orEmpty
+    }
+    
+    var cardRef: String {
+        recall.cardRef.orEmpty
     }
     
 // MARK: - Distribution
