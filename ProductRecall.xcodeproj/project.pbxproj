@@ -36,6 +36,7 @@
 		B606D5C027ECD22200573498 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5BF27ECD22200573498 /* Category.swift */; };
 		B606D5C427ECF11200573498 /* OptionalString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5C327ECF11200573498 /* OptionalString+.swift */; };
 		B60DE5B928073F4700D03A81 /* recordListMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60DE5B828073F4700D03A81 /* recordListMock.swift */; };
+		B66C181B2809763B004E7651 /* RecordSelected.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B66C18192809763B004E7651 /* RecordSelected.xcdatamodeld */; };
 		B68B89F828008D1B004EC026 /* AppNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B89F728008D1B004EC026 /* AppNavigationView.swift */; };
 		B68B8A072805B978004EC026 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B8A062805B978004EC026 /* UIApplication.swift */; };
 		B68B8A092805BA02004EC026 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B8A082805BA02004EC026 /* SearchButton.swift */; };
@@ -99,6 +100,7 @@
 		B606D5BF27ECD22200573498 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B606D5C327ECF11200573498 /* OptionalString+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionalString+.swift"; sourceTree = "<group>"; };
 		B60DE5B828073F4700D03A81 /* recordListMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordListMock.swift; sourceTree = "<group>"; };
+		B66C181A2809763B004E7651 /* RecordSelected.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecordSelected.xcdatamodel; sourceTree = "<group>"; };
 		B68B89F728008D1B004EC026 /* AppNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationView.swift; sourceTree = "<group>"; };
 		B68B8A062805B978004EC026 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		B68B8A082805BA02004EC026 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			children = (
 				B606D57927E8DC1300573498 /* Product.swift */,
 				B606D5BF27ECD22200573498 /* Category.swift */,
+				B66C181C2809784A004E7651 /* CoreData */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -350,6 +353,14 @@
 				B68B8A062805B978004EC026 /* UIApplication.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B66C181C2809784A004E7651 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B66C18192809763B004E7651 /* RecordSelected.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		B68B8A0A2805BB09004EC026 /* Search */ = {
@@ -533,6 +544,7 @@
 				B606D55127E8DAA500573498 /* ContentView.swift in Sources */,
 				B695C9C927F6FD060098597B /* ClientProtocol.swift in Sources */,
 				B606D5C427ECF11200573498 /* OptionalString+.swift in Sources */,
+				B66C181B2809763B004E7651 /* RecordSelected.xcdatamodeld in Sources */,
 				B606D54F27E8DAA500573498 /* ProductRecallApp.swift in Sources */,
 				B606D5AF27EA5D2800573498 /* DetailCondition.swift in Sources */,
 				B68B8A0C2805BB2C004EC026 /* SearchBarView.swift in Sources */,
@@ -873,6 +885,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B66C18192809763B004E7651 /* RecordSelected.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B66C181A2809763B004E7651 /* RecordSelected.xcdatamodel */,
+			);
+			currentVersion = B66C181A2809763B004E7651 /* RecordSelected.xcdatamodel */;
+			path = RecordSelected.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B606D54327E8DAA500573498 /* Project object */;
 }
