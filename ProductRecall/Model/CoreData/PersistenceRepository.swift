@@ -14,7 +14,7 @@ class PersistenceRepository: ObservableObject  {
     let container: NSPersistentContainer
     
     init() {
-        container = NSPersistentContainer(name: "RecordSelected")
+        container = NSPersistentContainer(name: "RecallSelected")
         container.loadPersistentStores { description, error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
@@ -24,36 +24,35 @@ class PersistenceRepository: ObservableObject  {
     
     func save(record: Record, completion: @escaping (Error?) -> () = {_ in}) {
         let context = container.viewContext
-        let recordSelected = RecordSelected(context: context)
-        recordSelected.id = record.id
-        recordSelected.timestamp = record.timestamp
-        recordSelected.cardRef = record.cardRef
-        recordSelected.legalCharacter = record.legalCharacter
-        recordSelected.category = record.category
-        recordSelected.subCategory = record.subCategory
-        recordSelected.brandName = record.brandName
-        recordSelected.modelName = record.modelName
-        recordSelected.productId = record.productId
-        recordSelected.packaging = record.packaging
-        recordSelected.marketingDates = record.marketingDates
-        recordSelected.storageTemperature = record.storageTemperature
-        recordSelected.healthMark = record.healthMark
-        recordSelected.infos = record.infos
-        recordSelected.saleGeoArea = record.saleGeoArea
-        recordSelected.distributor = record.distributor
-        recordSelected.reasonRecall = record.reasonRecall
-        recordSelected.risksIncurred = record.risksIncurred
-        recordSelected.healthRecommendations = record.healthRecommendations
-        recordSelected.additionalRiskDescription = record.additionalRiskDescription
-        recordSelected.actionsToTake = record.actionsToTake
-        recordSelected.contactNumber = record.contactNumber
-        recordSelected.compensationTerms = record.compensationTerms
-        recordSelected.endDateRecall = record.endDateRecall
-        recordSelected.otherInfos = record.otherInfos
-        recordSelected.imagesLink = record.imagesLink
-        recordSelected.productsLink = record.productsLink
-        recordSelected.flyerLink = record.flyerLink
-        recordSelected.dateRef = record.dateRef
+        let recallSelected = RecallSelected(context: context)
+        recallSelected.id = record.id
+        recallSelected.timestamp = record.timestamp
+        recallSelected.cardRef = record.cardRef
+        recallSelected.legalCharacter = record.legalCharacter
+        recallSelected.category = record.category
+        recallSelected.subCategory = record.subCategory
+        recallSelected.brandName = record.brandName
+        recallSelected.modelName = record.modelName
+        recallSelected.productId = record.productId
+        recallSelected.packaging = record.packaging
+        recallSelected.marketingDates = record.marketingDates
+        recallSelected.storageTemperature = record.storageTemperature
+        recallSelected.healthMark = record.healthMark
+        recallSelected.infos = record.infos
+        recallSelected.saleGeoArea = record.saleGeoArea
+        recallSelected.distributor = record.distributor
+        recallSelected.reasonRecall = record.reasonRecall
+        recallSelected.risksIncurred = record.risksIncurred
+        recallSelected.healthRecommendations = record.healthRecommendations
+        recallSelected.additionalRiskDescription = record.additionalRiskDescription
+        recallSelected.actionsToTake = record.actionsToTake
+        recallSelected.contactNumber = record.contactNumber
+        recallSelected.compensationTerms = record.compensationTerms
+        recallSelected.endDateRecall = record.endDateRecall
+        recallSelected.otherInfos = record.otherInfos
+        recallSelected.imagesLink = record.imagesLink
+        recallSelected.productsLink = record.productsLink
+        recallSelected.flyerLink = record.flyerLink
         if context.hasChanges {
             do {
                 try context.save()
@@ -66,7 +65,7 @@ class PersistenceRepository: ObservableObject  {
     
     func delete(cardRef: String, completion: @escaping (Error?) -> () = {_ in}) {
         let context = container.viewContext
-        let request: NSFetchRequest<RecordSelected> = RecordSelected.fetchRequest()
+        let request: NSFetchRequest<RecallSelected> = RecallSelected.fetchRequest()
         request.predicate = NSPredicate(format: "cardRef == %@", "\(cardRef)")
         do {
             let arrayResponse = try context.fetch(request)
@@ -82,7 +81,7 @@ class PersistenceRepository: ObservableObject  {
     
     func isSelected(cardRef: String) -> Bool {
         let context = container.viewContext
-        let request: NSFetchRequest<RecordSelected> = RecordSelected.fetchRequest()
+        let request: NSFetchRequest<RecallSelected> = RecallSelected.fetchRequest()
         request.predicate = NSPredicate(format: "cardRef == %@", "\(cardRef)")
         do {
             let arrayResponse = try context.fetch(request)
@@ -96,70 +95,71 @@ class PersistenceRepository: ObservableObject  {
     }
 }
 
-extension PersistenceRepository {
-    
-    func convertIntoRecord(selected: RecordSelected) -> RecallViewModel? {
-        guard let id = selected.id,
-              let timestamp = selected.timestamp,
-              let cardRef = selected.cardRef,
-              let legalCharacter = selected.legalCharacter,
-              let category = selected.category,
-              let subCategory = selected.subCategory,
-              let brandName = selected.brandName,
-              let modelName = selected.modelName,
-              let productId = selected.productId,
-              let packaging = selected.packaging,
-              let marketingDates = selected.marketingDates,
-              let storageTemperature = selected.storageTemperature,
-              let healthMark = selected.healthMark,
-              let infos = selected.infos,
-              let saleGeoArea = selected.saleGeoArea,
-              let distributor = selected.distributor,
-              let reasonRecall = selected.reasonRecall,
-              let risksIncurred = selected.risksIncurred,
-              let healthRecommendations = selected.healthRecommendations,
-              let additionalRiskDescription = selected.additionalRiskDescription,
-              let actionsToTake = selected.actionsToTake,
-              let contactNumber = selected.contactNumber,
-              let compensationTerms = selected.compensationTerms,
-              let endDateRecall = selected.endDateRecall,
-              let otherInfos = selected.otherInfos,
-              let imagesLink = selected.imagesLink,
-              let productsLink = selected.productsLink,
-              let flyerLink = selected.flyerLink,
-              let dateRef = selected.dateRef
-        else { return nil }
-        
-        return RecallViewModel(recall: Record(
-            id: id,
-            timestamp: timestamp,
-            cardRef: cardRef,
-            legalCharacter: legalCharacter,
-            category: category,
-            subCategory: subCategory,
-            brandName: brandName,
-            modelName: modelName,
-            productId: productId,
-            packaging: packaging,
-            marketingDates: marketingDates,
-            storageTemperature: storageTemperature,
-            healthMark: healthMark,
-            infos: infos,
-            saleGeoArea: saleGeoArea,
-            distributor: distributor,
-            reasonRecall: reasonRecall,
-            risksIncurred: risksIncurred,
-            healthRecommendations: healthRecommendations,
-            additionalRiskDescription: additionalRiskDescription,
-            actionsToTake: actionsToTake,
-            contactNumber: contactNumber,
-            compensationTerms: compensationTerms,
-            endDateRecall: endDateRecall,
-            otherInfos: otherInfos,
-            imagesLink: imagesLink,
-            productsLink: productsLink,
-            flyerLink: flyerLink,
-            dateRef: dateRef
-        ))
-    }
-}
+//extension PersistenceRepository {
+//
+//    func convertIntoRecord(selected: RecordSelected) -> RecallViewModel? {
+//        guard let id = selected.id,
+//              let timestamp = selected.timestamp,
+//              let cardRef = selected.cardRef,
+//              let legalCharacter = selected.legalCharacter,
+//              let category = selected.category,
+//              let subCategory = selected.subCategory,
+//              let brandName = selected.brandName,
+//              let modelName = selected.modelName,
+//              let productId = selected.productId,
+//              let packaging = selected.packaging,
+//              let marketingDates = selected.marketingDates,
+//              let storageTemperature = selected.storageTemperature,
+//              let healthMark = selected.healthMark,
+//              let infos = selected.infos,
+//              let saleGeoArea = selected.saleGeoArea,
+//              let distributor = selected.distributor,
+//              let reasonRecall = selected.reasonRecall,
+//              let risksIncurred = selected.risksIncurred,
+//              let healthRecommendations = selected.healthRecommendations,
+//              let additionalRiskDescription = selected.additionalRiskDescription,
+//              let actionsToTake = selected.actionsToTake,
+//              let contactNumber = selected.contactNumber,
+//              let compensationTerms = selected.compensationTerms,
+//              let endDateRecall = selected.endDateRecall,
+//              let otherInfos = selected.otherInfos,
+//              let imagesLink = selected.imagesLink,
+//              let productsLink = selected.productsLink,
+//              let flyerLink = selected.flyerLink,
+//              let dateRef = selected.dateRef
+//        else { return nil }
+//
+//        return RecallViewModel(recall: Record(
+//            count: 0,
+//            id: id,
+//            timestamp: timestamp,
+//            cardRef: cardRef,
+//            legalCharacter: legalCharacter,
+//            category: category,
+//            subCategory: subCategory,
+//            brandName: brandName,
+//            modelName: modelName,
+//            productId: productId,
+//            packaging: packaging,
+//            marketingDates: marketingDates,
+//            storageTemperature: storageTemperature,
+//            healthMark: healthMark,
+//            infos: infos,
+//            saleGeoArea: saleGeoArea,
+//            distributor: distributor,
+//            reasonRecall: reasonRecall,
+//            risksIncurred: risksIncurred,
+//            healthRecommendations: healthRecommendations,
+//            additionalRiskDescription: additionalRiskDescription,
+//            actionsToTake: actionsToTake,
+//            contactNumber: contactNumber,
+//            compensationTerms: compensationTerms,
+//            endDateRecall: endDateRecall,
+//            otherInfos: otherInfos,
+//            imagesLink: imagesLink,
+//            productsLink: productsLink,
+//            flyerLink: flyerLink,
+//            dateRef: dateRef
+//        ))
+//    }
+//}

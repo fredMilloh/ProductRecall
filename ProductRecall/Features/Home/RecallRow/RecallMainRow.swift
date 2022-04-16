@@ -7,21 +7,20 @@
 
 import SwiftUI
 
-struct RecallMainView: View {
+struct RecallMainRow: View {
     
-    @ObservedObject var recallViewModel: RecallViewModel
-//    let recall: RecordViewModel
+    var recall: RecallViewModel
     
     var body: some View {
         HStack {
-            RecordRowBaseView(recall: recallViewModel)
+            RecordRowBaseView(recall: recall)
             Spacer()
             ZStack(alignment: .trailing) {
-                PersistenceButton(recallViewModel: recallViewModel)
+                PersistenceButton(recall: recall)
             }
             .frame(width: 30, height: 30, alignment: .top)
             .onTapGesture {
-                recallViewModel.togglePersistence()
+                recall.togglePersistence()
             }
         }
     }

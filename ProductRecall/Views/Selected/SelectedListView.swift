@@ -13,13 +13,13 @@ struct SelectedListView: View {
     
     @FetchRequest(sortDescriptors: [
         NSSortDescriptor(
-            keyPath: \RecordSelected.brandName,
+            keyPath: \RecallSelected.brandName,
             ascending: true
         )
       ],
       animation: .default
     )
-    private var selectedRecords: FetchedResults<RecordSelected>
+    private var selectedRecords: FetchedResults<RecallSelected>
     
     var body: some View {
         List {

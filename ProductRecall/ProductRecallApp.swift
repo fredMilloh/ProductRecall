@@ -11,7 +11,7 @@ import SwiftUI
 struct ProductRecallApp: App {
     
     let persistenceRepository = PersistenceRepository.shared
-    
+   
     var body: some Scene {
         WindowGroup {
             AppNavigationView()

@@ -39,7 +39,7 @@ struct DetailMainView: View {
         }
         .toolbar {
             ToolbarItem {
-                PersistenceButton(recallViewModel: recall)
+                PersistenceButton(recall: recall)
             }
         }
     }

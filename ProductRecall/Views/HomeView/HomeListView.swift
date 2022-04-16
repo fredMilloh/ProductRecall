@@ -13,17 +13,14 @@ struct HomeListView: View {
     
     var body: some View {
         
-        List(homeViewModel.recordList) { record in
+        List(homeViewModel.recallList) { recall in
                 NavigationLink {
-                    DetailMainView(
-                        recall: RecallViewModel(recall: record)
-                    )
+                    DetailMainView(recall: recall)
                 } label: {
-                    let recall = RecallViewModel(recall: record)
-                    RecallMainView(recallViewModel: recall)
+                    RecallMainRow(recall: recall)
                 }
                 .onAppear(perform: {
-                    homeViewModel.getFollowingRecords(recordItem: record)
+                    homeViewModel.getFollowingRecords(recordItem: recall)
                 })
 //                .alert(isPresented: $viewModel.endOfList) {
 //                    Alert(title: Text(""),
@@ -45,6 +42,7 @@ struct HomeListView: View {
 
 struct HomeListView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeListView(homeViewModel: HomeViewModel()).previewLayout(.sizeThatFits)
+        HomeListView(homeViewModel: HomeViewModel())
+            .previewLayout(.sizeThatFits)
     }
 }

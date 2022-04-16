@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F5048e" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="RecordSelected" representedClassName="RecordSelected" syncable="YES" codeGenerationType="class">
+    <entity name="RecallSelected" representedClassName="RecallSelected" syncable="YES" codeGenerationType="class">
         <attribute name="actionsToTake" optional="YES" attributeType="String"/>
         <attribute name="additionalRiskDescription" optional="YES" attributeType="String"/>
         <attribute name="brandName" optional="YES" attributeType="String"/>
@@ -8,7 +8,6 @@
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="compensationTerms" optional="YES" attributeType="String"/>
         <attribute name="contactNumber" optional="YES" attributeType="String"/>
-        <attribute name="dateRef" optional="YES" attributeType="String"/>
         <attribute name="distributor" optional="YES" attributeType="String"/>
         <attribute name="endDateRecall" optional="YES" attributeType="String"/>
         <attribute name="flyerLink" optional="YES" attributeType="String"/>
@@ -32,6 +31,6 @@
         <attribute name="timestamp" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="RecordSelected" positionX="-54" positionY="-9" width="128" height="464"/>
+        <element name="RecallSelected" positionX="-54" positionY="-9" width="128" height="449"/>
     </elements>
 </model>

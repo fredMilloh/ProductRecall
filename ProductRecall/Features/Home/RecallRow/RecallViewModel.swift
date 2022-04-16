@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class RecallViewModel: ObservableObject {
+class RecallViewModel: Identifiable, ObservableObject {
     
     @ObservedObject var persistenceRepository = PersistenceRepository.shared
     @Published var isPersistent = false
@@ -29,6 +29,7 @@ class RecallViewModel: ObservableObject {
         
         isPersistent.toggle()
     }
+    
 // MARK: - Description
     
     var category: String {
@@ -47,7 +48,7 @@ class RecallViewModel: ObservableObject {
         recall.modelName.orEmpty
     }
  
-    var productID: String {
+    var productId: String {
         recall.productId.orEmpty
     }
     
@@ -73,6 +74,14 @@ class RecallViewModel: ObservableObject {
     
     var cardRef: String {
         recall.cardRef.orEmpty
+    }
+    
+    var id: String {
+        recall.id.orEmpty
+    }
+    
+    var timestamp: String {
+        recall.timestamp.orEmpty
     }
     
 // MARK: - Distribution
@@ -127,7 +136,7 @@ class RecallViewModel: ObservableObject {
    
 // MARK: - Conditions
     
-    var actionToTake: String {
+    var actionsToTake: String {
         recall.actionsToTake.orEmpty
     }
     
@@ -147,9 +156,14 @@ class RecallViewModel: ObservableObject {
         recall.legalCharacter.orEmpty
     }
     
+    var totalCount: Int? {
+        recall.count
+    }
+    
 // MARK: - Example
     #if DEBUG
     static let example = RecallViewModel(recall: Record(
+        count: 100,
         id: "",
         timestamp: "",
         cardRef: "2022-03-0002",

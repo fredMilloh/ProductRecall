@@ -9,13 +9,13 @@ import SwiftUI
 
 struct PersistenceButton: View {
     
-    @ObservedObject var recallViewModel: RecallViewModel
+    @ObservedObject var recall: RecallViewModel
     
     var body: some View {
         Button {
-            recallViewModel.togglePersistence()
+            recall.togglePersistence()
         } label: {
-            recallViewModel.isSelected ?
+            recall.isSelected ?
             Image(systemName: "tray.and.arrow.down.fill") :
             Image(systemName: "tray.and.arrow.down")
         }

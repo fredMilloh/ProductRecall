@@ -19,7 +19,7 @@ struct DetailCondition: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(Color.primary.opacity(0.5))
             
-            DetailContainer(title: "Conduite à tenir", content: recall.actionToTake)
+            DetailContainer(title: "Conduite à tenir", content: recall.actionsToTake)
             DetailContainer(title: "Modalités de compensation", content: recall.compensationTerms)
             DetailContainer(title: "Date de fin du rappel", content: recall.endDateRecall)
             DetailContainer(title: "Informations complèmentaires", content: recall.otherInfos)
