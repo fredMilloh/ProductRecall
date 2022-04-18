@@ -13,6 +13,7 @@ class PersistenceRepository: ObservableObject {
     
     let container: NSPersistentContainer
     @Published var selectedArray: [RecallSelected] = []
+    @Published var recallSelected: [RecallViewModel] = []
     
     init() {
         container = NSPersistentContainer(name: "RecallSelected")
@@ -22,6 +23,7 @@ class PersistenceRepository: ObservableObject {
             }
         }
         fetchSelected()
+        convertSelectedToRecall()
     }
     
     func fetchSelected() {
@@ -30,6 +32,13 @@ class PersistenceRepository: ObservableObject {
             selectedArray = try container.viewContext.fetch(request)
         } catch let error {
             print("Error fetching : \(error.localizedDescription)")
+        }
+    }
+    
+    func convertSelectedToRecall() {
+        for select in selectedArray {
+            let converted = self.convertIntoRecall(selected: select)
+            recallSelected.append(converted)
         }
     }
     
@@ -64,6 +73,7 @@ class PersistenceRepository: ObservableObject {
         recallSelected.imagesLink = recall.imagesLink
         recallSelected.productsLink = recall.productsLink
         recallSelected.flyerLink = recall.flyerLink
+        
         if context.hasChanges {
             do {
                 try context.save()
@@ -118,5 +128,44 @@ class PersistenceRepository: ObservableObject {
             return false
         }
         return false
+    }
+}
+
+extension PersistenceRepository {
+
+    func convertIntoRecall(selected: RecallSelected) -> RecallViewModel {
+        let record = Record(
+            count: 0,
+            id: selected.id,
+            timestamp: selected.timestamp,
+            cardRef: selected.cardRef,
+            legalCharacter: selected.legalCharacter,
+            category: selected.category,
+            subCategory: selected.subCategory,
+            brandName: selected.brandName,
+            modelName: selected.modelName,
+            productId: selected.productId,
+            packaging: selected.packaging,
+            marketingDates: selected.marketingDates,
+            storageTemperature: selected.storageTemperature,
+            healthMark: selected.healthMark,
+            infos: selected.infos,
+            saleGeoArea: selected.saleGeoArea,
+            distributor: selected.distributor,
+            reasonRecall: selected.reasonRecall,
+            risksIncurred: selected.risksIncurred,
+            healthRecommendations: selected.healthRecommendations,
+            additionalRiskDescription: selected.additionalRiskDescription,
+            actionsToTake: selected.actionsToTake,
+            contactNumber: selected.contactNumber,
+            compensationTerms: selected.compensationTerms,
+            endDateRecall:selected.endDateRecall,
+            otherInfos: selected.otherInfos,
+            imagesLink: selected.imagesLink,
+            productsLink: selected.productsLink,
+            flyerLink: selected.flyerLink,
+            dateRef: ""
+        )
+        return RecallViewModel(recall: record)
     }
 }

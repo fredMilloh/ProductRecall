@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-class RecallViewModel: ObservableObject, Identifiable {
-    
-    @ObservedObject var persistenceRepository = PersistenceRepository.shared
+class RecallViewModel: ObservableObject, Identifiable{
+        
     @Published var isPersistent = false
     
     let recall: Record
@@ -19,16 +18,16 @@ class RecallViewModel: ObservableObject, Identifiable {
     }
     
     var isSelected: Bool {
-        persistenceRepository.isSelected(cardRef: cardRef)
+        PersistenceRepository.shared.isSelected(cardRef: cardRef)
     }
 
     func togglePersistence() {
         isSelected ?
-        persistenceRepository.delete(cardRef: cardRef) :
-        persistenceRepository.save(recall: self)
+        PersistenceRepository.shared.delete(cardRef: cardRef) :
+        PersistenceRepository.shared.save(recall: self)
         
-        persistenceRepository.saveSelected()
-        persistenceRepository.fetchSelected()
+        PersistenceRepository.shared.saveSelected()
+        PersistenceRepository.shared.fetchSelected()
         isPersistent.toggle()
     }
     

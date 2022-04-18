@@ -16,7 +16,6 @@ struct AppNavigationView: View {
     
     @State private var selection: Tab = .rappels
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var persistenceRepository: PersistenceRepository
     
     var body: some View {
         TabView(selection: $selection) {
@@ -35,7 +34,7 @@ struct AppNavigationView: View {
             .navigationViewStyle(StackNavigationViewStyle())
             
             NavigationView {
-                SelectedMainView(persistenceRepository: persistenceRepository)
+                SelectedMainView()
             }
             .tabItem {
                 Label {
@@ -52,6 +51,6 @@ struct AppNavigationView: View {
 
 struct AppNavigationView_Previews: PreviewProvider {
     static var previews: some View {
-        AppNavigationView(persistenceRepository: PersistenceRepository.shared)
+        AppNavigationView()
     }
 }

@@ -43,6 +43,7 @@
 		B66C182E2809F365004E7651 /* SelectedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C182D2809F365004E7651 /* SelectedListView.swift */; };
 		B66C183D280C819A004E7651 /* RecallSelected.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B66C183B280C819A004E7651 /* RecallSelected.xcdatamodeld */; };
 		B66C1843280D8F51004E7651 /* EmptySelectedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C1842280D8F51004E7651 /* EmptySelectedMessage.swift */; };
+		B66C1847280DD1DE004E7651 /* RecallList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C1846280DD1DE004E7651 /* RecallList.swift */; };
 		B68B89F828008D1B004EC026 /* AppNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B89F728008D1B004EC026 /* AppNavigationView.swift */; };
 		B68B8A072805B978004EC026 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B8A062805B978004EC026 /* UIApplication.swift */; };
 		B68B8A092805BA02004EC026 /* HomeSearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B8A082805BA02004EC026 /* HomeSearchButton.swift */; };
@@ -113,6 +114,7 @@
 		B66C182D2809F365004E7651 /* SelectedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedListView.swift; sourceTree = "<group>"; };
 		B66C183C280C819A004E7651 /* RecallSelected.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecallSelected.xcdatamodel; sourceTree = "<group>"; };
 		B66C1842280D8F51004E7651 /* EmptySelectedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySelectedMessage.swift; sourceTree = "<group>"; };
+		B66C1846280DD1DE004E7651 /* RecallList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallList.swift; sourceTree = "<group>"; };
 		B68B89F728008D1B004EC026 /* AppNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationView.swift; sourceTree = "<group>"; };
 		B68B8A062805B978004EC026 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		B68B8A082805BA02004EC026 /* HomeSearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchButton.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			children = (
 				B66C182428099B14004E7651 /* PersistenceButton.swift */,
 				B6BF966627FDDDCE0025D453 /* CategoriesView.swift */,
+				B66C1846280DD1DE004E7651 /* RecallList.swift */,
 				B6FDE31827F74514006DAD86 /* HomeView */,
 				B6FDE31727F744D2006DAD86 /* DetailRecall */,
 				B68B8A0A2805BB09004EC026 /* Search */,
@@ -579,6 +582,7 @@
 				B606D59127E8E46B00573498 /* RecallViewModel.swift in Sources */,
 				B606D5A227EA4B9A00573498 /* RequestMethod.swift in Sources */,
 				B606D58627E8DF2700573498 /* HTTPClient.swift in Sources */,
+				B66C1847280DD1DE004E7651 /* RecallList.swift in Sources */,
 				B606D55127E8DAA500573498 /* ContentView.swift in Sources */,
 				B695C9C927F6FD060098597B /* ClientProtocol.swift in Sources */,
 				B606D5C427ECF11200573498 /* OptionalString+.swift in Sources */,

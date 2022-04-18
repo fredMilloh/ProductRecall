@@ -9,15 +9,13 @@ import SwiftUI
 
 struct SelectedMainView: View {
     
-    @ObservedObject var persistenceRepository: PersistenceRepository
-    
     var body: some View {
-        SelectedListView(persistenceRepository: persistenceRepository)
+        SelectedListView()
     }
 }
 
 struct SelectedRecord_Previews: PreviewProvider {
     static var previews: some View {
-        SelectedMainView(persistenceRepository: PersistenceRepository.shared)
+        SelectedMainView()
     }
 }

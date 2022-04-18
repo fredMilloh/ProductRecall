@@ -14,7 +14,7 @@ struct ProductRecallApp: App {
    
     var body: some Scene {
         WindowGroup {
-            AppNavigationView(persistenceRepository: persistenceRepository)
+            AppNavigationView()
                 .environment(\.managedObjectContext, persistenceRepository.container.viewContext)
         }
     }
