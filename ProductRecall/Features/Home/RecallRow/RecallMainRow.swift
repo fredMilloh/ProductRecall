@@ -13,7 +13,7 @@ struct RecallMainRow: View {
     
     var body: some View {
         HStack {
-            RecordRowBaseView(recall: recall)
+            RecallBaseRow(recall: recall)
             Spacer()
             ZStack(alignment: .trailing) {
                 PersistenceButton(recall: recall)

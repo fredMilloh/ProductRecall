@@ -31,6 +31,6 @@
         <attribute name="timestamp" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="RecallSelected" positionX="-54" positionY="-9" width="128" height="449"/>
+        <element name="RecallSelected" positionX="-27" positionY="18" width="128" height="449"/>
     </elements>
 </model>

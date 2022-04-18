@@ -16,8 +16,8 @@ struct PersistenceButton: View {
             recall.togglePersistence()
         } label: {
             recall.isSelected ?
-            Image(systemName: "tray.and.arrow.down.fill") :
-            Image(systemName: "tray.and.arrow.down")
+            Image(systemName: "flag.fill") :
+            Image(systemName: "flag")
         }
         .foregroundColor(.pink)
     }

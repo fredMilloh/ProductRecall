@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecordRowBaseView: View {
+struct RecallBaseRow: View {
     
     let recall: RecallViewModel
     
@@ -46,6 +46,6 @@ struct RecordRowBaseView: View {
 
 struct RecordRowBaseView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordRowBaseView(recall: RecallViewModel.example)
+        RecallBaseRow(recall: RecallViewModel.example)
     }
 }

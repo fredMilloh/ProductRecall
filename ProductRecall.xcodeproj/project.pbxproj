@@ -36,12 +36,13 @@
 		B606D5C027ECD22200573498 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5BF27ECD22200573498 /* Category.swift */; };
 		B606D5C427ECF11200573498 /* OptionalString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B606D5C327ECF11200573498 /* OptionalString+.swift */; };
 		B60DE5B928073F4700D03A81 /* recordListMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60DE5B828073F4700D03A81 /* recordListMock.swift */; };
-		B66C181B2809763B004E7651 /* RecallSelected.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B66C18192809763B004E7651 /* RecallSelected.xcdatamodeld */; };
 		B66C181E280978CC004E7651 /* PersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C181D280978CC004E7651 /* PersistenceRepository.swift */; };
 		B66C182528099B14004E7651 /* PersistenceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C182428099B14004E7651 /* PersistenceButton.swift */; };
 		B66C18292809C41C004E7651 /* SelectedMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C18282809C41C004E7651 /* SelectedMainView.swift */; };
-		B66C182B2809DBFE004E7651 /* RecordRowBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C182A2809DBFE004E7651 /* RecordRowBaseView.swift */; };
+		B66C182B2809DBFE004E7651 /* RecallBaseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C182A2809DBFE004E7651 /* RecallBaseRow.swift */; };
 		B66C182E2809F365004E7651 /* SelectedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C182D2809F365004E7651 /* SelectedListView.swift */; };
+		B66C183D280C819A004E7651 /* RecallSelected.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B66C183B280C819A004E7651 /* RecallSelected.xcdatamodeld */; };
+		B66C1843280D8F51004E7651 /* EmptySelectedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C1842280D8F51004E7651 /* EmptySelectedMessage.swift */; };
 		B68B89F828008D1B004EC026 /* AppNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B89F728008D1B004EC026 /* AppNavigationView.swift */; };
 		B68B8A072805B978004EC026 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B8A062805B978004EC026 /* UIApplication.swift */; };
 		B68B8A092805BA02004EC026 /* HomeSearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B8A082805BA02004EC026 /* HomeSearchButton.swift */; };
@@ -105,12 +106,13 @@
 		B606D5BF27ECD22200573498 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B606D5C327ECF11200573498 /* OptionalString+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionalString+.swift"; sourceTree = "<group>"; };
 		B60DE5B828073F4700D03A81 /* recordListMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordListMock.swift; sourceTree = "<group>"; };
-		B66C181A2809763B004E7651 /* RecordSelected.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecordSelected.xcdatamodel; sourceTree = "<group>"; };
 		B66C181D280978CC004E7651 /* PersistenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepository.swift; sourceTree = "<group>"; };
 		B66C182428099B14004E7651 /* PersistenceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceButton.swift; sourceTree = "<group>"; };
 		B66C18282809C41C004E7651 /* SelectedMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMainView.swift; sourceTree = "<group>"; };
-		B66C182A2809DBFE004E7651 /* RecordRowBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRowBaseView.swift; sourceTree = "<group>"; };
+		B66C182A2809DBFE004E7651 /* RecallBaseRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecallBaseRow.swift; sourceTree = "<group>"; };
 		B66C182D2809F365004E7651 /* SelectedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedListView.swift; sourceTree = "<group>"; };
+		B66C183C280C819A004E7651 /* RecallSelected.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecallSelected.xcdatamodel; sourceTree = "<group>"; };
+		B66C1842280D8F51004E7651 /* EmptySelectedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySelectedMessage.swift; sourceTree = "<group>"; };
 		B68B89F728008D1B004EC026 /* AppNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationView.swift; sourceTree = "<group>"; };
 		B68B8A062805B978004EC026 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		B68B8A082805BA02004EC026 /* HomeSearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchButton.swift; sourceTree = "<group>"; };
@@ -372,8 +374,8 @@
 		B66C181C2809784A004E7651 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				B66C18192809763B004E7651 /* RecallSelected.xcdatamodeld */,
 				B66C181D280978CC004E7651 /* PersistenceRepository.swift */,
+				B66C183B280C819A004E7651 /* RecallSelected.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -390,6 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				B66C182D2809F365004E7651 /* SelectedListView.swift */,
+				B66C1842280D8F51004E7651 /* EmptySelectedMessage.swift */,
 			);
 			path = Selected;
 			sourceTree = "<group>";
@@ -421,7 +424,7 @@
 			children = (
 				B6FDE31927F7452B006DAD86 /* HomeListView.swift */,
 				B68B8A082805BA02004EC026 /* HomeSearchButton.swift */,
-				B66C182A2809DBFE004E7651 /* RecordRowBaseView.swift */,
+				B66C182A2809DBFE004E7651 /* RecallBaseRow.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -564,8 +567,9 @@
 				B606D5AB27EA5C9F00573498 /* DetailDistribution.swift in Sources */,
 				B606D5C027ECD22200573498 /* Category.swift in Sources */,
 				B606D5B327EA5DFA00573498 /* DetailMainView.swift in Sources */,
-				B66C182B2809DBFE004E7651 /* RecordRowBaseView.swift in Sources */,
+				B66C182B2809DBFE004E7651 /* RecallBaseRow.swift in Sources */,
 				B66C182528099B14004E7651 /* PersistenceButton.swift in Sources */,
+				B66C183D280C819A004E7651 /* RecallSelected.xcdatamodeld in Sources */,
 				B606D58027E8DE9F00573498 /* RequestError.swift in Sources */,
 				B606D5A427EA4BD400573498 /* ProductsEndpoint.swift in Sources */,
 				B606D5A727EA5BD200573498 /* DetailContainer.swift in Sources */,
@@ -578,11 +582,11 @@
 				B606D55127E8DAA500573498 /* ContentView.swift in Sources */,
 				B695C9C927F6FD060098597B /* ClientProtocol.swift in Sources */,
 				B606D5C427ECF11200573498 /* OptionalString+.swift in Sources */,
-				B66C181B2809763B004E7651 /* RecallSelected.xcdatamodeld in Sources */,
 				B606D54F27E8DAA500573498 /* ProductRecallApp.swift in Sources */,
 				B66C18292809C41C004E7651 /* SelectedMainView.swift in Sources */,
 				B606D5AF27EA5D2800573498 /* DetailCondition.swift in Sources */,
 				B68B8A0C2805BB2C004EC026 /* SearchBarView.swift in Sources */,
+				B66C1843280D8F51004E7651 /* EmptySelectedMessage.swift in Sources */,
 				B606D5A927EA5C3500573498 /* DetailDescription.swift in Sources */,
 				B66C181E280978CC004E7651 /* PersistenceRepository.swift in Sources */,
 				B606D59827E9142300573498 /* HomeView.swift in Sources */,
@@ -923,12 +927,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		B66C18192809763B004E7651 /* RecallSelected.xcdatamodeld */ = {
+		B66C183B280C819A004E7651 /* RecallSelected.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B66C181A2809763B004E7651 /* RecordSelected.xcdatamodel */,
+				B66C183C280C819A004E7651 /* RecallSelected.xcdatamodel */,
 			);
-			currentVersion = B66C181A2809763B004E7651 /* RecordSelected.xcdatamodel */;
+			currentVersion = B66C183C280C819A004E7651 /* RecallSelected.xcdatamodel */;
 			path = RecallSelected.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

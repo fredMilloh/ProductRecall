@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class RecallViewModel: Identifiable, ObservableObject {
+class RecallViewModel: ObservableObject, Identifiable {
     
     @ObservedObject var persistenceRepository = PersistenceRepository.shared
     @Published var isPersistent = false
@@ -21,12 +21,14 @@ class RecallViewModel: Identifiable, ObservableObject {
     var isSelected: Bool {
         persistenceRepository.isSelected(cardRef: cardRef)
     }
-    
+
     func togglePersistence() {
         isSelected ?
         persistenceRepository.delete(cardRef: cardRef) :
-        persistenceRepository.save(record: recall)
+        persistenceRepository.save(recall: self)
         
+        persistenceRepository.saveSelected()
+        persistenceRepository.fetchSelected()
         isPersistent.toggle()
     }
     
@@ -100,20 +102,34 @@ class RecallViewModel: Identifiable, ObservableObject {
     
 // MARK: - Images
     
-    var imageUrl: URL? {
-        let links = recall.imagesLink?.split(separator: " ").map {
+    var imagesLink: String {
+        guard let links = recall.imagesLink else { return "" }
+        let arrayOfLink = links.split(separator: " ").map {
             "\($0.trimmingCharacters(in: .whitespaces))"
         }
-        return URL(string: links?[0] ?? "")
+        let firstLink = arrayOfLink.first
+        return firstLink.orEmpty
+    }
+    
+    var imageUrl: URL? {
+        return URL(string: imagesLink)
+    }
+    
+    var productsLink: String {
+        recall.productsLink.orEmpty
     }
     
     var productImageUrl: URL? {
-        guard let link = recall.productsLink else { return imageUrl }
+        let link = productsLink
         return URL(string: link)
     }
     
+    var flyerLink: String {
+        recall.flyerLink.orEmpty
+    }
+    
     var flyerImageLink: URL? {
-        URL(string: recall.flyerLink.orEmpty)
+        URL(string: flyerLink)
     }
     
 // MARK: - Recall informations

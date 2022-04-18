@@ -7,11 +7,12 @@
 
 import CoreData
 
-class PersistenceRepository: ObservableObject  {
+class PersistenceRepository: ObservableObject {
     
     static let shared = PersistenceRepository()
     
     let container: NSPersistentContainer
+    @Published var selectedArray: [RecallSelected] = []
     
     init() {
         container = NSPersistentContainer(name: "RecallSelected")
@@ -20,39 +21,49 @@ class PersistenceRepository: ObservableObject  {
                 print("Error: \(error.localizedDescription)")
             }
         }
+        fetchSelected()
     }
     
-    func save(record: Record, completion: @escaping (Error?) -> () = {_ in}) {
+    func fetchSelected() {
+        let request = NSFetchRequest<RecallSelected>(entityName: "RecallSelected")
+        do {
+            selectedArray = try container.viewContext.fetch(request)
+        } catch let error {
+            print("Error fetching : \(error.localizedDescription)")
+        }
+    }
+    
+    func save(recall: RecallViewModel, completion: @escaping (Error?) -> () = {_ in}) {
         let context = container.viewContext
         let recallSelected = RecallSelected(context: context)
-        recallSelected.id = record.id
-        recallSelected.timestamp = record.timestamp
-        recallSelected.cardRef = record.cardRef
-        recallSelected.legalCharacter = record.legalCharacter
-        recallSelected.category = record.category
-        recallSelected.subCategory = record.subCategory
-        recallSelected.brandName = record.brandName
-        recallSelected.modelName = record.modelName
-        recallSelected.productId = record.productId
-        recallSelected.packaging = record.packaging
-        recallSelected.marketingDates = record.marketingDates
-        recallSelected.storageTemperature = record.storageTemperature
-        recallSelected.healthMark = record.healthMark
-        recallSelected.infos = record.infos
-        recallSelected.saleGeoArea = record.saleGeoArea
-        recallSelected.distributor = record.distributor
-        recallSelected.reasonRecall = record.reasonRecall
-        recallSelected.risksIncurred = record.risksIncurred
-        recallSelected.healthRecommendations = record.healthRecommendations
-        recallSelected.additionalRiskDescription = record.additionalRiskDescription
-        recallSelected.actionsToTake = record.actionsToTake
-        recallSelected.contactNumber = record.contactNumber
-        recallSelected.compensationTerms = record.compensationTerms
-        recallSelected.endDateRecall = record.endDateRecall
-        recallSelected.otherInfos = record.otherInfos
-        recallSelected.imagesLink = record.imagesLink
-        recallSelected.productsLink = record.productsLink
-        recallSelected.flyerLink = record.flyerLink
+        recallSelected.id = recall.id
+        recallSelected.timestamp = recall.timestamp
+        recallSelected.cardRef = recall.cardRef
+        recallSelected.legalCharacter = recall.legalCharacter
+        recallSelected.category = recall.category
+        recallSelected.subCategory = recall.subCategory
+        recallSelected.brandName = recall.brandName
+        recallSelected.modelName = recall.modelName
+        recallSelected.productId = recall.productId
+        recallSelected.packaging = recall.packaging
+        recallSelected.marketingDates = recall.marketingDates
+        recallSelected.storageTemperature = recall.storageTemperature
+        recallSelected.healthMark = recall.healthMark
+        recallSelected.infos = recall.infos
+        recallSelected.saleGeoArea = recall.saleGeoArea
+        recallSelected.distributor = recall.distributor
+        recallSelected.reasonRecall = recall.reasonRecall
+        recallSelected.risksIncurred = recall.risksIncurred
+        recallSelected.healthRecommendations = recall.healthRecommendations
+        recallSelected.additionalRiskDescription = recall.additionalRiskDescription
+        recallSelected.actionsToTake = recall.actionsToTake
+        recallSelected.contactNumber = recall.contactNumber
+        recallSelected.compensationTerms = recall.compensationTerms
+        recallSelected.endDateRecall = recall.endDateRecall
+        recallSelected.otherInfos = recall.otherInfos
+        recallSelected.imagesLink = recall.imagesLink
+        recallSelected.productsLink = recall.productsLink
+        recallSelected.flyerLink = recall.flyerLink
         if context.hasChanges {
             do {
                 try context.save()
@@ -61,6 +72,21 @@ class PersistenceRepository: ObservableObject  {
                 completion(error)
             }
         }
+    }
+    
+    func saveSelected() {  // voir tests
+        do {
+            try container.viewContext.save()
+        } catch let error {
+            print("Error saving \(error.localizedDescription)")
+        }
+    }
+    
+    func deleteSelected(indexSet: IndexSet) {
+        guard let index = indexSet.first else { return }
+        let entity = selectedArray[index]
+        container.viewContext.delete(entity)
+        saveSelected()
     }
     
     func delete(cardRef: String, completion: @escaping (Error?) -> () = {_ in}) {
@@ -94,72 +120,3 @@ class PersistenceRepository: ObservableObject  {
         return false
     }
 }
-
-//extension PersistenceRepository {
-//
-//    func convertIntoRecord(selected: RecordSelected) -> RecallViewModel? {
-//        guard let id = selected.id,
-//              let timestamp = selected.timestamp,
-//              let cardRef = selected.cardRef,
-//              let legalCharacter = selected.legalCharacter,
-//              let category = selected.category,
-//              let subCategory = selected.subCategory,
-//              let brandName = selected.brandName,
-//              let modelName = selected.modelName,
-//              let productId = selected.productId,
-//              let packaging = selected.packaging,
-//              let marketingDates = selected.marketingDates,
-//              let storageTemperature = selected.storageTemperature,
-//              let healthMark = selected.healthMark,
-//              let infos = selected.infos,
-//              let saleGeoArea = selected.saleGeoArea,
-//              let distributor = selected.distributor,
-//              let reasonRecall = selected.reasonRecall,
-//              let risksIncurred = selected.risksIncurred,
-//              let healthRecommendations = selected.healthRecommendations,
-//              let additionalRiskDescription = selected.additionalRiskDescription,
-//              let actionsToTake = selected.actionsToTake,
-//              let contactNumber = selected.contactNumber,
-//              let compensationTerms = selected.compensationTerms,
-//              let endDateRecall = selected.endDateRecall,
-//              let otherInfos = selected.otherInfos,
-//              let imagesLink = selected.imagesLink,
-//              let productsLink = selected.productsLink,
-//              let flyerLink = selected.flyerLink,
-//              let dateRef = selected.dateRef
-//        else { return nil }
-//
-//        return RecallViewModel(recall: Record(
-//            count: 0,
-//            id: id,
-//            timestamp: timestamp,
-//            cardRef: cardRef,
-//            legalCharacter: legalCharacter,
-//            category: category,
-//            subCategory: subCategory,
-//            brandName: brandName,
-//            modelName: modelName,
-//            productId: productId,
-//            packaging: packaging,
-//            marketingDates: marketingDates,
-//            storageTemperature: storageTemperature,
-//            healthMark: healthMark,
-//            infos: infos,
-//            saleGeoArea: saleGeoArea,
-//            distributor: distributor,
-//            reasonRecall: reasonRecall,
-//            risksIncurred: risksIncurred,
-//            healthRecommendations: healthRecommendations,
-//            additionalRiskDescription: additionalRiskDescription,
-//            actionsToTake: actionsToTake,
-//            contactNumber: contactNumber,
-//            compensationTerms: compensationTerms,
-//            endDateRecall: endDateRecall,
-//            otherInfos: otherInfos,
-//            imagesLink: imagesLink,
-//            productsLink: productsLink,
-//            flyerLink: flyerLink,
-//            dateRef: dateRef
-//        ))
-//    }
-//}
