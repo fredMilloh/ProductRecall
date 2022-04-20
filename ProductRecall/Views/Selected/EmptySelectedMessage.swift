@@ -32,6 +32,7 @@ struct EmptySelectedMessage: View {
             .symbolRenderingMode(.multicolor)
             .multilineTextAlignment(.center)
         }
+        .padding()
     }
 }
 

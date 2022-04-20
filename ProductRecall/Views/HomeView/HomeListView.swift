@@ -22,11 +22,9 @@ struct HomeListView: View {
                 .onAppear(perform: {
                     homeViewModel.getFollowingRecords(recordItem: recall)
                 })
-//                .alert(isPresented: $viewModel.endOfList) {
-//                    Alert(title: Text(""),
-//                          message: Text("Il n'y a pas d'autres résultats"),
-//                          dismissButton: .default(Text("ok")))
-//                }
+                .onAppear {
+                    recall.isSelected()
+                }
         }
         .listStyle(.inset)
         .padding(.top, -10)

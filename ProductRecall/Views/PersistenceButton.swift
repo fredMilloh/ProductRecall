@@ -10,14 +10,15 @@ import SwiftUI
 struct PersistenceButton: View {
     
     @ObservedObject var recall: RecallViewModel
+    @Binding var isSelected: Bool
     
     var body: some View {
         Button {
             recall.togglePersistence()
         } label: {
-            recall.isSelected ?
-            Image(systemName: "flag.fill") :
-            Image(systemName: "flag")
+            isSelected
+            ? Image(systemName: "flag.fill")
+            : Image(systemName: "flag")
         }
         .foregroundColor(.pink)
     }

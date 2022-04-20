@@ -4,16 +4,17 @@
 //
 //  Created by fred on 15/04/2022.
 //
-
+import SwiftUI
 import CoreData
 
-class PersistenceRepository: ObservableObject {
+class PersistenceManager: ObservableObject {
     
-    static let shared = PersistenceRepository()
+    static let shared = PersistenceManager()
     
     let container: NSPersistentContainer
-    @Published var selectedArray: [RecallSelected] = []
+    
     @Published var recallSelected: [RecallViewModel] = []
+    var selectedArray: [RecallSelected] = []
     
     init() {
         container = NSPersistentContainer(name: "RecallSelected")
@@ -22,14 +23,16 @@ class PersistenceRepository: ObservableObject {
                 print("Error: \(error.localizedDescription)")
             }
         }
-        fetchSelected()
-        convertSelectedToRecall()
     }
+
+// MARK: - Fetch data
     
     func fetchSelected() {
+        recallSelected.removeAll()
         let request = NSFetchRequest<RecallSelected>(entityName: "RecallSelected")
         do {
             selectedArray = try container.viewContext.fetch(request)
+            convertSelectedToRecall()
         } catch let error {
             print("Error fetching : \(error.localizedDescription)")
         }
@@ -41,11 +44,14 @@ class PersistenceRepository: ObservableObject {
             recallSelected.append(converted)
         }
     }
+
+// MARK: - Save data
     
     func save(recall: RecallViewModel, completion: @escaping (Error?) -> () = {_ in}) {
         let context = container.viewContext
         let recallSelected = RecallSelected(context: context)
         recallSelected.id = recall.id
+        recallSelected.isSelected = recall.isPersistent
         recallSelected.timestamp = recall.timestamp
         recallSelected.cardRef = recall.cardRef
         recallSelected.legalCharacter = recall.legalCharacter
@@ -83,21 +89,8 @@ class PersistenceRepository: ObservableObject {
             }
         }
     }
-    
-    func saveSelected() {  // voir tests
-        do {
-            try container.viewContext.save()
-        } catch let error {
-            print("Error saving \(error.localizedDescription)")
-        }
-    }
-    
-    func deleteSelected(indexSet: IndexSet) {
-        guard let index = indexSet.first else { return }
-        let entity = selectedArray[index]
-        container.viewContext.delete(entity)
-        saveSelected()
-    }
+ 
+// MARK: - Delete data
     
     func delete(cardRef: String, completion: @escaping (Error?) -> () = {_ in}) {
         let context = container.viewContext
@@ -114,8 +107,10 @@ class PersistenceRepository: ObservableObject {
             completion(error)
         }
     }
+
+// MARK: - Search data
     
-    func isSelected(cardRef: String) -> Bool {
+    func getIsSelected(from cardRef: String) -> Bool {
         let context = container.viewContext
         let request: NSFetchRequest<RecallSelected> = RecallSelected.fetchRequest()
         request.predicate = NSPredicate(format: "cardRef == %@", "\(cardRef)")
@@ -129,14 +124,29 @@ class PersistenceRepository: ObservableObject {
         }
         return false
     }
+
+// MARK: - toggle
+    
+    func togglePersistence(from cardRef: String, recall: RecallViewModel) {
+        if recall.isPersistent {
+            recall.isPersistent.toggle()
+            delete(cardRef: cardRef)
+        } else {
+            recall.isPersistent.toggle()
+            save(recall: recall)
+        }
+    }
 }
 
-extension PersistenceRepository {
+//MARK: - Extension
+
+extension PersistenceManager {
 
     func convertIntoRecall(selected: RecallSelected) -> RecallViewModel {
         let record = Record(
             count: 0,
             id: selected.id,
+            isPersistent: selected.isSelected,
             timestamp: selected.timestamp,
             cardRef: selected.cardRef,
             legalCharacter: selected.legalCharacter,

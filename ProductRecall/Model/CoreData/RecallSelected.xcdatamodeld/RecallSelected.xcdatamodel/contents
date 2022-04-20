@@ -16,6 +16,7 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="imagesLink" optional="YES" attributeType="String"/>
         <attribute name="infos" optional="YES" attributeType="String"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="legalCharacter" optional="YES" attributeType="String"/>
         <attribute name="marketingDates" optional="YES" attributeType="String"/>
         <attribute name="modelName" optional="YES" attributeType="String"/>
@@ -31,6 +32,6 @@
         <attribute name="timestamp" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="RecallSelected" positionX="-27" positionY="18" width="128" height="449"/>
+        <element name="RecallSelected" positionX="-27" positionY="18" width="128" height="464"/>
     </elements>
 </model>

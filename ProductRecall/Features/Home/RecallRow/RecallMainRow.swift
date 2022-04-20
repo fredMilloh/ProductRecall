@@ -9,14 +9,14 @@ import SwiftUI
 
 struct RecallMainRow: View {
     
-    var recall: RecallViewModel
+    @ObservedObject var recall: RecallViewModel
     
     var body: some View {
         HStack {
             RecallBaseRow(recall: recall)
             Spacer()
             ZStack(alignment: .trailing) {
-                PersistenceButton(recall: recall)
+                PersistenceButton(recall: recall, isSelected: $recall.isPersistent)
             }
             .frame(width: 30, height: 30, alignment: .top)
             .onTapGesture {

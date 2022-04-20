@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailMainView: View {
     
-    let recall: RecallViewModel
+    @ObservedObject var recall: RecallViewModel
     
     var body: some View {
         ScrollView {
@@ -39,7 +39,7 @@ struct DetailMainView: View {
         }
         .toolbar {
             ToolbarItem {
-                PersistenceButton(recall: recall)
+                PersistenceButton(recall: recall, isSelected: $recall.isPersistent)
             }
         }
     }

@@ -9,32 +9,27 @@ import SwiftUI
 
 struct SelectedListView: View {
     
+    @ObservedObject var persistence: PersistenceManager
+    
     var body: some View {
         
-        RecallList(PersistenceRepository.shared.recallSelected)
-//        List {
-//            if PersistenceRepository.shared.selectedArray.isEmpty {
-//                EmptySelectedMessage()
-//            }
-//            ForEach(PersistenceRepository.shared.selectedArray) { select in
-//                NavigationLink {
-//
-//                } label: {
-//                    VStack {
-//                        Text(select.modelName ?? "NO Modelname")
-//                    }
-//                }
-//            }
-//        }
-//        .onChange(of: PersistenceRepository.shared.selectedArray) { newValue in
-//            PersistenceRepository.shared.fetchSelected()
-//        }
-//        .listStyle(.inset)
+        List(persistence.recallSelected) { recall in
+            NavigationLink {
+                DetailMainView(recall: recall)
+            } label: {
+                RecallMainRow(recall: recall)
+            }
+            .navigationTitle("Rappels Retenus")
+        }
+        .listStyle(.inset)
+        .onAppear() {
+            PersistenceManager.shared.fetchSelected()
+        }
     }
 }
 
 struct SelectedListView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectedListView()
+        SelectedListView(persistence: PersistenceManager.shared)
     }
 }

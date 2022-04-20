@@ -10,12 +10,12 @@ import SwiftUI
 @main
 struct ProductRecallApp: App {
     
-    let persistenceRepository = PersistenceRepository.shared
+    let persistenceManager = PersistenceManager.shared
    
     var body: some Scene {
         WindowGroup {
             AppNavigationView()
-                .environment(\.managedObjectContext, persistenceRepository.container.viewContext)
+                .environment(\.managedObjectContext, persistenceManager.container.viewContext)
         }
     }
 }

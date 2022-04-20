@@ -16,6 +16,7 @@ struct Product: Codable {
 struct Record: Codable, Identifiable {
    let count: Int?
    let id: String?
+   let isPersistent: Bool
    let timestamp: String?
    let cardRef: String?
    let legalCharacter: String?
@@ -147,6 +148,7 @@ extension Product {
           let record = Record(
             count: count,
             id: id,
+            isPersistent: false,
             timestamp: timestamp,
             cardRef: cardRef,
             legalCharacter: legalCharacter,
