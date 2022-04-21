@@ -52,6 +52,7 @@
 		B695C9C927F6FD060098597B /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B695C9C827F6FD060098597B /* ClientProtocol.swift */; };
 		B6BF966727FDDDCE0025D453 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BF966627FDDDCE0025D453 /* CategoriesView.swift */; };
 		B6CC97C42811868000602969 /* FloatingShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CC97C32811868000602969 /* FloatingShareButton.swift */; };
+		B6CC97CE2811C9DE00602969 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CC97CD2811C9DE00602969 /* View+.swift */; };
 		B6FDE31A27F7452B006DAD86 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FDE31927F7452B006DAD86 /* HomeListView.swift */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,7 @@
 		B695C9C827F6FD060098597B /* ClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProtocol.swift; sourceTree = "<group>"; };
 		B6BF966627FDDDCE0025D453 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		B6CC97C32811868000602969 /* FloatingShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingShareButton.swift; sourceTree = "<group>"; };
+		B6CC97CD2811C9DE00602969 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		B6FDE31927F7452B006DAD86 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -369,6 +371,7 @@
 			children = (
 				B606D5C327ECF11200573498 /* OptionalString+.swift */,
 				B68B8A062805B978004EC026 /* UIApplication.swift */,
+				B6CC97CD2811C9DE00602969 /* View+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				B606D57A27E8DC1300573498 /* Product.swift in Sources */,
 				B68B89F828008D1B004EC026 /* AppNavigationView.swift in Sources */,
 				B6CC97C42811868000602969 /* FloatingShareButton.swift in Sources */,
+				B6CC97CE2811C9DE00602969 /* View+.swift in Sources */,
 				B68B8A092805BA02004EC026 /* HomeSearchButton.swift in Sources */,
 				B606D5A027EA4B7700573498 /* Endpoint.swift in Sources */,
 				B606D59627E90A3000573498 /* RecallMainRow.swift in Sources */,
@@ -765,6 +769,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProductRecall/Resources/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -795,6 +800,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProductRecall/Resources/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

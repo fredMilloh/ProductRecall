@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct FloatingShareButton: View {
+    
     @ObservedObject var recall: RecallViewModel
+    @State var items: [Any] = []
     @State var showView = false
     
     var body: some View {
@@ -17,6 +19,9 @@ struct FloatingShareButton: View {
             HStack {
                 Spacer()
                 Button {
+                    items.removeAll()
+                    guard let url = recall.flyerImageLink else { return }
+                    items.append(url)
                     showView.toggle()
                     print("share action")
                 } label: {
@@ -26,7 +31,9 @@ struct FloatingShareButton: View {
                 .padding(15)
                 .foregroundColor(Color.white)
                 .background(Color.blue.opacity(0.6))
-                .cornerRadius(40)
+                .cornerRadius(.infinity)
+                .shadow(color: .gray, radius: 3, x: 3, y: 3)
+                .shareSheet(isPresented: $showView, items: items)
             }
             .padding(.trailing, 20)
         }
