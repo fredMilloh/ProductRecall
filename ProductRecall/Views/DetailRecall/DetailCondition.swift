@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailCondition: View {
     
-    let recordViewModel: RecordViewModel
+    let recall: RecallViewModel
     
     var body: some View {
         VStack {
@@ -19,11 +19,11 @@ struct DetailCondition: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(Color.primary.opacity(0.5))
             
-            DetailContainer(title: "Conduite à tenir", content: recordViewModel.actionToTake)
-            DetailContainer(title: "Modalités de compensation", content: recordViewModel.compensationTerms)
-            DetailContainer(title: "Date de fin du rappel", content: recordViewModel.endDateRecall)
-            DetailContainer(title: "Informations complèmentaires", content: recordViewModel.otherInfos)
-            DetailContainer(title: "Nature juridique du rappel", content: recordViewModel.legalCharacter)
+            DetailContainer(title: "Conduite à tenir", content: recall.actionsToTake)
+            DetailContainer(title: "Modalités de compensation", content: recall.compensationTerms)
+            DetailContainer(title: "Date de fin du rappel", content: recall.endDateRecall)
+            DetailContainer(title: "Informations complèmentaires", content: recall.otherInfos)
+            DetailContainer(title: "Nature juridique du rappel", content: recall.legalCharacter)
         }
         .padding()
         .background(.ultraThinMaterial)
@@ -34,9 +34,7 @@ struct DetailCondition: View {
 
 struct DetailCondition_Previews: PreviewProvider {
     static var previews: some View {
-        DetailCondition(
-            recordViewModel: RecordViewModel(recall: RecordViewModel.example)
-        ).previewLayout(.sizeThatFits)
+        DetailCondition(recall: RecallViewModel.example).previewLayout(.sizeThatFits)
     }
 }
 

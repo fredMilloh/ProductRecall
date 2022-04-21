@@ -26,7 +26,7 @@ class HomeViewModel: ObservableObject, HomeProtocol {
         
         @ObservedObject var client = HTTPClient()
         
-        @Published var recordList: [Record] = [] 
+        @Published var recallList: [RecallViewModel] = []
         @Published var endOfList = false
         var cancellable = Set<AnyCancellable>()
         var pageStatus = PageStatus.ready(nextPaginationOffset: 0)
@@ -56,6 +56,11 @@ class HomeViewModel: ObservableObject, HomeProtocol {
         pageStatus = .loading(paginationOffset: offset)
         
         client.get(dataType: Product.self, endPoint: endpoint, paginationOffset: offset)
+            .map { product in
+                product.records.map { record in
+                    RecallViewModel(recall: record)
+                }
+            }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] response in
                 if case let .failure(error) = response {
@@ -63,15 +68,13 @@ class HomeViewModel: ObservableObject, HomeProtocol {
                     self?.endOfList = true
                     self?.pageStatus = .done
                 }
-            } receiveValue: { [weak self] product in
+            } receiveValue: { [weak self] recall in
                 guard let self = self else { return }
-                guard let totalCount = product.totalCount, totalCount != 0 else {
-                    self.pageStatus = .done
-                    return
-                }
-                self.endOfList = self.recordList.count == totalCount ? true : false
+                let totalCount = recall.count
+                if totalCount != 0 { self.pageStatus = .done }
+                self.endOfList = self.recallList.count == totalCount ? true : false
                 self.pageStatus = .ready(nextPaginationOffset: offset + 100)
-                self.recordList.append(contentsOf: product.records)
+                self.recallList.append(contentsOf: recall)
             }
             .store(in: &cancellable)
     }
@@ -94,18 +97,18 @@ class HomeViewModel: ObservableObject, HomeProtocol {
     
     func getNewList() {
         pageStatus = PageStatus.ready(nextPaginationOffset: 0)
-        recordList.removeAll()
+        recallList.removeAll()
         requestProduct(endpoint: getEndpoint())
     }
 
-    func getFollowingRecords(recordItem: Record) {
+    func getFollowingRecords(recordItem: RecallViewModel) {
         if !endOfList, shouldLoadMore(recordItem: recordItem) {
             requestProduct(endpoint: getEndpoint())
         }
     }
     
-    func shouldLoadMore(recordItem: Record) -> Bool {
-        if let lastId = recordList.last?.id {
+    func shouldLoadMore(recordItem: RecallViewModel) -> Bool {
+        if let lastId = recallList.last?.id {
             return recordItem.id == lastId
         }
         return false

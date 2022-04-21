@@ -1,19 +1,19 @@
 //
-//  RecordRow.swift
+//  RecordRowBaseView.swift
 //  ProductRecall
 //
-//  Created by fred on 21/03/2022.
+//  Created by fred on 15/04/2022.
 //
 
 import SwiftUI
 
-struct RecordRow: View {
+struct RecallBaseRow: View {
     
-    let recordViewModel: RecordViewModel
+    let recall: RecallViewModel
     
     var body: some View {
         HStack {
-            AsyncImage(url: recordViewModel.imageUrl) { image in
+            AsyncImage(url: recall.imageUrl) { image in
                 image.resizable()
             } placeholder: {
                 Image(systemName: "camera.fill")
@@ -25,18 +25,18 @@ struct RecordRow: View {
             .shadow(color: .gray, radius: 2, x: 0.5, y: 0.5)
                                 
             VStack(alignment: .leading, spacing: 5) {
-                Text(recordViewModel.modelName)
+                Text(recall.modelName)
                     .font(.caption)
                     .lineLimit(1)
-                Text("**Risques** : \(recordViewModel.risksIncurred)")
+                Text("**Risques** : \(recall.risksIncurred)")
                     .font(.caption2)
-                Text("**Motif** : \(recordViewModel.reasonRecall)")
+                Text("**Motif** : \(recall.reasonRecall)")
                     .font(.caption2)
                     .lineLimit(2)
                 HStack {
-                    Text("*\(recordViewModel.subCategory)*")
+                    Text("*\(recall.subCategory)*")
                         .font(.system(size: 6))
-                    Text(recordViewModel.marketingDates)
+                    Text(recall.marketingDates)
                         .font(.system(size: 6))
                 }
             }
@@ -44,8 +44,8 @@ struct RecordRow: View {
     }
 }
 
-struct RecordRow_Previews: PreviewProvider {
+struct RecordRowBaseView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordRow(recordViewModel: RecordViewModel(recall: RecordViewModel.example))
+        RecallBaseRow(recall: RecallViewModel.example)
     }
 }

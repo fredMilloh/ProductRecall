@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailDescription: View {
     
-    let recordViewModel: RecordViewModel
+    let recall: RecallViewModel
     
     var body: some View {
         VStack {
@@ -20,15 +20,15 @@ struct DetailDescription: View {
                 .foregroundColor(Color.primary.opacity(0.5))
                 
             
-            DetailContainer(title: "Catégorie", content: recordViewModel.category)
-            DetailContainer(title: "Sous Catégorie", content: recordViewModel.subCategory)
-            DetailContainer(title: "Marque", content: recordViewModel.brandName)
-            DetailContainer(title: "Modèle", content: recordViewModel.modelName)
-            DetailContainer(title: "Identifiant Produit", content: recordViewModel.productID)
-            DetailContainer(title: "Conditionnement", content: recordViewModel.packaging)
-            DetailContainer(title: "Informations", content: recordViewModel.infos)
-            DetailContainer(title: "Dates de commercialisation", content: recordViewModel.marketingDates)
-            DetailContainer(title: "Température de conservation", content: recordViewModel.storageTemperature)
+            DetailContainer(title: "Catégorie", content: recall.category)
+            DetailContainer(title: "Sous Catégorie", content: recall.subCategory)
+            DetailContainer(title: "Marque", content: recall.brandName)
+            DetailContainer(title: "Modèle", content: recall.modelName)
+            DetailContainer(title: "Identifiant Produit", content: recall.productId)
+            DetailContainer(title: "Conditionnement", content: recall.packaging)
+            DetailContainer(title: "Informations", content: recall.infos)
+            DetailContainer(title: "Dates de commercialisation", content: recall.marketingDates)
+            DetailContainer(title: "Température de conservation", content: recall.storageTemperature)
         }
         .padding()
         .background(.ultraThinMaterial)
@@ -40,9 +40,7 @@ struct DetailDescription: View {
 
 struct DescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailDescription(
-            recordViewModel: RecordViewModel(
-                recall: RecordViewModel.example)
-        ).previewLayout(.sizeThatFits)
+        DetailDescription(recall: RecallViewModel.example)
+        .previewLayout(.sizeThatFits)
     }
 }

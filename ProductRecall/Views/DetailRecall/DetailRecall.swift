@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailRecall: View {
     
-    let recordViewModel: RecordViewModel
+    let recall: RecallViewModel
     
     var body: some View {
         VStack {
@@ -19,10 +19,10 @@ struct DetailRecall: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(Color.primary.opacity(0.5))
             
-            DetailContainer(title: "Motif du rappel", content: recordViewModel.reasonRecall)
-            DetailContainer(title: "Risques encourus", content: recordViewModel.risksIncurred)
-            DetailContainer(title: "Précaunisations sanitaires", content: recordViewModel.healthRecommendations)
-            DetailContainer(title: "Description du risque", content: recordViewModel.additionalRiskDescription)
+            DetailContainer(title: "Motif du rappel", content: recall.reasonRecall)
+            DetailContainer(title: "Risques encourus", content: recall.risksIncurred)
+            DetailContainer(title: "Précaunisations sanitaires", content: recall.healthRecommendations)
+            DetailContainer(title: "Description du risque", content: recall.additionalRiskDescription)
         }
         .padding()
         .background(.ultraThinMaterial)
@@ -33,10 +33,7 @@ struct DetailRecall: View {
 
 struct DetailRecall_Previews: PreviewProvider {
     static var previews: some View {
-        DetailRecall(
-            recordViewModel: RecordViewModel(
-                recall: RecordViewModel.example)
-        ).previewLayout(.sizeThatFits)
+        DetailRecall(recall: RecallViewModel.example).previewLayout(.sizeThatFits)
         
     }
 }
