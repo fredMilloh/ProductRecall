@@ -1,5 +1,5 @@
 //
-//  SearchButton.swift
+//  HomeSearchButton.swift
 //  ProductRecall
 //
 //  Created by fred on 12/04/2022.
@@ -7,24 +7,24 @@
 
 import SwiftUI
 
-struct SearchButton: View {
+struct HomeSearchButton: View {
     
-    @ObservedObject var viewModel: HomeViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
     @State var showView = false
     
     var body: some View {
 
         Button {
             showView.toggle()
-            viewModel.searchText = ""
+            homeViewModel.searchText = ""
         } label: {
-            if viewModel.searchWithText {
+            if homeViewModel.searchWithText {
                 HStack {
                     Image(systemName: "magnifyingglass.circle")
-                    Text(viewModel.searchText)
+                    Text(homeViewModel.searchText)
                     Button {
-                        viewModel.searchText = ""
-                        viewModel.getNewList()
+                        homeViewModel.searchText = ""
+                        homeViewModel.getNewList()
                     } label: {
                         Image(systemName: "delete.left.fill")
                     }
@@ -45,13 +45,13 @@ struct SearchButton: View {
         .cornerRadius(13)
         .shadow(color: .gray.opacity(0.5), radius: 5, x: 1, y: 1)
         .fullScreenCover(isPresented: $showView) {
-            SearchView(viewModel: viewModel)
+            SearchMainView(homeViewModel: homeViewModel)
         }
     }
 }
 
 struct SearchButton_Previews: PreviewProvider {
     static var previews: some View {
-        SearchButton(viewModel: HomeViewModel())
+        HomeSearchButton(homeViewModel: HomeViewModel())
     }
 }

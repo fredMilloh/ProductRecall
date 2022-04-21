@@ -9,13 +9,14 @@ import Foundation
 
 // MARK: - Product
 struct Product: Codable {
-   let totalCount: Int?
    let records: [Record]
 }
 
 // MARK: - Record
 struct Record: Codable, Identifiable {
+   let count: Int?
    let id: String?
+   let isPersistent: Bool
    let timestamp: String?
    let cardRef: String?
    let legalCharacter: String?
@@ -96,7 +97,7 @@ extension Product {
       let container = try decoder.container(keyedBy: MainKeys.self)
 
       /// totalCount
-      self.totalCount = try container.decodeIfPresent(Int.self, forKey: .totalCount)
+      let count = try container.decodeIfPresent(Int.self, forKey: .totalCount)
 
       /// records array
       var recordsArray = try container.nestedUnkeyedContainer(forKey: .records)
@@ -145,7 +146,9 @@ extension Product {
          let dateRef = try fieldsContainer.decodeIfPresent(String.self, forKey: .dateRef)
 
           let record = Record(
+            count: count,
             id: id,
+            isPersistent: false,
             timestamp: timestamp,
             cardRef: cardRef,
             legalCharacter: legalCharacter,

@@ -9,42 +9,38 @@ import SwiftUI
 
 struct HomeListView: View {
     
-    @ObservedObject var viewModel: HomeViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
     
     var body: some View {
         
-        List(viewModel.recordList) { record in
+        List(homeViewModel.recallList) { recall in
                 NavigationLink {
-                    ProductDetail(
-                        recordViewModel: RecordViewModel(recall: record)
-                    )
+                    DetailMainView(recall: recall)
                 } label: {
-                    let viewModel = RecordViewModel(recall: record)
-                    RecordRow(recordViewModel: viewModel)
+                    RecallMainRow(recall: recall)
                 }
                 .onAppear(perform: {
-                    viewModel.getFollowingRecords(recordItem: record)
+                    homeViewModel.getFollowingRecords(recordItem: recall)
                 })
-//                .alert(isPresented: $viewModel.endOfList) {
-//                    Alert(title: Text(""),
-//                          message: Text("Il n'y a pas d'autres résultats"),
-//                          dismissButton: .default(Text("ok")))
-//                }
+                .onAppear {
+                    recall.isSelected()
+                }
         }
-        .listStyle(.plain)
+        .listStyle(.inset)
         .padding(.top, -10)
         .onAppear() {
-            viewModel.requestProduct(endpoint: viewModel.getEndpoint())
+            homeViewModel.requestProduct(endpoint: homeViewModel.getEndpoint())
         }
-        .onChange(of: viewModel.selectedCategory.name) { newValue in
-            viewModel.getNewList()
-            viewModel.searchWithNewCategory = false
+        .onChange(of: homeViewModel.selectedCategory.name) { newValue in
+            homeViewModel.getNewList()
+            homeViewModel.searchWithNewCategory = false
         }
     }
 }
 
 struct HomeListView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeListView(viewModel: HomeViewModel()).previewLayout(.sizeThatFits)
+        HomeListView(homeViewModel: HomeViewModel())
+            .previewLayout(.sizeThatFits)
     }
 }
