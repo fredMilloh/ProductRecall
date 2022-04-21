@@ -16,19 +16,17 @@ struct DetailDistribution: View {
             Text("Points de vente")
                 .font(.title2)
                 .bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 80, alignment: .center)
                 .foregroundColor(Color.primary.opacity(0.5))
-            
-            DetailContainer(title: "Magasin", content: recall.distributor)
-            DetailContainer(title: "Région", content: recall.saleGeoArea)
-            DetailContainer(title: "Contact", content: recall.contactNumber)
+                .background(.green)
+            VStack {
+                DetailContainer(title: "Magasin", content: recall.distributor)
+                DetailContainer(title: "Région", content: recall.saleGeoArea)
+                DetailContainer(title: "Contact", content: recall.contactNumber)
+            }
+            .padding()
         }
-        .padding()
-        .background(.ultraThinMaterial)
-        .cornerRadius(35)
-        .shadow(color: .gray, radius: 5, x: 1, y: 1)
     }
-
 }
 
 struct DetailDistribution_Previews: PreviewProvider {
