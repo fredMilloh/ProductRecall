@@ -18,14 +18,6 @@ class RecallViewModel: ObservableObject, Identifiable {
         isSelected()
     }
     
-    func isSelected() {
-        isPersistent = PersistenceManager.shared.getIsSelected(from: cardRef)
-    }
-
-    func togglePersistence() {
-        PersistenceManager.shared.togglePersistence(from: cardRef, recall: self)
-    }
-    
 // MARK: - Description properties
     
     var category: String {
@@ -169,6 +161,17 @@ class RecallViewModel: ObservableObject, Identifiable {
     var totalCount: Int? {
         recall.count
     }
+    
+// MARK: - Persistence methods
+    
+    func isSelected() {
+        isPersistent = PersistenceManager.shared.getIsSelected(from: cardRef)
+    }
+
+    func togglePersistence() {
+        PersistenceManager.shared.togglePersistence(from: cardRef, recall: self)
+    }
+    
 }
 // MARK: - Example
 

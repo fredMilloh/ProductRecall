@@ -293,8 +293,8 @@
 		B606D59427E909E800573498 /* RecallRow */ = {
 			isa = PBXGroup;
 			children = (
-				B606D59027E8E46B00573498 /* RecallViewModel.swift */,
 				B606D59527E90A3000573498 /* RecallMainRow.swift */,
+				B606D59027E8E46B00573498 /* RecallViewModel.swift */,
 			);
 			path = RecallRow;
 			sourceTree = "<group>";

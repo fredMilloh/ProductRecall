@@ -17,10 +17,11 @@ struct HomeView: View {
                 CategoriesView(selectCategory: $homeViewModel.selectedCategory)
                 
                 HomeListView(homeViewModel: homeViewModel)
-                
-                Divider()
+                    .padding(.bottom, -50)
                 
                 HomeSearchButton(homeViewModel: homeViewModel)
+                
+                Divider()
             }
             .navigationTitle("Rappels Produits")
         }

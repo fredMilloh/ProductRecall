@@ -26,15 +26,9 @@ struct DetailMainView: View {
                 .shadow(color: .gray, radius: 5, x: 1, y: 1)
                 .padding()
                 DetailDescription(recall: recall)
-                    .padding()
                 DetailDistribution(recall: recall)
-                    .padding()
-                
                 DetailRecall(recall: recall)
-                    .padding()
-                
                 DetailCondition(recall: recall)
-                    .padding()
             }
         }
         .toolbar {
