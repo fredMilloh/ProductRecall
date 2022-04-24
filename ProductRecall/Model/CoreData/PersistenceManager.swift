@@ -11,7 +11,7 @@ class PersistenceManager: ObservableObject {
     
     static let shared = PersistenceManager()
     
-    let container: NSPersistentContainer
+    var container: NSPersistentContainer
     
     @Published var recallSelected: [RecallViewModel] = []
     var selectedArray: [RecallSelected] = []
@@ -27,14 +27,15 @@ class PersistenceManager: ObservableObject {
 
 // MARK: - Fetch data
     
-    func fetchSelected() {
+    func fetchSelected(completion: @escaping ([RecallSelected]) -> () = {_ in}) {
         recallSelected.removeAll()
         let request = NSFetchRequest<RecallSelected>(entityName: "RecallSelected")
         do {
             selectedArray = try container.viewContext.fetch(request)
+            completion(selectedArray)
             convertSelectedToRecall()
-        } catch let error {
-            print("Error fetching : \(error.localizedDescription)")
+        } catch {
+            completion([])
         }
     }
     
