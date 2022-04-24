@@ -5,12 +5,14 @@
 //  Created by fred on 23/03/2022.
 //
 
+import Combine
+import SwiftUI
 import XCTest
 @testable import ProductRecall
 
 class HomeViewModel_Test: XCTestCase {
     
-    var recordList: [Record] = []
+    var recallListMock: [RecallViewModel] = []
     
     var sut: HomeViewModel?
 
@@ -23,7 +25,7 @@ class HomeViewModel_Test: XCTestCase {
         sut = nil
         try super.tearDownWithError()
     }
-
+    
     func test_given_searchText_when_greater_than_one_then_searchWithText_is_true() {
         // arrange
         let searchtext = "orange"
@@ -86,48 +88,55 @@ class HomeViewModel_Test: XCTestCase {
         XCTAssertEqual(endpoint, endpointShouldBe)
     }
     
-    func test_given_empty_recordList_when_requestProduct_then_recordList_is_completed() {
+    func test_given_empty_recallList_when_requestProduct_then_recallList_is_completed() {
         // arrange
-        recordList = []
+        recallListMock = []
         // act
-        requestProduct(endpoint: ProductsEndpoint.nothing)
+        requestProduct(endpoint: .allProduct)
         // assert
-//        XCTAssertTrue(recordList.isEmpty)
+        XCTAssertFalse(recallListMock.isEmpty)
     }
     
-    func test_given_recordList_with_record_when_request_with_new_category_then_recordList_becomes_empty() {
+    func test_given_recallList_with_recall_when_request_with_new_category_then_recallList_becomes_empty() {
         // arrange
-        sut?.recordList = recordListMock
+        requestProduct(endpoint: .allProduct)
         //act
         sut?.getNewList()
-        guard let newRecordList = sut?.recordList else { return }
+        guard let newRecallList = sut?.recallList else { return }
         // assert
-        XCTAssertTrue(newRecordList.isEmpty)
+        XCTAssertTrue(newRecallList.isEmpty)
     }
     
-    func test_given_last_recordList_when_user_scrolls_then_shouldLoadMore() {
+    func test_given_last_recallList_when_user_scrolls_then_shouldLoadMore() {
         // arrange
-        sut?.recordList = recordListMock
-        let middleRecord = recordListMock[1]
-        let lastRecord = recordListMock[5]
+        let response = Result<Product, RequestError>
+            .Publisher(Product(records: []))
+            .eraseToAnyPublisher()
+        
+        sut?.parse(response, with: 2)
+        
+        requestProduct(endpoint: .allProduct)
+        sut?.recallList = recallListMock
+        let middleRecall = recallListMock[1]
+        let lastRecall = recallListMock[9]
+        sut?.endOfList = false
         // act
-        guard let doNotLoadMore = sut?.shouldLoadMore(recordItem: middleRecord) else { return }
-        guard let loadMore = sut?.shouldLoadMore(recordItem: lastRecord) else { return }
+        guard let doNotLoadMore = sut?.shouldLoadMore(recordItem: middleRecall) else { return }
+        guard let loadMore = sut?.shouldLoadMore(recordItem: lastRecall) else { return }
+        sut?.getFollowingRecords(recordItem: lastRecall)
         // assert
         XCTAssertFalse(doNotLoadMore)
         XCTAssertTrue(loadMore)
-        
     }
-    
 }
 
 extension HomeViewModel_Test: HomeProtocol {
-    
+
     func requestProduct(endpoint: ProductsEndpoint) {
-        let products = TestCase.stubbedData(from: "product")
-        print("products  = ", products as Any)
-        guard let records = products?.records else { return }
-        print("records = ", records)
-        recordList.append(contentsOf: records)
+
+        for record in listMock {
+            let converted = RecallViewModel(recall: record)
+            recallListMock.append(converted)
+        }
     }
 }

@@ -33,7 +33,10 @@ struct FloatingShareButton: View {
                 .background(Color.blue.opacity(0.6))
                 .cornerRadius(.infinity)
                 .shadow(color: .gray, radius: 3, x: 3, y: 3)
-                .shareSheet(isPresented: $showView, items: items)
+//                .shareSheet(isPresented: $showView, items: items)
+                .sheet(isPresented: $showView) {
+                    ShareSheet(activityItems: $items)
+                }
             }
             .padding(.trailing, 20)
         }
