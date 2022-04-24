@@ -1,5 +1,5 @@
 //
-//  RecordViewModel+Tests.swift
+//  RecallViewModel+Tests.swift
 //  ProductRecallTests
 //
 //  Created by fred on 21/03/2022.
@@ -7,14 +7,15 @@
 
 import XCTest
 @testable import ProductRecall
+import SwiftUI
 
-class RecordViewModel_Tests: XCTestCase {
+class RecallViewModel_Tests: XCTestCase {
     
     var sut: RecallViewModel?
     let record = example
 
     override func setUpWithError() throws {
-        sut = RecallViewModel(record: record)
+        sut = RecallViewModel(recall: record)
         try super.setUpWithError()
     }
 
@@ -24,11 +25,13 @@ class RecordViewModel_Tests: XCTestCase {
     }
 
     func test_given_properties_when_display_then_fields_matched() {
+        XCTAssertEqual(sut?.totalCount, record.count)
+        XCTAssertEqual(sut?.timestamp, record.timestamp)
         XCTAssertEqual(sut?.category, record.category)
         XCTAssertEqual(sut?.subCategory, record.subCategory)
         XCTAssertEqual(sut?.brandName, record.brandName)
         XCTAssertEqual(sut?.modelName, record.modelName)
-        XCTAssertEqual(sut?.productID, record.productId)
+        XCTAssertEqual(sut?.productId, record.productId)
         XCTAssertEqual(sut?.packaging, record.packaging)
         XCTAssertEqual(sut?.infos, record.infos)
         XCTAssertEqual(sut?.marketingDates, record.marketingDates)
@@ -41,7 +44,7 @@ class RecordViewModel_Tests: XCTestCase {
         XCTAssertEqual(sut?.risksIncurred, record.risksIncurred)
         XCTAssertEqual(sut?.healthRecommendations, record.healthRecommendations)
         XCTAssertEqual(sut?.additionalRiskDescription, record.additionalRiskDescription)
-        XCTAssertEqual(sut?.actionToTake, record.actionsToTake)
+        XCTAssertEqual(sut?.actionsToTake, record.actionsToTake)
         XCTAssertEqual(sut?.compensationTerms, record.compensationTerms)
         XCTAssertEqual(sut?.endDateRecall, record.endDateRecall)
         XCTAssertEqual(sut?.otherInfos, record.otherInfos)
