@@ -46,60 +46,64 @@ class HomeViewModel_Test: XCTestCase {
     
     func test_given_searchWithText_when_search_in_allCategory_then_ProductEndpoint_case_is_whereItemInAllCategoryIs() {
         // arrange
-        sut?.selectedCategory = Category(id: 1, name: "Toutes", description: "Toutes catégories", icon: "all")
-        sut?.searchText = "lemon"
+        guard let sut = sut else { return }
+        sut.selectedCategory = Category(id: 1, name: "Toutes", description: "Toutes catégories", icon: "all")
+        sut.searchText = "lemon"
         // act
-        guard let endpoint = sut?.getEndpoint() else { return }
-        let endpointshouldBe = ProductsEndpoint.whereItemInAllCategoryIs(item: "lemon")
+        let endpoint = sut.getEndpoint()
+        
         // assert
-        XCTAssertEqual(endpoint, endpointshouldBe)
+        XCTAssertEqual(endpoint, .whereItemInAllCategoryIs(item: "lemon"))
     }
     
     func test_given_searchText_isEmpty_when_search_in_allCategory_then_ProductEnpoint_case_is_allProduct() {
         // arrange
-        sut?.selectedCategory = Category(id: 1, name: "Toutes", description: "Toutes catégories", icon: "all")
-        sut?.searchText = ""
+        guard let sut = sut else { return }
+        sut.selectedCategory = Category(id: 1, name: "Toutes", description: "Toutes catégories", icon: "all")
+        sut.searchText = ""
         // act
-        guard let endpoint = sut?.getEndpoint() else { return }
-        let endpointShouldBe = ProductsEndpoint.allProduct
+        let endpoint = sut.getEndpoint()
         // assert
-        XCTAssertEqual(endpoint, endpointShouldBe)
+        XCTAssertEqual(endpoint, .allProduct)
     }
     
     func test_given_searchWithText_when_search_in_specific_category_then_ProductEndpoint_case_is_whereItemInOneCategoryIs() {
         // arrange
-        sut?.selectedCategory = Category(id: 5, name: "Hygiène", description: "Hygiène-Beauté", icon: "hygiene")
-        sut?.searchText = "savon"
+        guard let sut = sut else { return }
+        sut.selectedCategory = Category(id: 5, name: "Hygiène", description: "Hygiène-Beauté", icon: "hygiene")
+        sut.searchText = "savon"
         // act
-        guard let endpoint = sut?.getEndpoint() else { return }
-        let endpointShouldBe = ProductsEndpoint.whereItemInOneCategoryIs(item: "savon", category: "Hygiène-Beauté")
+        let endpoint = sut.getEndpoint()
         // assert
-        XCTAssertEqual(endpoint, endpointShouldBe)
+        XCTAssertEqual(endpoint, .whereItemInOneCategoryIs(item: "savon", category: "Hygiène-Beauté"))
     }
     
     func test_given_searchText_isEmpty_when_search_in_specific_category_then_ProductEndpoint_case_is_whereCategoryIs() {
         // arrange
-        sut?.selectedCategory = Category(id: 2, name: "Alimentation", description: "Alimentation", icon: "supply")
-        sut?.searchText = ""
+        guard let sut = sut else { return }
+        sut.selectedCategory = Category(id: 2, name: "Alimentation", description: "Alimentation", icon: "supply")
+        sut.searchText = ""
         // act
-        guard let endpoint = sut?.getEndpoint() else { return }
-        let endpointShouldBe = ProductsEndpoint.whereCategoryIs(category: "Alimentation")
+        let endpoint = sut.getEndpoint()
         // assert
-        XCTAssertEqual(endpoint, endpointShouldBe)
+        XCTAssertEqual(endpoint, .whereCategoryIs(category: "Alimentation"))
     }
     
     func test_given_empty_recallList_when_requestProduct_then_recallList_is_completed() {
         // arrange
         recallListMock = []
         // act
-        requestProduct(endpoint: .allProduct)
+    	for record in listMock {
+        	let converted = RecallViewModel(recall: record)
+        	recallListMock.append(converted)
+    	}
         // assert
         XCTAssertFalse(recallListMock.isEmpty)
     }
     
     func test_given_recallList_with_recall_when_request_with_new_category_then_recallList_becomes_empty() {
         // arrange
-        requestProduct(endpoint: .allProduct)
+        sut?.selectedCategory = Category(id: 7, name: "Sports", description: "Sports-loisirs", icon: "sport")
         //act
         sut?.getNewList()
         guard let newRecallList = sut?.recallList else { return }
@@ -109,13 +113,17 @@ class HomeViewModel_Test: XCTestCase {
     
     func test_given_last_recallList_when_user_scrolls_then_shouldLoadMore() {
         // arrange
-        let response = Result<Product, RequestError>
-            .Publisher(Product(records: []))
-            .eraseToAnyPublisher()
+//        let response = Result<Product, RequestError>
+//            .Publisher(Product(records: []))
+//            .eraseToAnyPublisher()
+//
+//        sut?.parse(response, with: 2)
         
-        sut?.parse(response, with: 2)
+        for record in listMock {
+            let converted = RecallViewModel(recall: record)
+            recallListMock.append(converted)
+        }
         
-        requestProduct(endpoint: .allProduct)
         sut?.recallList = recallListMock
         let middleRecall = recallListMock[1]
         let lastRecall = recallListMock[9]
@@ -127,16 +135,5 @@ class HomeViewModel_Test: XCTestCase {
         // assert
         XCTAssertFalse(doNotLoadMore)
         XCTAssertTrue(loadMore)
-    }
-}
-
-extension HomeViewModel_Test: HomeProtocol {
-
-    func requestProduct(endpoint: ProductsEndpoint) {
-
-        for record in listMock {
-            let converted = RecallViewModel(recall: record)
-            recallListMock.append(converted)
-        }
     }
 }
