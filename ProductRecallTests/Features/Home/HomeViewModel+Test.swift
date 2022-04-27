@@ -14,10 +14,11 @@ class HomeViewModel_Test: XCTestCase {
     
     var recallListMock: [RecallViewModel] = []
     
-    var sut: HomeViewModel?
+    let clientMock = HTTPClientMock()
+    var sut:HomeViewModel?
 
     override func setUpWithError() throws {
-        sut = HomeViewModel()
+        sut = HomeViewModel(client: clientMock)
         try super.setUpWithError()
     }
 
@@ -93,7 +94,7 @@ class HomeViewModel_Test: XCTestCase {
         // arrange
         recallListMock = []
         // act
-    	for record in listMock {
+        for record in listMock.records {
         	let converted = RecallViewModel(recall: record)
         	recallListMock.append(converted)
     	}
@@ -113,13 +114,8 @@ class HomeViewModel_Test: XCTestCase {
     
     func test_given_last_recallList_when_user_scrolls_then_shouldLoadMore() {
         // arrange
-//        let response = Result<Product, RequestError>
-//            .Publisher(Product(records: []))
-//            .eraseToAnyPublisher()
-//
-//        sut?.parse(response, with: 2)
         
-        for record in listMock {
+        for record in listMock.records {
             let converted = RecallViewModel(recall: record)
             recallListMock.append(converted)
         }
@@ -136,4 +132,47 @@ class HomeViewModel_Test: XCTestCase {
         XCTAssertFalse(doNotLoadMore)
         XCTAssertTrue(loadMore)
     }
+    
+    func test_requestProduct_with_mock_data() {
+        guard let sut = sut else { return }
+        let expectation = self.expectation(description: "parsing")
+        requestProduct(endpoint: .allProduct)
+        expectation.fulfill()
+        
+        waitForExpectations(timeout: 10)
+        XCTAssertEqual(sut.pageStatus, .loading(paginationOffset: 0))
+        
+    }
+    
+    
+//    func testParse() {
+//        guard let sut = sut else { return }
+//        let response = Result<Product, RequestError>
+//            .Publisher(Product(records: listMock))
+//            .eraseToAnyPublisher()
+//        let expectation = self.expectation(description: "parsing")
+//        sut.parse(response, with: 100)
+//        expectation.fulfill()
+//        
+//        waitForExpectations(timeout: 10)
+//        XCTAssertEqual(sut.recallList.count, 10)
+//    }
 }
+
+extension HomeViewModel_Test: HomeProtocol {
+    
+    func requestProduct(endpoint: ProductsEndpoint) {
+        
+        guard case let .ready(offset) = sut?.pageStatus else {
+            return
+        }
+        
+        sut?.pageStatus = .loading(paginationOffset: offset)
+        
+        let response = clientMock.get(dataType: Product.self, endPoint: endpoint, paginationOffset: offset)
+        sut?.parse(response, with: 100)
+    }
+    
+    
+}
+
