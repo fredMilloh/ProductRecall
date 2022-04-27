@@ -41,6 +41,6 @@ struct SearchElementsView: View {
 
 struct SearchElementsView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchElementsView(homeViewModel: HomeViewModel()).previewLayout(.sizeThatFits)
+        SearchElementsView(homeViewModel: HomeViewModel(client: HTTPClient())).previewLayout(.sizeThatFits)
     }
 }
