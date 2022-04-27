@@ -219,33 +219,5 @@ extension RecallViewModel {
 extension RecallViewModel: Equatable {
     static func == (lhs: RecallViewModel, rhs: RecallViewModel) -> Bool {
         return lhs.id == rhs.id
-        && lhs.isPersistent == rhs.isPersistent
-        && lhs.timestamp == rhs.timestamp
-        && lhs.cardRef == rhs.cardRef
-        && lhs.legalCharacter == rhs.legalCharacter
-        && lhs.category == rhs.category
-        && lhs.subCategory == rhs.subCategory
-        && lhs.brandName == rhs.brandName
-        && lhs.modelName == rhs.modelName
-        && lhs.productId == rhs.productId
-        && lhs.packaging == rhs.packaging
-        && lhs.marketingDates == rhs.marketingDates
-        && lhs.storageTemperature == rhs.storageTemperature
-        && lhs.healthMark == rhs.healthMark
-        && lhs.infos == rhs.infos
-        && lhs.saleGeoArea == rhs.saleGeoArea
-        && lhs.distributor == rhs.distributor
-        && lhs.reasonRecall == rhs.reasonRecall
-        && lhs.risksIncurred == rhs.risksIncurred
-        && lhs.healthRecommendations == rhs.healthRecommendations
-        && lhs.additionalRiskDescription == rhs.additionalRiskDescription
-        && lhs.actionsToTake == rhs.actionsToTake
-        && lhs.contactNumber == rhs.contactNumber
-        && lhs.compensationTerms == rhs.compensationTerms
-        && lhs.endDateRecall == rhs.endDateRecall
-        && lhs.otherInfos == rhs.otherInfos
-        && lhs.imagesLink == rhs.imagesLink
-        && lhs.productsLink == rhs.productsLink
-        && lhs.flyerLink == rhs.flyerLink
     }
 }
