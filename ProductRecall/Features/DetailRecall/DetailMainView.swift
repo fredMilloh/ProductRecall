@@ -15,16 +15,14 @@ struct DetailMainView: View {
         ZStack {
             ScrollView {
                 VStack {
-                    AsyncImage(url: recall.imageUrl) { image in
-                        image.resizable()
-                    } placeholder: {
-                        Image(systemName: "camera.fill")
-                    }
-                    .background(Color("lightGray"))
+                    ImageAsync(
+                        url: recall.imageUrl ?? URL(fileURLWithPath: "")
+                    )
                     .aspectRatio(contentMode: .fill)
-                    .cornerRadius(25)
-                    .shadow(color: .gray, radius: 5, x: 1, y: 1)
                     .padding()
+                    LinkView(
+                        url: recall.flyerImageLink ?? URL(fileURLWithPath: "")
+                    )
                     DetailDescription(recall: recall)
                     DetailDistribution(recall: recall)
                     DetailRecall(recall: recall)
@@ -36,6 +34,7 @@ struct DetailMainView: View {
                     PersistenceButton(recall: recall, isSelected: $recall.isPersistent)
                 }
             }
+            .padding(.top, -15)
             FloatingShareButton(recall: recall)
         }
         

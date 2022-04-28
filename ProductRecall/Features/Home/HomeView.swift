@@ -14,9 +14,12 @@ struct HomeView: View {
     var body: some View {
         ScrollViewReader { proxy in
             VStack {
-                CategoriesView(selectCategory: $homeViewModel.selectedCategory)
+                CategoriesView(
+                    selectCategory: $homeViewModel.selectedCategory)
                 
-                HomeListView(homeViewModel: homeViewModel)
+                HomeListView(
+                    homeViewModel: homeViewModel
+                )
                     .padding(.bottom, -50)
                 
                 HomeSearchButton(homeViewModel: homeViewModel)

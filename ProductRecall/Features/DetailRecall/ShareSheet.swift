@@ -21,17 +21,17 @@ struct ShareSheet: UIViewControllerRepresentable {
         
     }
     
-//    class Coordinator: NSObject, UINavigationControllerDelegate {
-//
-//        var parent: ShareSheet
-//
-//        init( _ parent: ShareSheet) {
-//            self.parent = parent
-//        }
-//    }
-//
-//    func makeCoordinator() -> Coordinator {
-//        Coordinator(self)
-//    }
+    class Coordinator: NSObject, UINavigationControllerDelegate {
+
+        var parent: ShareSheet
+
+        init( _ parent: ShareSheet) {
+            self.parent = parent
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
 }
 

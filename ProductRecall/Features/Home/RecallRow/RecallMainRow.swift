@@ -10,17 +10,35 @@ import SwiftUI
 struct RecallMainRow: View {
     
     @ObservedObject var recall: RecallViewModel
+    @State var items: [Any] = []
+    @State var showView = false
     
     var body: some View {
         HStack {
             RecallBaseRow(recall: recall)
             Spacer()
-            ZStack(alignment: .trailing) {
-                PersistenceButton(recall: recall, isSelected: $recall.isPersistent)
-            }
-            .frame(width: 30, height: 30, alignment: .top)
-            .onTapGesture {
-                recall.togglePersistence()
+            VStack(alignment: .trailing, spacing: 20) {
+                ZStack {
+                    PersistenceButton(recall: recall, isSelected: $recall.isPersistent)
+                }
+                .onTapGesture {
+                    recall.togglePersistence()
+                }
+
+                ZStack {
+                    Image(systemName: "square.and.arrow.up")
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.blue)
+                    .onTapGesture {
+                        items.removeAll()
+                        guard let url = recall.flyerImageLink else { return }
+                        items.append(url)
+                        showView.toggle()
+                    }
+                    .sheet(isPresented: $showView) {
+                        ShareSheet(activityItems: $items)
+                    }
+                }
             }
         }
     }

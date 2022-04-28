@@ -13,16 +13,10 @@ struct RecallBaseRow: View {
     
     var body: some View {
         HStack {
-            AsyncImage(url: recall.imageUrl) { image in
-                image.resizable()
-            } placeholder: {
-                Image(systemName: "camera.fill")
-                    .foregroundColor(.primary)
-            }
+            ImageAsync(
+                url: recall.imageUrl ?? URL(fileURLWithPath: "")
+            )
             .frame(width: 90, height: 90)
-            .background(Color("lightGray"))
-            .cornerRadius(10)
-            .shadow(color: .gray, radius: 2, x: 0.5, y: 0.5)
                                 
             VStack(alignment: .leading, spacing: 5) {
                 Text(recall.modelName)
@@ -30,12 +24,14 @@ struct RecallBaseRow: View {
                     .lineLimit(1)
                 Text("**Risques** : \(recall.risksIncurred)")
                     .font(.caption2)
+                    .lineLimit(3)
                 Text("**Motif** : \(recall.reasonRecall)")
                     .font(.caption2)
                     .lineLimit(2)
                 HStack {
                     Text("*\(recall.subCategory)*")
                         .font(.system(size: 6))
+                    Spacer()
                     Text(recall.marketingDates)
                         .font(.system(size: 6))
                 }
