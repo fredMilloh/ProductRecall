@@ -13,15 +13,16 @@ struct SelectedListView: View {
     
     var body: some View {
         
-        List(persistence.recallSelected) { recall in
-            NavigationLink {
-                DetailMainView(recall: recall)
-            } label: {
-                RecallMainRow(recall: recall)
+        RecallList(persistence.recallSelected) {
+            if persistence.recallSelected.isEmpty {
+                HStack {
+                    Spacer()
+                    EmptySelectedMessage()
+                    Spacer()
+                }
             }
-            .navigationTitle("Rappels Retenus")
         }
-        .listStyle(.inset)
+        .navigationTitle("Rappels Retenus")
         .onAppear() {
             PersistenceManager.shared.fetchSelected()
         }

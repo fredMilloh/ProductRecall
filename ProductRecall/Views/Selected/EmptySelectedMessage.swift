@@ -12,19 +12,20 @@ struct EmptySelectedMessage: View {
     let box = Image(systemName: "flag")
     
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(alignment: .center, spacing: 8) {
             Image(systemName: "flag.slash.circle.fill")
               .imageScale(.large)
               .font(.largeTitle)
               .foregroundColor(.pink)
             Text(
             """
+            
             Il n'y a pas de rappels retenus.
-            
+
             Appuyer sur \(box)
-            en haut à droite dans la visualisation du détail,
-            ou à droite dans la liste,
-            
+            au niveau du rappel dans la liste,
+            ou en haut à droite dans la vue détaillée,
+
             pour retenir le rappel.
             """
             )
@@ -32,12 +33,11 @@ struct EmptySelectedMessage: View {
             .symbolRenderingMode(.multicolor)
             .multilineTextAlignment(.center)
         }
-        .padding()
     }
 }
 
 struct EmptySelectedMessage_Previews: PreviewProvider {
     static var previews: some View {
-        EmptySelectedMessage()
+        EmptySelectedMessage().previewLayout(.sizeThatFits)
     }
 }
