@@ -20,7 +20,7 @@ struct DetailContainer: View {
                     .frame(maxWidth : .infinity, alignment:
                             .leading)
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: -10, trailing: 0))
-                    .foregroundColor(Color.primary.opacity(0.2))
+                    .foregroundColor(Color.primary.opacity(0.4))
                     
                 Text(content)
                     .font(.subheadline)

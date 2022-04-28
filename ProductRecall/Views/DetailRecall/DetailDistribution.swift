@@ -13,16 +13,19 @@ struct DetailDistribution: View {
     
     var body: some View {
         VStack {
-            Text("Points de vente")
-                .font(.title2)
-                .bold()
-                .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 80, alignment: .center)
-                .foregroundColor(Color.primary.opacity(0.5))
-                .background(.green)
+            DetailContainerTitle(
+                title: "Points de vente",
+                color: .green)
             VStack {
-                DetailContainer(title: "Magasin", content: recall.distributor)
-                DetailContainer(title: "Région", content: recall.saleGeoArea)
-                DetailContainer(title: "Contact", content: recall.contactNumber)
+                DetailContainer(
+                    title: "Magasin",
+                    content: recall.distributor)
+                DetailContainer(
+                    title: "Région",
+                    content: recall.saleGeoArea)
+                DetailContainer(
+                    title: "Contact",
+                    content: recall.contactNumber)
             }
             .padding()
         }

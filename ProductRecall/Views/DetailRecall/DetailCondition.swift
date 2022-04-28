@@ -13,18 +13,25 @@ struct DetailCondition: View {
     
     var body: some View {
         VStack {
-            Text("Conditions Particulières")
-                .font(.title2)
-                .bold()
-                .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 80, alignment: .center)
-                .foregroundColor(Color.primary.opacity(0.5))
-                .background(.orange)
+            DetailContainerTitle(
+                title: "Conditions Particulières",
+                color: .orange)
             VStack {
-                DetailContainer(title: "Conduite à tenir", content: recall.actionsToTake)
-                DetailContainer(title: "Modalités de compensation", content: recall.compensationTerms)
-                DetailContainer(title: "Date de fin du rappel", content: recall.endDateRecall)
-                DetailContainer(title: "Informations complèmentaires", content: recall.otherInfos)
-                DetailContainer(title: "Nature juridique du rappel", content: recall.legalCharacter)
+                DetailContainer(
+                    title: "Conduite à tenir",
+                    content: recall.actionsToTake)
+                DetailContainer(
+                    title: "Modalités de compensation",
+                    content: recall.compensationTerms)
+                DetailContainer(
+                    title: "Date de fin du rappel",
+                    content: recall.endDateRecall)
+                DetailContainer(
+                    title: "Informations complèmentaires",
+                    content: recall.otherInfos)
+                DetailContainer(
+                    title: "Nature juridique du rappel",
+                    content: recall.legalCharacter)
             }
             .padding()
         }

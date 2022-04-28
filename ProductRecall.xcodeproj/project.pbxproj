@@ -56,6 +56,7 @@
 		B695C9C927F6FD060098597B /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B695C9C827F6FD060098597B /* ClientProtocol.swift */; };
 		B6BF966727FDDDCE0025D453 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BF966627FDDDCE0025D453 /* CategoriesView.swift */; };
 		B6CC97C42811868000602969 /* FloatingShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CC97C32811868000602969 /* FloatingShareButton.swift */; };
+		B6D2187E281A93870043A501 /* DetailContainerTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D2187D281A93870043A501 /* DetailContainerTitle.swift */; };
 		B6FDE31A27F7452B006DAD86 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FDE31927F7452B006DAD86 /* HomeListView.swift */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +132,7 @@
 		B695C9C827F6FD060098597B /* ClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProtocol.swift; sourceTree = "<group>"; };
 		B6BF966627FDDDCE0025D453 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		B6CC97C32811868000602969 /* FloatingShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingShareButton.swift; sourceTree = "<group>"; };
+		B6D2187D281A93870043A501 /* DetailContainerTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContainerTitle.swift; sourceTree = "<group>"; };
 		B6FDE31927F7452B006DAD86 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -329,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				B606D5A627EA5BD200573498 /* DetailContainer.swift */,
+				B6D2187D281A93870043A501 /* DetailContainerTitle.swift */,
 			);
 			path = CommonView;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				B606D58627E8DF2700573498 /* HTTPClient.swift in Sources */,
 				B66C1847280DD1DE004E7651 /* RecallList.swift in Sources */,
 				B695C9C927F6FD060098597B /* ClientProtocol.swift in Sources */,
+				B6D2187E281A93870043A501 /* DetailContainerTitle.swift in Sources */,
 				B606D5C427ECF11200573498 /* OptionalString+.swift in Sources */,
 				B606D54F27E8DAA500573498 /* ProductRecallApp.swift in Sources */,
 				B66C18292809C41C004E7651 /* SelectedMainView.swift in Sources */,
