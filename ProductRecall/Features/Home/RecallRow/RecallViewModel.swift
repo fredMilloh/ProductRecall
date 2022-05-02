@@ -158,10 +158,6 @@ class RecallViewModel: ObservableObject, Identifiable {
         recall.legalCharacter.orEmpty
     }
     
-    var totalCount: Int? {
-        recall.count
-    }
-    
 // MARK: - Persistence methods
     
     func isSelected() {
@@ -178,8 +174,6 @@ class RecallViewModel: ObservableObject, Identifiable {
 extension RecallViewModel {
 #if DEBUG
     static let record = Record(
-        count: 100,
-        id: "",
         isPersistent: false,
         timestamp: "",
         cardRef: "2022-03-0002",

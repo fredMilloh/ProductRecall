@@ -13,7 +13,7 @@
         <attribute name="flyerLink" optional="YES" attributeType="String"/>
         <attribute name="healthMark" optional="YES" attributeType="String"/>
         <attribute name="healthRecommendations" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="imagesLink" optional="YES" attributeType="String"/>
         <attribute name="infos" optional="YES" attributeType="String"/>
         <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

@@ -9,14 +9,13 @@ import Foundation
 
 // MARK: - Product
 struct Product: Codable {
+   let count: Int?
    let records: [Record]
 }
 
 // MARK: - Record
 struct Record: Codable, Identifiable {
-   let count: Int?
-    var id = UUID().uuidString
-//   let id: String?
+   var id = UUID().uuidString
    let isPersistent: Bool
    let timestamp: String?
    let cardRef: String?
@@ -58,7 +57,7 @@ extension Product {
          case record
 
          enum RecordKeys: String, CodingKey {
-            case id, timestamp, fields
+            case timestamp, fields
 
             enum FieldsKeys: String, CodingKey {
                 case cardRef = "reference_fiche"
@@ -98,7 +97,7 @@ extension Product {
       let container = try decoder.container(keyedBy: MainKeys.self)
 
       /// totalCount
-      let count = try container.decodeIfPresent(Int.self, forKey: .totalCount)
+       self.count = try container.decodeIfPresent(Int.self, forKey: .totalCount)
 
       /// records array
       var recordsArray = try container.nestedUnkeyedContainer(forKey: .records)
@@ -112,7 +111,6 @@ extension Product {
          /// record container
          let recordContainer = try elementContainer.nestedContainer(keyedBy: MainKeys.RecordsKeys.RecordKeys.self, forKey: .record)
          
-//         let id = try recordContainer.decodeIfPresent(String.self, forKey: .id)
          let timestamp = try recordContainer.decodeIfPresent(String.self, forKey: .timestamp)
 
          /// fields container
@@ -147,8 +145,6 @@ extension Product {
          let dateRef = try fieldsContainer.decodeIfPresent(String.self, forKey: .dateRef)
 
           let record = Record(
-            count: count,
-//            id: id,
             isPersistent: false,
             timestamp: timestamp,
             cardRef: cardRef,

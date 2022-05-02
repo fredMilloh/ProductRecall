@@ -32,6 +32,7 @@ class HomeViewModel: ObservableObject {
 
     @Published var recallList: [RecallViewModel] = []
     @Published var endOfList = false
+    var totalCount = 0
     var cancellable = Set<AnyCancellable>()
     var pageStatus = PageStatus.ready(nextPaginationOffset: 0)
      
@@ -93,6 +94,14 @@ extension HomeViewModel: HomeProtocol {
         pageStatus = .loading(paginationOffset: offset)
         
         let response = client.get(dataType: Product.self, endPoint: endpoint, paginationOffset: offset)
+        response.sink { product in
+        } receiveValue: { product in
+            guard let count = product.count else { return }
+            self.totalCount = count
+        }
+        .store(in: &cancellable)
+
+
         self.parse(response, with: offset)
     }
     
@@ -111,9 +120,8 @@ extension HomeViewModel: HomeProtocol {
             }
         } receiveValue: { [weak self] recall in
             guard let self = self else { return }
-            let totalCount = recall.count
-            if totalCount != 0 { self.pageStatus = .done }
-            self.endOfList = self.recallList.count == totalCount ? true : false
+            if self.totalCount != 0 { self.pageStatus = .done }
+            self.endOfList = self.recallList.count == self.totalCount ? true : false
             self.pageStatus = .ready(nextPaginationOffset: offset + 100)
             self.recallList.append(contentsOf: recall)
         }

@@ -12,22 +12,26 @@ struct DetailDistribution: View {
     let recall: RecallViewModel
     
     var body: some View {
-        VStack {
-            Divider()
-            Text("Points de vente")
-                .font(.title)
+        let content = recall.distributor + recall.saleGeoArea + recall.contactNumber
+        
+        if !content.isEmpty {
             VStack {
-                DetailContainer(
-                    title: "Magasin",
-                    content: recall.distributor)
-                DetailContainer(
-                    title: "Région",
-                    content: recall.saleGeoArea)
-                DetailContainer(
-                    title: "Contact",
-                    content: recall.contactNumber)
+                Divider()
+                Text("Points de vente")
+                    .font(.title)
+                VStack {
+                    DetailContainer(
+                        title: "Magasin",
+                        content: recall.distributor)
+                    DetailContainer(
+                        title: "Région",
+                        content: recall.saleGeoArea)
+                    DetailContainer(
+                        title: "Contact",
+                        content: recall.contactNumber)
+                }
+                .padding()
             }
-            .padding()
         }
     }
 }

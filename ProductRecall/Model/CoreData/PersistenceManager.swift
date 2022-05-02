@@ -145,8 +145,6 @@ extension PersistenceManager {
 
     func convertIntoRecall(selected: RecallSelected) -> RecallViewModel {
         let record = Record(
-            count: 0,
-//            id: selected.id,
             isPersistent: selected.isSelected,
             timestamp: selected.timestamp,
             cardRef: selected.cardRef,
