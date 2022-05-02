@@ -56,11 +56,10 @@ class HomeViewModel: ObservableObject {
             return searchWithText ?
                 .whereItemInAllCategoryIs(item: searchText) :
                 .allProduct
-        } else {
-            return searchWithText ?
-                .whereItemInOneCategoryIs(item: searchText, category: selectedCategory.description) :
-                .whereCategoryIs(category: selectedCategory.description)
         }
+        return searchWithText ?
+            .whereItemInOneCategoryIs(item: searchText, category: selectedCategory.description) :
+            .whereCategoryIs(category: selectedCategory.description)
     }
 	 
     func getNewList() {

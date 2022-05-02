@@ -13,9 +13,9 @@ struct DetailCondition: View {
     
     var body: some View {
         VStack {
-            DetailContainerTitle(
-                title: "Conditions Particulières",
-                color: .orange)
+            Divider()
+            Text("Conditions Particulières")
+                .font(.title)
             VStack {
                 DetailContainer(
                     title: "Conduite à tenir",

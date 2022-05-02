@@ -13,10 +13,10 @@ struct DetailDescription: View {
     
     var body: some View {
         VStack {
-            DetailContainerTitle(
-                title: "Description du produit",
-                color: .blue)
-            VStack {
+            Divider()
+            Text("Description du produit")
+                .font(.title)
+            VStack(spacing: 15) {
                 DetailContainer(
                     title: "Catégorie",
                     content: recall.category)

@@ -13,9 +13,9 @@ struct DetailRecall: View {
     
     var body: some View {
         VStack {
-            DetailContainerTitle(
-                title: "Motifs de rappel",
-                color: .red)
+            Divider()
+            Text("Motifs de rappel")
+                .font(.title)
             VStack {
                 DetailContainer(
                     title: "Motif du rappel",

@@ -65,7 +65,7 @@ class RecallViewModel: ObservableObject, Identifiable {
     }
     
     var id: String {
-        recall.id.orEmpty
+        recall.id
     }
     
     var timestamp: String {

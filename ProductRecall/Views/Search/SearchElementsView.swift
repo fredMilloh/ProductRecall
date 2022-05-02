@@ -28,7 +28,7 @@ struct SearchElementsView: View {
                     .foregroundColor(.pink).italic() +
                 Text(Image(systemName: "magnifyingglass.circle"))
                 Text("dans la catégorie ") +
-                Text("**\(homeViewModel.selectedCategory.description)** ?")
+                Text("**\(homeViewModel.selectedCategory.description)**")
                     .foregroundColor(.pink).italic()
             }
             .foregroundColor(.primary)

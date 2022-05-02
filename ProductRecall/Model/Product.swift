@@ -15,7 +15,8 @@ struct Product: Codable {
 // MARK: - Record
 struct Record: Codable, Identifiable {
    let count: Int?
-   let id: String?
+    var id = UUID().uuidString
+//   let id: String?
    let isPersistent: Bool
    let timestamp: String?
    let cardRef: String?
@@ -111,7 +112,7 @@ extension Product {
          /// record container
          let recordContainer = try elementContainer.nestedContainer(keyedBy: MainKeys.RecordsKeys.RecordKeys.self, forKey: .record)
          
-         let id = try recordContainer.decodeIfPresent(String.self, forKey: .id)
+//         let id = try recordContainer.decodeIfPresent(String.self, forKey: .id)
          let timestamp = try recordContainer.decodeIfPresent(String.self, forKey: .timestamp)
 
          /// fields container
@@ -147,7 +148,7 @@ extension Product {
 
           let record = Record(
             count: count,
-            id: id,
+//            id: id,
             isPersistent: false,
             timestamp: timestamp,
             cardRef: cardRef,

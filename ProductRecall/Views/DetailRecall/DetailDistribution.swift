@@ -13,9 +13,9 @@ struct DetailDistribution: View {
     
     var body: some View {
         VStack {
-            DetailContainerTitle(
-                title: "Points de vente",
-                color: .green)
+            Divider()
+            Text("Points de vente")
+                .font(.title)
             VStack {
                 DetailContainer(
                     title: "Magasin",

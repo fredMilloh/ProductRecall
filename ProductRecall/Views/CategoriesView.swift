@@ -72,11 +72,6 @@ struct CategoriesView: View {
         }
         .padding(.top)
         .background(scheme == .dark ? Color.black : Color.white)
-        .overlay(
-            Divider()
-                .padding(.horizontal, -10)
-            ,alignment: .bottom
-        )
     }
 }
 

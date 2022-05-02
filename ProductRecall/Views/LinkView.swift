@@ -15,7 +15,7 @@ struct LinkView: View {
         HStack {
             Image(systemName: "square.and.arrow.up")
                 .foregroundColor(.blue)
-            Link("Voir le PDF partageable", destination: url)
+            Link("Partager le PDF du rappel", destination: url)
         }
     }
 }

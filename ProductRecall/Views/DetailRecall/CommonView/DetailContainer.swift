@@ -19,13 +19,12 @@ struct DetailContainer: View {
                     .font(.headline)
                     .frame(maxWidth : .infinity, alignment:
                             .leading)
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: -10, trailing: 0))
-                    .foregroundColor(Color.primary.opacity(0.4))
+                    .padding(.bottom, -3)
                     
                 Text(content)
                     .font(.subheadline)
-                    .bold()
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    .padding(.leading, 5)
             }
         }
     }

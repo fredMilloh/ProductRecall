@@ -27,13 +27,19 @@ struct HomeListView: View {
                 }
         }
         .listStyle(.inset)
-        .padding(.top, -10)
         .onAppear() {
             homeViewModel.requestProduct(endpoint: homeViewModel.getEndpoint())
         }
         .onChange(of: homeViewModel.selectedCategory.name) { newValue in
             homeViewModel.getNewList()
             homeViewModel.searchWithNewCategory = false
+        }
+        .safeAreaInset(edge: .bottom) {
+            Rectangle()
+                .fill(LinearGradient(colors: [.white, .white.opacity(0)],
+                                     startPoint: .bottom,
+                                     endPoint: .top))
+                .frame(height: 90)
         }
     }
 }
