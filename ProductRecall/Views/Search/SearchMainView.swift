@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SearchMainView: View {
-    
+
     @ObservedObject var homeViewModel: HomeViewModel
     @State var searching = false
     @Environment(\.presentationMode) var presentationMode
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -35,15 +35,14 @@ struct SearchMainView: View {
             .padding()
             Rectangle().frame(height: 1)
                 .foregroundColor(searching ? .blue : .gray.opacity(0.4))
-            
+
             SearchElementsView(homeViewModel: homeViewModel)
-            
+
             CategoriesView(selectCategory: $homeViewModel.selectedCategory)
-            
+
             SearchBarView(searching: $searching, searchText: $homeViewModel.searchText)
-    
         }
-        .onAppear() {
+        .onAppear {
             homeViewModel.searchWithNewCategory = true
         }
         .onSubmit {

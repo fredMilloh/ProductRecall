@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct EmptySelectedMessage: View {
-    
+
     let box = Image(systemName: "flag")
-    
+
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
             Image(systemName: "flag.slash.circle.fill")
@@ -19,7 +19,7 @@ struct EmptySelectedMessage: View {
               .foregroundColor(.pink)
             Text(
             """
-            
+
             Il n'y a pas de rappels retenus.
 
             Appuyer sur \(box)

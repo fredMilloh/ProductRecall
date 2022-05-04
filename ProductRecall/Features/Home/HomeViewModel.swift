@@ -21,26 +21,34 @@ protocol HomeProtocol {
 }
 
 class HomeViewModel: ObservableObject {
-    
+
     @ObservedObject var client: HTTPClient
-    
+
     init(client: HTTPClient) {
         self.client = client
     }
 
-// MARK: - Network properties
+	// MARK: - Network properties
 
     @Published var recallList: [RecallViewModel] = []
     @Published var endOfList = false
-    var totalCount = 0
+    @Published var listIsEmpty = false
+    var totalCount = 0 {
+        didSet {
+            if totalCount == 0 {
+                listIsEmpty = true
+                print("listIsEmpty = ", listIsEmpty)
+            }
+        }
+    }
     var cancellable = Set<AnyCancellable>()
     var pageStatus = PageStatus.ready(nextPaginationOffset: 0)
-     
-// MARK: - Search properties
-        
+
+	// MARK: - Search properties
+
     @Published var selectedCategory = Category.categories[1]
     @Published var searchText: String = ""
-        
+
     /// Avoids having two network calls, one when the category is selected, another when the display is requested
     var searchWithNewCategory = true
     var searchInAllCategory: Bool {
@@ -49,9 +57,9 @@ class HomeViewModel: ObservableObject {
     var searchWithText: Bool {
         searchText.count > 1
     }
-     
-// MARK: - Request Methods
-    
+
+	// MARK: - Request Methods
+
     func getEndpoint() -> ProductsEndpoint {
         if searchInAllCategory {
             return searchWithText ?
@@ -62,7 +70,7 @@ class HomeViewModel: ObservableObject {
             .whereItemInOneCategoryIs(item: searchText, category: selectedCategory.description) :
             .whereCategoryIs(category: selectedCategory.description)
     }
-	 
+
     func getNewList() {
         pageStatus = PageStatus.ready(nextPaginationOffset: 0)
         recallList.removeAll()
@@ -74,7 +82,7 @@ class HomeViewModel: ObservableObject {
             requestProduct(endpoint: getEndpoint())
         }
     }
-    
+
     func shouldLoadMore(recordItem: RecallViewModel) -> Bool {
         if let lastId = recallList.last?.id {
             return recordItem.id == lastId
@@ -84,27 +92,28 @@ class HomeViewModel: ObservableObject {
 }
 
 extension HomeViewModel: HomeProtocol {
-    
+
     func requestProduct(endpoint: ProductsEndpoint) {
-        
+
         guard case let .ready(offset) = pageStatus else {
             return
         }
         /// Pending a result, the status is loading
         pageStatus = .loading(paginationOffset: offset)
-        
+
         let response = client.get(dataType: Product.self, endPoint: endpoint, paginationOffset: offset)
-        response.sink { product in
-        } receiveValue: { product in
-            guard let count = product.count else { return }
-            self.totalCount = count
-        }
-        .store(in: &cancellable)
+        response
+            .receive(on: DispatchQueue.main)
+        	.sink { _ in
+        	} receiveValue: { product in
+           	 guard let count = product.count else { return }
+            	self.totalCount = count
+        	}
+        	.store(in: &cancellable)
 
-
-        self.parse(response, with: offset)
+        	self.parse(response, with: offset)
     }
-    
+
     func parse(_ response: AnyPublisher<Product, RequestError>, with offset: Int) {
         response.map { product in
             product.records.map { record in
@@ -120,6 +129,7 @@ extension HomeViewModel: HomeProtocol {
             }
         } receiveValue: { [weak self] recall in
             guard let self = self else { return }
+            print("totalCount = ", self.totalCount)
             if self.totalCount != 0 { self.pageStatus = .done }
             self.endOfList = self.recallList.count == self.totalCount ? true : false
             self.pageStatus = .ready(nextPaginationOffset: offset + 100)

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct FloatingShareButton: View {
-    
+
     @ObservedObject var recall: RecallViewModel
     @State var items: [Any] = []
     @State var showView = false
-    
+
     var body: some View {
         VStack {
             Spacer()

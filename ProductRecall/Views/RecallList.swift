@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct RecallList<Content, Data>:
+struct RecallList <Content, Data>:
     View where Content: View,
                 Data: RandomAccessCollection,
                 Data.Element: RecallViewModel {
-    
+
     let recalls: Data
     let messageView: Content
-    
+
     init(_ recalls: Data, @ViewBuilder messageView: () -> Content) {
       self.recalls = recalls
       self.messageView = messageView()
     }
-    
+
     var body: some View {
         List {
             ForEach(recalls) { recall in
@@ -28,6 +28,7 @@ struct RecallList<Content, Data>:
                 } label: {
                     RecallMainRow(recall: recall)
                 }
+                .isDetailLink(false)
             }
             messageView
         }
@@ -47,11 +48,10 @@ struct RecallList_Previews: PreviewProvider {
 }
 
 extension RecallList where Content == EmptyView {
-    
+
   init(_ recalls: Data) {
     self.init(recalls) {
       EmptyView()
     }
   }
 }
-

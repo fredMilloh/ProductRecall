@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct LinkView: View {
-    
-    var url: URL
-    
+
+    let url: URL
+
     var body: some View {
         HStack {
             Image(systemName: "square.and.arrow.up")

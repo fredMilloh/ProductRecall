@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct RecallBaseRow: View {
-    
+
     let recall: RecallViewModel
-    
+
     var body: some View {
-        HStack {
+        HStack(alignment: .center, spacing: 10) {
             ImageAsync(
                 url: recall.imageUrl ?? URL(fileURLWithPath: "")
             )
             .frame(width: 90, height: 90)
-                                
+
             VStack(alignment: .leading, spacing: 5) {
                 Text(recall.modelName)
                     .font(.caption)
-                    .lineLimit(1)
+                    .lineLimit(2)
                 Text("**Risques** : \(recall.risksIncurred)")
                     .font(.caption2)
                     .lineLimit(3)
@@ -29,11 +29,9 @@ struct RecallBaseRow: View {
                     .font(.caption2)
                     .lineLimit(2)
                 HStack {
-                    Text("*\(recall.subCategory)*")
-                        .font(.system(size: 6))
                     Spacer()
                     Text(recall.marketingDates)
-                        .font(.system(size: 6))
+                        .font(.caption2)
                 }
             }
         }

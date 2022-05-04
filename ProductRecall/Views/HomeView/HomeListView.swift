@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct HomeListView: View {
-    
+
     @ObservedObject var homeViewModel: HomeViewModel
-    
+
     var body: some View {
-        
+
         List(homeViewModel.recallList) { recall in
                 NavigationLink {
                     DetailMainView(recall: recall)
                 } label: {
                     RecallMainRow(recall: recall)
                 }
+                .isDetailLink(false)
                 .onAppear(perform: {
                     homeViewModel.getFollowingRecords(recordItem: recall)
                 })
@@ -27,10 +28,10 @@ struct HomeListView: View {
                 }
         }
         .listStyle(.inset)
-        .onAppear() {
+        .onAppear {
             homeViewModel.requestProduct(endpoint: homeViewModel.getEndpoint())
         }
-        .onChange(of: homeViewModel.selectedCategory.name) { newValue in
+        .onChange(of: homeViewModel.selectedCategory.name) { _ in
             homeViewModel.getNewList()
             homeViewModel.searchWithNewCategory = false
         }

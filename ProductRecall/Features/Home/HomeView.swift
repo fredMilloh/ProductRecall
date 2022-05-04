@@ -8,22 +8,20 @@
 import SwiftUI
 
 struct HomeView: View {
-    
+
     @StateObject var homeViewModel = HomeViewModel(client: HTTPClient())
-    
+
     var body: some View {
-        ScrollViewReader { proxy in
+        ScrollViewReader { _ in
             VStack {
                 CategoriesView(
                     selectCategory: $homeViewModel.selectedCategory)
-                
-                HomeListView(
-                    homeViewModel: homeViewModel
-                )
+
+                HomeListView(homeViewModel: homeViewModel)
                     .padding(.bottom, -50)
-                
+
                 HomeSearchButton(homeViewModel: homeViewModel)
-                
+
                 Divider()
             }
             .navigationTitle("Rappels Produits")

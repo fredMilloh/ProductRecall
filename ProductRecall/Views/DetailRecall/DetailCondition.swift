@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct DetailCondition: View {
-    
+
     let recall: RecallViewModel
-    
+
     var body: some View {
-        let content = recall.actionsToTake + recall.compensationTerms + recall.endDateRecall + recall.otherInfos + recall.legalCharacter
-        
+        let content = recall.actionsToTake + recall.compensationTerms +
+        recall.endDateRecall + recall.otherInfos + recall.legalCharacter
+
         if !content.isEmpty {
             VStack {
                 Divider()
@@ -47,4 +48,3 @@ struct DetailCondition_Previews: PreviewProvider {
         DetailCondition(recall: RecallViewModel.example).previewLayout(.sizeThatFits)
     }
 }
-

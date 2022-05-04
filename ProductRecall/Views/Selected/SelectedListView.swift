@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SelectedListView: View {
-    
+
     @ObservedObject var persistence: PersistenceManager
-    
+
     var body: some View {
-        
+
         RecallList(persistence.recallSelected) {
             if persistence.recallSelected.isEmpty {
                 HStack {
@@ -23,8 +23,8 @@ struct SelectedListView: View {
             }
         }
         .navigationTitle("Rappels Retenus")
-        .onAppear() {
-            PersistenceManager.shared.fetchSelected()
+        .onAppear {
+            PersistenceManager.shared.fetchSelected { _ in}
         }
     }
 }

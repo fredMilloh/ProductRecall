@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct DetailContainer: View {
-    
+
     var title: String
     var content: String
-    
+
     var body: some View {
         if !content.isEmpty {
             VStack {
                 Text(title)
                     .font(.headline)
-                    .frame(maxWidth : .infinity, alignment:
+                    .frame(maxWidth: .infinity, alignment:
                             .leading)
                     .padding(.bottom, -3)
-                    
+
                 Text(content)
                     .font(.subheadline)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -36,4 +36,3 @@ struct Test_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
     }
 }
-

@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct DetailDistribution: View {
-    
+
     let recall: RecallViewModel
-    
+
     var body: some View {
         let content = recall.distributor + recall.saleGeoArea + recall.contactNumber
-        
+
         if !content.isEmpty {
             VStack {
                 Divider()
@@ -41,4 +41,3 @@ struct DetailDistribution_Previews: PreviewProvider {
         DetailDistribution(recall: RecallViewModel.example).previewLayout(.sizeThatFits)
     }
 }
-

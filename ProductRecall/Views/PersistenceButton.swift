@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct PersistenceButton: View {
-    
+
     @ObservedObject var recall: RecallViewModel
     @Binding var isSelected: Bool
-    
+
     var body: some View {
         Button {
             recall.togglePersistence()

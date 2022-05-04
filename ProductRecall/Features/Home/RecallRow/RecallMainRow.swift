@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct RecallMainRow: View {
-    
+
     @ObservedObject var recall: RecallViewModel
     @State var items: [Any] = []
     @State var showView = false
-    
+
     var body: some View {
         HStack {
             RecallBaseRow(recall: recall)
@@ -24,7 +24,6 @@ struct RecallMainRow: View {
                 .onTapGesture {
                     recall.togglePersistence()
                 }
-
                 ZStack {
                     Image(systemName: "square.and.arrow.up")
                         .frame(width: 20, height: 20)

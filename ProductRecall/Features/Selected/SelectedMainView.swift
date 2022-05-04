@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectedMainView: View {
-    
+
     var body: some View {
         SelectedListView(persistence: PersistenceManager.shared)
     }

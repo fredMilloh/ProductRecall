@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct DetailMainView: View {
-    
+
     @ObservedObject var recall: RecallViewModel
-    
+
     var body: some View {
         ZStack {
             ScrollView {
@@ -37,8 +37,6 @@ struct DetailMainView: View {
             .padding(.top, -15)
             FloatingShareButton(recall: recall)
         }
-        
-        
     }
 }
 
@@ -48,4 +46,3 @@ struct DetailView_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
     }
 }
-

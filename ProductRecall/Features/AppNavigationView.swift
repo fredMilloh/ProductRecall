@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct AppNavigationView: View {
-    
+
     enum Tab {
         case rappels
         case retenus
     }
-    
+
     @State private var selection: Tab = .rappels
     @Environment(\.presentationMode) var presentationMode
-    
+
     var body: some View {
         TabView(selection: $selection) {
             NavigationView {
@@ -32,7 +32,7 @@ struct AppNavigationView: View {
             }
             .tag(Tab.rappels)
             .navigationViewStyle(StackNavigationViewStyle())
-            
+
             NavigationView {
                 SelectedMainView()
             }

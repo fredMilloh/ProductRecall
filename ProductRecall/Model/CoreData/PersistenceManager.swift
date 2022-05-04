@@ -8,17 +8,17 @@ import SwiftUI
 import CoreData
 
 class PersistenceManager: ObservableObject {
-    
+
     static let shared = PersistenceManager()
-    
+
     var container: NSPersistentContainer
-    
+
     @Published var recallSelected: [RecallViewModel] = []
     var selectedArray: [RecallSelected] = []
-    
+
     init() {
         container = NSPersistentContainer(name: "RecallSelected")
-        container.loadPersistentStores { description, error in
+        container.loadPersistentStores { _, error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
             }
@@ -26,8 +26,8 @@ class PersistenceManager: ObservableObject {
     }
 
 // MARK: - Fetch data
-    
-    func fetchSelected(completion: @escaping ([RecallSelected]) -> () = {_ in}) {
+
+    func fetchSelected(completion: @escaping ([RecallSelected]) -> Void) {
         recallSelected.removeAll()
         let request = NSFetchRequest<RecallSelected>(entityName: "RecallSelected")
         do {
@@ -38,7 +38,7 @@ class PersistenceManager: ObservableObject {
             completion([])
         }
     }
-    
+
     func convertSelectedToRecall() {
         for select in selectedArray {
             let converted = self.convertIntoRecall(selected: select)
@@ -46,14 +46,13 @@ class PersistenceManager: ObservableObject {
         }
     }
 
-// MARK: - Save data
-    
-    func save(recall: RecallViewModel, completion: @escaping (Error?) -> () = {_ in}) {
+	// MARK: - Save data
+
+    func save(recall: RecallViewModel, completion: @escaping (Error?) -> Void) {
         let context = container.viewContext
         let recallSelected = RecallSelected(context: context)
         recallSelected.id = recall.id
         recallSelected.isSelected = recall.isPersistent
-        recallSelected.timestamp = recall.timestamp
         recallSelected.cardRef = recall.cardRef
         recallSelected.legalCharacter = recall.legalCharacter
         recallSelected.category = recall.category
@@ -78,9 +77,8 @@ class PersistenceManager: ObservableObject {
         recallSelected.endDateRecall = recall.endDateRecall
         recallSelected.otherInfos = recall.otherInfos
         recallSelected.imagesLink = recall.imagesLink
-        recallSelected.productsLink = recall.productsLink
         recallSelected.flyerLink = recall.flyerLink
-        
+
         if context.hasChanges {
             do {
                 try context.save()
@@ -90,10 +88,10 @@ class PersistenceManager: ObservableObject {
             }
         }
     }
- 
-// MARK: - Delete data
-    
-    func delete(cardRef: String, completion: @escaping (Error?) -> () = {_ in}) {
+
+ // MARK: - Delete data
+
+    func delete(cardRef: String, completion: @escaping (Error?) -> Void) {
         let context = container.viewContext
         let request: NSFetchRequest<RecallSelected> = RecallSelected.fetchRequest()
         request.predicate = NSPredicate(format: "cardRef == %@", "\(cardRef)")
@@ -109,8 +107,8 @@ class PersistenceManager: ObservableObject {
         }
     }
 
-// MARK: - Search data
-    
+	// MARK: - Search data
+
     func getIsSelected(from cardRef: String) -> Bool {
         let context = container.viewContext
         let request: NSFetchRequest<RecallSelected> = RecallSelected.fetchRequest()
@@ -126,27 +124,28 @@ class PersistenceManager: ObservableObject {
         return false
     }
 
-// MARK: - toggle
-    
+	// MARK: - toggle
+
     func togglePersistence(from cardRef: String, recall: RecallViewModel) {
         if recall.isPersistent {
             recall.isPersistent.toggle()
-            delete(cardRef: cardRef)
+            delete(cardRef: cardRef) { _ in
+            }
         } else {
             recall.isPersistent.toggle()
-            save(recall: recall)
+            save(recall: recall) { _ in
+            }
         }
     }
 }
 
-//MARK: - Extension
+	// MARK: - Extension
 
 extension PersistenceManager {
 
     func convertIntoRecall(selected: RecallSelected) -> RecallViewModel {
         let record = Record(
             isPersistent: selected.isSelected,
-            timestamp: selected.timestamp,
             cardRef: selected.cardRef,
             legalCharacter: selected.legalCharacter,
             category: selected.category,
@@ -168,10 +167,9 @@ extension PersistenceManager {
             actionsToTake: selected.actionsToTake,
             contactNumber: selected.contactNumber,
             compensationTerms: selected.compensationTerms,
-            endDateRecall:selected.endDateRecall,
+            endDateRecall: selected.endDateRecall,
             otherInfos: selected.otherInfos,
             imagesLink: selected.imagesLink,
-            productsLink: selected.productsLink,
             flyerLink: selected.flyerLink,
             dateRef: ""
         )

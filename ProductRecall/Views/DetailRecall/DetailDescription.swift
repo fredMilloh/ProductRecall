@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct DetailDescription: View {
-    
+
     let recall: RecallViewModel
-    
+
     var body: some View {
-        let content = recall.category + recall.subCategory + recall.brandName + recall.modelName + recall.productId + recall.packaging + recall.infos + recall.marketingDates + recall.storageTemperature
-        
+        let content = recall.category + recall.subCategory +
+        recall.brandName + recall.modelName + recall.productId +
+        recall.packaging + recall.infos +
+        recall.marketingDates + recall.storageTemperature
+
         VStack {
             if !content.isEmpty {
                 Divider()
@@ -50,7 +53,6 @@ struct DetailDescription: View {
                 }
                 .padding()
             }
-            
         }
     }
 }

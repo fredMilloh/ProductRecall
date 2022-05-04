@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ImageAsync: View {
-    
-    var url: URL
-    
+
+    let url: URL
+
     var body: some View {
         AsyncImage(url: url) { image in
             image.resizable()

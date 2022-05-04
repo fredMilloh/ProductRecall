@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct DetailRecall: View {
-    
+
     let recall: RecallViewModel
-    
+
     var body: some View {
-        let content = recall.reasonRecall + recall.risksIncurred + recall.healthRecommendations + recall.additionalRiskDescription
-        
+        let content = recall.reasonRecall + recall.risksIncurred +
+        recall.healthRecommendations + recall.additionalRiskDescription
+
         if !content.isEmpty {
             VStack {
                 Divider()
@@ -42,7 +43,5 @@ struct DetailRecall: View {
 struct DetailRecall_Previews: PreviewProvider {
     static var previews: some View {
         DetailRecall(recall: RecallViewModel.example).previewLayout(.sizeThatFits)
-        
     }
 }
-

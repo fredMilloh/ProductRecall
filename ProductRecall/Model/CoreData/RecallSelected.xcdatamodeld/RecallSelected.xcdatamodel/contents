@@ -23,15 +23,13 @@
         <attribute name="otherInfos" optional="YES" attributeType="String"/>
         <attribute name="packaging" optional="YES" attributeType="String"/>
         <attribute name="productId" optional="YES" attributeType="String"/>
-        <attribute name="productsLink" optional="YES" attributeType="String"/>
         <attribute name="reasonRecall" optional="YES" attributeType="String"/>
         <attribute name="risksIncurred" optional="YES" attributeType="String"/>
         <attribute name="saleGeoArea" optional="YES" attributeType="String"/>
         <attribute name="storageTemperature" optional="YES" attributeType="String"/>
         <attribute name="subCategory" optional="YES" attributeType="String"/>
-        <attribute name="timestamp" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="RecallSelected" positionX="-27" positionY="18" width="128" height="464"/>
+        <element name="RecallSelected" positionX="-27" positionY="18" width="128" height="434"/>
     </elements>
 </model>

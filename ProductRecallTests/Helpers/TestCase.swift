@@ -9,7 +9,7 @@ import XCTest
 @testable import ProductRecall
 
 class TestCase: XCTestCase {
-    
+
     static func stubbedData( from json: String) -> [Record]? {
         let bundle = Bundle(for: TestCase.self)
         let url = bundle.url(forResource: json, withExtension: "json") ?? URL(fileURLWithPath: "www")
