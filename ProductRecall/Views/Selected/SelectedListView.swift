@@ -24,7 +24,7 @@ struct SelectedListView: View {
         }
         .navigationTitle("Rappels Retenus")
         .onAppear {
-            PersistenceManager.shared.fetchSelected { _ in}
+            persistence.fetchSelected { _ in}
         }
     }
 }

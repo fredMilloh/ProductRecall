@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailMainView: View {
 
     @ObservedObject var recall: RecallViewModel
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         ZStack {
@@ -34,8 +35,10 @@ struct DetailMainView: View {
                     PersistenceButton(recall: recall, isSelected: $recall.isPersistent)
                 }
             }
+            .onChange(of: recall.isPersistent, perform: { _ in
+                presentationMode.wrappedValue.dismiss()
+            })
             .padding(.top, -15)
-            FloatingShareButton(recall: recall)
         }
     }
 }

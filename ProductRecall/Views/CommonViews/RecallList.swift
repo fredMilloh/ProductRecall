@@ -28,7 +28,6 @@ struct RecallList <Content, Data>:
                 } label: {
                     RecallMainRow(recall: recall)
                 }
-                .isDetailLink(false)
             }
             messageView
         }

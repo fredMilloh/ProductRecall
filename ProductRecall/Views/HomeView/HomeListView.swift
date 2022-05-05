@@ -13,7 +13,8 @@ struct HomeListView: View {
 
     var body: some View {
 
-        List(homeViewModel.recallList) { recall in
+        List {
+            ForEach(homeViewModel.recallList) { recall in
                 NavigationLink {
                     DetailMainView(recall: recall)
                 } label: {
@@ -26,6 +27,14 @@ struct HomeListView: View {
                 .onAppear {
                     recall.isSelected()
                 }
+            }
+            if homeViewModel.recallList.isEmpty {
+                HStack {
+                    Spacer()
+                    EmptyListMessage()
+                    Spacer()
+                }
+            }
         }
         .listStyle(.inset)
         .onAppear {

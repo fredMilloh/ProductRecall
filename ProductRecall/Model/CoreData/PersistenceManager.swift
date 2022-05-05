@@ -129,12 +129,10 @@ class PersistenceManager: ObservableObject {
     func togglePersistence(from cardRef: String, recall: RecallViewModel) {
         if recall.isPersistent {
             recall.isPersistent.toggle()
-            delete(cardRef: cardRef) { _ in
-            }
+            delete(cardRef: cardRef) { _ in}
         } else {
             recall.isPersistent.toggle()
-            save(recall: recall) { _ in
-            }
+            save(recall: recall) { _ in}
         }
     }
 }

@@ -56,6 +56,7 @@
 		B6BF966727FDDDCE0025D453 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BF966627FDDDCE0025D453 /* CategoriesView.swift */; };
 		B6D21880281AFB5C0043A501 /* ImageAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D2187F281AFB5C0043A501 /* ImageAsync.swift */; };
 		B6D21882281B0F150043A501 /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D21881281B0F150043A501 /* LinkView.swift */; };
+		B6FD81FC28243E0700999D53 /* EmptyListMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FD81FB28243E0700999D53 /* EmptyListMessage.swift */; };
 		B6FDE31A27F7452B006DAD86 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FDE31927F7452B006DAD86 /* HomeListView.swift */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +132,7 @@
 		B6BF966627FDDDCE0025D453 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		B6D2187F281AFB5C0043A501 /* ImageAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAsync.swift; sourceTree = "<group>"; };
 		B6D21881281B0F150043A501 /* LinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkView.swift; sourceTree = "<group>"; };
+		B6FD81FB28243E0700999D53 /* EmptyListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListMessage.swift; sourceTree = "<group>"; };
 		B6FDE31927F7452B006DAD86 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -408,6 +410,7 @@
 				B68B8A082805BA02004EC026 /* HomeSearchButton.swift */,
 				B606D59527E90A3000573498 /* RecallMainRow.swift */,
 				B66C182A2809DBFE004E7651 /* RecallBaseRow.swift */,
+				B6FD81FB28243E0700999D53 /* EmptyListMessage.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				B606D5A727EA5BD200573498 /* DetailContainer.swift in Sources */,
 				B6FDE31A27F7452B006DAD86 /* HomeListView.swift in Sources */,
 				B6BF966727FDDDCE0025D453 /* CategoriesView.swift in Sources */,
+				B6FD81FC28243E0700999D53 /* EmptyListMessage.swift in Sources */,
 				B606D5BC27EB68CD00573498 /* HomeViewModel.swift in Sources */,
 				B606D59127E8E46B00573498 /* RecallViewModel.swift in Sources */,
 				B606D5A227EA4B9A00573498 /* RequestMethod.swift in Sources */,
