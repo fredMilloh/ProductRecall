@@ -19,7 +19,7 @@ class PersistenceManagerTests: XCTestCase {
 
     override func setUpWithError() throws {
         coreDataStack = TestCoreDataStack()
-        sut = PersistenceManager.shared
+        sut = PersistenceManager()
         try super.setUpWithError()
     }
 
@@ -39,8 +39,7 @@ class PersistenceManagerTests: XCTestCase {
             XCTAssertTrue(sut.getIsSelected(from: ref))
         }
         // reset
-        sut.delete(cardRef: ref) { _ in
-        }
+        sut.delete(cardRef: ref) { _ in}
     }
 
     func test_given_there_is_one_persistent_when_it_is_deleted_then_is_not_longer_persistent() {
@@ -50,8 +49,7 @@ class PersistenceManagerTests: XCTestCase {
         }
         let ref = recallTest.cardRef
         // act
-        sut.delete(cardRef: ref) { _ in
-        }
+        sut.delete(cardRef: ref) { _ in}
         // assert
         XCTAssertFalse(sut.getIsSelected(from: ref))
     }
@@ -134,5 +132,4 @@ class PersistenceManagerTests: XCTestCase {
         sut.delete(cardRef: ref) { _ in
         }
     }
-
 }

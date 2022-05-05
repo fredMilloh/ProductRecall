@@ -55,6 +55,6 @@ struct SearchMainView: View {
 
 struct TextSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchMainView(homeViewModel: HomeViewModel(client: HTTPClient())).previewLayout(.sizeThatFits)
+        SearchMainView(homeViewModel: HomeViewModel()).previewLayout(.sizeThatFits)
     }
 }

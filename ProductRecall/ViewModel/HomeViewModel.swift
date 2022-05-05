@@ -17,16 +17,16 @@ enum PageStatus: Equatable {
 }
 
 protocol HomeProtocol {
-    func requestProduct(endpoint: ProductsEndpoint)
+    func requestProduct<Service: ClientProtocol>(fromService: Service, endpoint: ProductsEndpoint)
 }
 
 class HomeViewModel: ObservableObject {
 
-    @ObservedObject var client: HTTPClient
+    var client = HTTPClient()
 
-    init(client: HTTPClient) {
-        self.client = client
-    }
+//    init(client: HTTPClient) {
+//        self.client = client
+//    }
 
 	// MARK: - Network properties
 
@@ -74,12 +74,12 @@ class HomeViewModel: ObservableObject {
     func getNewList() {
         pageStatus = PageStatus.ready(nextPaginationOffset: 0)
         recallList.removeAll()
-        requestProduct(endpoint: getEndpoint())
+        requestProduct(fromService: client, endpoint: getEndpoint())
     }
 
     func getFollowingRecords(recordItem: RecallViewModel) {
         if !endOfList, shouldLoadMore(recordItem: recordItem) {
-            requestProduct(endpoint: getEndpoint())
+            requestProduct(fromService: client, endpoint: getEndpoint())
         }
     }
 
@@ -92,8 +92,7 @@ class HomeViewModel: ObservableObject {
 }
 
 extension HomeViewModel: HomeProtocol {
-
-    func requestProduct(endpoint: ProductsEndpoint) {
+    func requestProduct<Service>(fromService: Service, endpoint: ProductsEndpoint) where Service: ClientProtocol {
 
         guard case let .ready(offset) = pageStatus else {
             return

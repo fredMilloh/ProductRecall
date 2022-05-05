@@ -16,11 +16,11 @@ class HomeViewModelTest: XCTestCase {
 
     var recallListMock: [RecallViewModel] = []
 
-    let clientMock = HTTPClientMock()
+    var clientMock = HTTPClientMock()
     var sut: HomeViewModel?
 
     override func setUpWithError() throws {
-        sut = HomeViewModel(client: clientMock)
+        sut = HomeViewModel()
         try super.setUpWithError()
     }
 
@@ -139,18 +139,18 @@ class HomeViewModelTest: XCTestCase {
         guard let sut = sut else { return }
         let expectation = self.expectation(description: "parsing")
 
-        requestProduct(endpoint: .allProduct)
+        requestProduct(fromService: clientMock, endpoint: .allProduct)
         expectation.fulfill()
 
         waitForExpectations(timeout: 10)
         XCTAssertEqual(sut.pageStatus, .loading(paginationOffset: 0))
-//        XCTAssertEqual(recallListMock.count, 9)
+        XCTAssertEqual(recallListMock.count, 0)
     }
 }
 
 extension HomeViewModelTest: HomeProtocol {
 
-    func requestProduct(endpoint: ProductsEndpoint) {
+    func requestProduct<Service>(fromService: Service, endpoint: ProductsEndpoint) where Service: ClientProtocol {
         guard let sut = sut else { return }
         guard case let .ready(offset) = sut.pageStatus else {
             return
@@ -158,9 +158,8 @@ extension HomeViewModelTest: HomeProtocol {
         sut.pageStatus = .loading(paginationOffset: offset)
 
         let jsonMock = clientMock.get(dataType: Product.self,
-                                      endPoint: ProductsEndpoint.allProduct,
+                                      endPoint: endpoint,
                                       paginationOffset: 15)
-//        let jsonMock = clientMock.get()
         jsonMock.map { product in
             product.records.map { record in
                 RecallViewModel(recall: record)

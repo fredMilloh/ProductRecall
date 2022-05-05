@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @StateObject var homeViewModel = HomeViewModel(client: HTTPClient())
+    @StateObject var homeViewModel = HomeViewModel()
 
     var body: some View {
         ScrollViewReader { _ in

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// swiftlint:disable all
 // MARK: - Product
 struct Product: Codable {
    let count: Int?
@@ -181,3 +181,4 @@ extension Product {
       self.records = records
    }
 }
+// swiftlint:enable all

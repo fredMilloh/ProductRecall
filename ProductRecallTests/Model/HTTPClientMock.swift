@@ -9,11 +9,13 @@ import Foundation
 import Combine
 @testable import ProductRecall
 
-class HTTPClientMock: HTTPClient {
+class HTTPClientMock: ClientProtocol {
 
-    override func get<T>(dataType: T.Type,
-                         endPoint: Endpoint,
-                         paginationOffset: Int) -> AnyPublisher<T, RequestError> where T: Decodable {
+    func get<T>(
+        dataType: T.Type,
+        endPoint: Endpoint,
+        paginationOffset: Int
+    ) -> AnyPublisher<T, RequestError> where T: Decodable {
         let response = HTTPURLResponse(url: URL(fileURLWithPath: ""),
                                        statusCode: 200, httpVersion: "HTTP/1.1",
                                        headerFields: nil)!
