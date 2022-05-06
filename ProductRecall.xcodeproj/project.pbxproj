@@ -57,6 +57,7 @@
 		B6D21882281B0F150043A501 /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D21881281B0F150043A501 /* LinkView.swift */; };
 		B6FD81FC28243E0700999D53 /* EmptyListMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FD81FB28243E0700999D53 /* EmptyListMessage.swift */; };
 		B6FD81FE28244ED400999D53 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FD81FD28244ED400999D53 /* CoreDataStack.swift */; };
+		B6FD820228257F9800999D53 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6FD820128257F9800999D53 /* Launch Screen.storyboard */; };
 		B6FDE31A27F7452B006DAD86 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FDE31927F7452B006DAD86 /* HomeListView.swift */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +134,7 @@
 		B6D21881281B0F150043A501 /* LinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkView.swift; sourceTree = "<group>"; };
 		B6FD81FB28243E0700999D53 /* EmptyListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListMessage.swift; sourceTree = "<group>"; };
 		B6FD81FD28244ED400999D53 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		B6FD820128257F9800999D53 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B6FDE31927F7452B006DAD86 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,6 +240,7 @@
 			children = (
 				B606D57B27E8DC6400573498 /* Info.plist */,
 				B606D55227E8DAA800573498 /* Assets.xcassets */,
+				B6FD820128257F9800999D53 /* Launch Screen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6FD820228257F9800999D53 /* Launch Screen.storyboard in Resources */,
 				B606D55627E8DAA800573498 /* Preview Assets.xcassets in Resources */,
 				B606D55327E8DAA800573498 /* Assets.xcassets in Resources */,
 			);

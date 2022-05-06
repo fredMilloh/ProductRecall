@@ -11,18 +11,18 @@ import CoreData
 class TestCoreDataStack: CoreDataStack {
 
     override init() {
-       super.init()
+        super.init()
 
-    let persistentStoreDescription = NSPersistentStoreDescription()
-    persistentStoreDescription.type = NSInMemoryStoreType
+        let persistentStoreDescription = NSPersistentStoreDescription()
+        persistentStoreDescription.type = NSInMemoryStoreType
 
-    let testPersistentContainer = NSPersistentContainer(name: "RecallSelected")
+        let testPersistentContainer = NSPersistentContainer(name: "RecallSelected")
         testPersistentContainer.persistentStoreDescriptions = [persistentStoreDescription]
         testPersistentContainer.loadPersistentStores { (_, error: Error?) in
             if let loadError = error {
                 print(loadError)
             }
         }
-      persistentContainer = testPersistentContainer
+        persistentContainer = testPersistentContainer
     }
 }

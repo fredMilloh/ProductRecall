@@ -18,8 +18,8 @@ struct HomeView: View {
                     selectCategory: $homeViewModel.selectedCategory)
 
                 HomeListView(homeViewModel: homeViewModel)
-                    .padding(.bottom, -50)
-
+                    .padding(.bottom, -7)
+                Divider()
                 HomeSearchButton(homeViewModel: homeViewModel)
 
                 Divider()

@@ -9,13 +9,11 @@ import CoreData
 
 class PersistenceManager: ObservableObject {
 
-    static let shared = PersistenceManager(context: CoreDataStack().viewContext, coreDataStack: CoreDataStack())
+    static let shared = PersistenceManager(coreDataStack: CoreDataStack())
 
-    private let context: NSManagedObjectContext
     private let coreDataStack: CoreDataStack
 
-    init(context: NSManagedObjectContext, coreDataStack: CoreDataStack) {
-        self.context = context
+    init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
     }
 
@@ -28,7 +26,7 @@ class PersistenceManager: ObservableObject {
             recallSelected.removeAll()
             let request = NSFetchRequest<RecallSelected>(entityName: "RecallSelected")
             do {
-                selectedArray = try context.fetch(request)    // container.viewContext.fetch(request)
+                selectedArray = try coreDataStack.viewContext.fetch(request)
                 completion(selectedArray)
                 convertSelectedToRecall()
             } catch {
@@ -46,6 +44,7 @@ class PersistenceManager: ObservableObject {
 	// MARK: - Save data
 
     func save(recall: RecallViewModel, completion: @escaping (Error?) -> Void) {
+        let context = coreDataStack.viewContext
         let recallSelected = RecallSelected(context: context)
         recallSelected.id = recall.id
         recallSelected.isSelected = recall.isPersistent
@@ -88,6 +87,7 @@ class PersistenceManager: ObservableObject {
  // MARK: - Delete data
 
     func delete(cardRef: String, completion: @escaping (Error?) -> Void) {
+        let context = coreDataStack.viewContext
         let request: NSFetchRequest<RecallSelected> = RecallSelected.fetchRequest()
         request.predicate = NSPredicate(format: "cardRef == %@", "\(cardRef)")
         do {
@@ -105,6 +105,7 @@ class PersistenceManager: ObservableObject {
 	// MARK: - Search data
 
     func getIsSelected(from cardRef: String) -> Bool {
+        let context = coreDataStack.viewContext
         let request: NSFetchRequest<RecallSelected> = RecallSelected.fetchRequest()
         request.predicate = NSPredicate(format: "cardRef == %@", "\(cardRef)")
         do {

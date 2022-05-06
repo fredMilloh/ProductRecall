@@ -10,10 +10,8 @@ import CoreData
 
 class CoreDataStack {
 
-    static let modelName = "RecallSelected"
-
     public lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: CoreDataStack.modelName)
+        let container = NSPersistentContainer(name: "RecallSelected")
         container.loadPersistentStores { _, error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")

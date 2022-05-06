@@ -44,13 +44,6 @@ struct HomeListView: View {
             homeViewModel.getNewList()
             homeViewModel.searchWithNewCategory = false
         }
-        .safeAreaInset(edge: .bottom) {
-            Rectangle()
-                .fill(LinearGradient(colors: [.white, .white.opacity(0)],
-                                     startPoint: .bottom,
-                                     endPoint: .top))
-                .frame(height: 90)
-        }
     }
 }
 

@@ -20,7 +20,6 @@ class PersistenceManagerTests: XCTestCase {
     override func setUpWithError() throws {
         testCoreDataStack = TestCoreDataStack()
         sut = PersistenceManager(
-            context: testCoreDataStack.viewContext,
             coreDataStack: testCoreDataStack
         )
         try super.setUpWithError()
