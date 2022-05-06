@@ -23,6 +23,7 @@ struct RecallMainRow: View {
                 }
                 .onTapGesture {
                     recall.togglePersistence()
+                    PersistenceManager.shared.fetchSelected { _ in}
                 }
                 ZStack {
                     Image(systemName: "square.and.arrow.up")

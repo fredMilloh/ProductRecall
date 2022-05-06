@@ -13,7 +13,17 @@ struct SelectedListView: View {
 
     var body: some View {
 
-        RecallList(persistence.recallSelected) {
+        List {
+            ForEach(persistence.recallSelected) { recall in
+                NavigationLink {
+                    DetailMainView(recall: recall)
+                } label: {
+                    RecallMainRow(recall: recall)
+                }
+                .onChange(of: recall.isPersistent, perform: { _ in
+                    persistence.fetchSelected { _ in}
+                })
+            }
             if persistence.recallSelected.isEmpty {
                 HStack {
                     Spacer()
@@ -22,6 +32,7 @@ struct SelectedListView: View {
                 }
             }
         }
+        .listStyle(.inset)
         .navigationTitle("Rappels Retenus")
         .onAppear {
             persistence.fetchSelected { _ in}

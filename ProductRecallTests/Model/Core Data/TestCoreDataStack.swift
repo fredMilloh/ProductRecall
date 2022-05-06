@@ -8,7 +8,7 @@
 import CoreData
 @testable import ProductRecall
 
-class TestCoreDataStack: PersistenceManager {
+class TestCoreDataStack: CoreDataStack {
 
     override init() {
        super.init()
@@ -23,6 +23,6 @@ class TestCoreDataStack: PersistenceManager {
                 print(loadError)
             }
         }
-      container = testPersistentContainer
+      persistentContainer = testPersistentContainer
     }
 }

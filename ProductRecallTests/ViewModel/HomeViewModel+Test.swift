@@ -139,6 +139,7 @@ class HomeViewModelTest: XCTestCase {
         guard let sut = sut else { return }
         let expectation = self.expectation(description: "parsing")
 
+        sut.requestProduct(fromService: clientMock, endpoint: .allProduct)
         requestProduct(fromService: clientMock, endpoint: .allProduct)
         expectation.fulfill()
 
@@ -148,7 +149,7 @@ class HomeViewModelTest: XCTestCase {
     }
 }
 
-extension HomeViewModelTest: HomeProtocol {
+ extension HomeViewModelTest: HomeProtocol {
 
     func requestProduct<Service>(fromService: Service, endpoint: ProductsEndpoint) where Service: ClientProtocol {
         guard let sut = sut else { return }
@@ -182,4 +183,4 @@ extension HomeViewModelTest: HomeProtocol {
         }
         .store(in: &cancellable)
     }
-}
+ }

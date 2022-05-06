@@ -12,19 +12,22 @@ import CoreData
 class PersistenceManagerTests: XCTestCase {
 
     var sut: PersistenceManager?
-    var coreDataStack: TestCoreDataStack?
+    var testCoreDataStack: TestCoreDataStack!
 
     let recallTest = RecallViewModel(recall: example)
     let recallTest2 = RecallViewModel(recall: example2)
 
     override func setUpWithError() throws {
-        coreDataStack = TestCoreDataStack()
-        sut = PersistenceManager()
+        testCoreDataStack = TestCoreDataStack()
+        sut = PersistenceManager(
+            context: testCoreDataStack.viewContext,
+            coreDataStack: testCoreDataStack
+        )
         try super.setUpWithError()
     }
 
     override func tearDownWithError() throws {
-        coreDataStack = nil
+        testCoreDataStack = nil
         sut = nil
         try super.tearDownWithError()
     }
@@ -38,15 +41,11 @@ class PersistenceManagerTests: XCTestCase {
         // assert
             XCTAssertTrue(sut.getIsSelected(from: ref))
         }
-        // reset
-        sut.delete(cardRef: ref) { _ in}
     }
 
     func test_given_there_is_one_persistent_when_it_is_deleted_then_is_not_longer_persistent() {
         // arrange
         guard let sut = sut else { return }
-        sut.save(recall: recallTest) { _ in
-        }
         let ref = recallTest.cardRef
         // act
         sut.delete(cardRef: ref) { _ in}
@@ -57,34 +56,24 @@ class PersistenceManagerTests: XCTestCase {
     func test_given_there_is_no_persistent_when_check_selected_then_array_of_selected_is_empty() {
         // arrange
         guard let sut = sut else { return }
-        var selectedArray = [RecallViewModel]()
         // act
-        sut.fetchSelected { selectedFetched in
-            for selectedFetch in selectedFetched {
-                let converted = sut.convertIntoRecall(selected: selectedFetch)
-                selectedArray.append(converted)
-            }
-        }
+        sut.fetchSelected { _ in}
         // assert
-        XCTAssertTrue(selectedArray.isEmpty)
+        XCTAssertTrue(sut.recallSelected.isEmpty)
     }
 
     func test_given_there_is_one_persistent_when_save_another_one_and_fetch_them_then_array_count_is_two() {
         // arrange
         guard let sut = sut else { return }
         sut.save(recall: recallTest) { _ in}
-        var listOfSelected = [RecallSelected]()
+        sut.fetchSelected { _ in}
+        XCTAssertEqual(sut.recallSelected.count, 1)
         // act
         sut.save(recall: recallTest2) { _ in}
-        sut.fetchSelected { selectedFetched in
-            listOfSelected = selectedFetched
-        }
+        sut.fetchSelected { _ in}
         let numberOfSelectedShouldBe = 2
         // assert
-        XCTAssertEqual(listOfSelected.count, numberOfSelectedShouldBe)
-        // reset
-        sut.delete(cardRef: recallTest.cardRef) { _ in}
-        sut.delete(cardRef: recallTest2.cardRef) { _ in}
+        XCTAssertEqual(sut.recallSelected.count, numberOfSelectedShouldBe)
     }
 
     func test_given_there_is_two_persistent_when_deleted_one_and_fetch_then_array_count_is_one() {
@@ -92,26 +81,22 @@ class PersistenceManagerTests: XCTestCase {
         guard let sut = sut else { return }
         sut.save(recall: recallTest) { _ in}
         sut.save(recall: recallTest2) { _ in}
+        sut.fetchSelected { _ in}
+        XCTAssertEqual(sut.selectedArray.count, 2)
         let ref = recallTest.cardRef
-        var listOfSelected = [RecallSelected]()
         // act
         sut.delete(cardRef: ref) { _ in}
-        sut.fetchSelected { selectedFetched in
-            listOfSelected = selectedFetched
-        }
+        sut.fetchSelected { _ in}
         let numberOfSelectedShouldBe = 1
         // assert
-        XCTAssertEqual(listOfSelected.count, numberOfSelectedShouldBe)
-        // reset
-        sut.delete(cardRef: recallTest2.cardRef) { _ in}
+        XCTAssertEqual(sut.recallSelected.count, numberOfSelectedShouldBe)
     }
 
     func test_given_recall_is_persistent_when_toggle_persistence_then_is_no_longer_persistent() {
         // arrange
         guard let sut = sut else { return }
         recallTest2.isPersistent = true
-        sut.save(recall: recallTest2) { _ in
-        }
+        sut.save(recall: recallTest2) { _ in}
         let ref = recallTest2.cardRef
         // act
         sut.togglePersistence(from: ref, recall: recallTest2)
@@ -129,7 +114,6 @@ class PersistenceManagerTests: XCTestCase {
         // arrange
         XCTAssertTrue(sut.getIsSelected(from: ref))
         // reset
-        sut.delete(cardRef: ref) { _ in
-        }
+        sut.delete(cardRef: ref) { _ in}
     }
 }

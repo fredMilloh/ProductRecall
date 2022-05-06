@@ -9,35 +9,32 @@ import CoreData
 
 class PersistenceManager: ObservableObject {
 
-    static let shared = PersistenceManager()
+    static let shared = PersistenceManager(context: CoreDataStack().viewContext, coreDataStack: CoreDataStack())
 
-    var container: NSPersistentContainer
+    private let context: NSManagedObjectContext
+    private let coreDataStack: CoreDataStack
+
+    init(context: NSManagedObjectContext, coreDataStack: CoreDataStack) {
+        self.context = context
+        self.coreDataStack = coreDataStack
+    }
 
     @Published var recallSelected: [RecallViewModel] = []
     var selectedArray: [RecallSelected] = []
 
-    init() {
-        container = NSPersistentContainer(name: "RecallSelected")
-        container.loadPersistentStores { _, error in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-    }
-
 // MARK: - Fetch data
 
     func fetchSelected(completion: @escaping ([RecallSelected]) -> Void) {
-        recallSelected.removeAll()
-        let request = NSFetchRequest<RecallSelected>(entityName: "RecallSelected")
-        do {
-            selectedArray = try container.viewContext.fetch(request)
-            completion(selectedArray)
-            convertSelectedToRecall()
-        } catch {
-            completion([])
+            recallSelected.removeAll()
+            let request = NSFetchRequest<RecallSelected>(entityName: "RecallSelected")
+            do {
+                selectedArray = try context.fetch(request)    // container.viewContext.fetch(request)
+                completion(selectedArray)
+                convertSelectedToRecall()
+            } catch {
+                completion([])
+            }
         }
-    }
 
     func convertSelectedToRecall() {
         for select in selectedArray {
@@ -49,7 +46,6 @@ class PersistenceManager: ObservableObject {
 	// MARK: - Save data
 
     func save(recall: RecallViewModel, completion: @escaping (Error?) -> Void) {
-        let context = container.viewContext
         let recallSelected = RecallSelected(context: context)
         recallSelected.id = recall.id
         recallSelected.isSelected = recall.isPersistent
@@ -92,7 +88,6 @@ class PersistenceManager: ObservableObject {
  // MARK: - Delete data
 
     func delete(cardRef: String, completion: @escaping (Error?) -> Void) {
-        let context = container.viewContext
         let request: NSFetchRequest<RecallSelected> = RecallSelected.fetchRequest()
         request.predicate = NSPredicate(format: "cardRef == %@", "\(cardRef)")
         do {
@@ -110,7 +105,6 @@ class PersistenceManager: ObservableObject {
 	// MARK: - Search data
 
     func getIsSelected(from cardRef: String) -> Bool {
-        let context = container.viewContext
         let request: NSFetchRequest<RecallSelected> = RecallSelected.fetchRequest()
         request.predicate = NSPredicate(format: "cardRef == %@", "\(cardRef)")
         do {

@@ -32,15 +32,8 @@ class HomeViewModel: ObservableObject {
 
     @Published var recallList: [RecallViewModel] = []
     @Published var endOfList = false
-    @Published var listIsEmpty = false
-    var totalCount = 0 {
-        didSet {
-            if totalCount == 0 {
-                listIsEmpty = true
-                print("listIsEmpty = ", listIsEmpty)
-            }
-        }
-    }
+
+    var totalCount = 0
     var cancellable = Set<AnyCancellable>()
     var pageStatus = PageStatus.ready(nextPaginationOffset: 0)
 
