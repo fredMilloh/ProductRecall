@@ -24,14 +24,11 @@ class HomeViewModel: ObservableObject {
 
     var client = HTTPClient()
 
-//    init(client: HTTPClient) {
-//        self.client = client
-//    }
-
 	// MARK: - Network properties
 
     @Published var recallList: [RecallViewModel] = []
     @Published var endOfList = false
+    @Published var fetchError: RequestError = .unknown
 
     var totalCount = 0
     var cancellable = Set<AnyCancellable>()
@@ -53,6 +50,7 @@ class HomeViewModel: ObservableObject {
 
 	// MARK: - Request Methods
 
+    /// Set the endpoint according to the category and possible search text
     func getEndpoint() -> ProductsEndpoint {
         if searchInAllCategory {
             return searchWithText ?
@@ -85,6 +83,7 @@ class HomeViewModel: ObservableObject {
 }
 
 extension HomeViewModel: HomeProtocol {
+
     func requestProduct<Service>(fromService: Service, endpoint: ProductsEndpoint) where Service: ClientProtocol {
 
         guard case let .ready(offset) = pageStatus else {
@@ -115,13 +114,12 @@ extension HomeViewModel: HomeProtocol {
         .receive(on: DispatchQueue.main)
         .sink { [weak self] response in
             if case let .failure(error) = response {
-                print(error)
+                self?.fetchError = error
                 self?.endOfList = true
                 self?.pageStatus = .done
             }
         } receiveValue: { [weak self] recall in
             guard let self = self else { return }
-            print("totalCount = ", self.totalCount)
             if self.totalCount != 0 { self.pageStatus = .done }
             self.endOfList = self.recallList.count == self.totalCount ? true : false
             self.pageStatus = .ready(nextPaginationOffset: offset + 100)

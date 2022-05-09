@@ -28,7 +28,7 @@ struct SearchBarView: View {
                         if startedEditing {
                             withAnimation { searching = true }
                         }
-                    } onCommit: { // action when user tap return key
+                    } onCommit: { // dismiss view when user tap return key
                         withAnimation {
                             searching = false
                             UIApplication.shared.dismissKeyboard()
@@ -37,13 +37,14 @@ struct SearchBarView: View {
                     }
                     .focused($isTextFieldFocused)
                     .onAppear {
+                        // activate keyboard when view appears
                         withAnimation {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 self.isTextFieldFocused = true
                             }
                         }
                     }
-                    .submitLabel(.search)
+                    .submitLabel(.search) // Set the return keyboard key to search
                     if searching {
                         Button {
                             searchText = ""

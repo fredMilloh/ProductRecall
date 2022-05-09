@@ -17,27 +17,19 @@ class PersistenceManager: ObservableObject {
         self.coreDataStack = coreDataStack
     }
 
+    /// Fetched recall array
     @Published var recallSelected: [RecallViewModel] = []
-    var selectedArray: [RecallSelected] = []
 
 // MARK: - Fetch data
 
-    func fetchSelected(completion: @escaping ([RecallSelected]) -> Void) {
-            recallSelected.removeAll()
-            let request = NSFetchRequest<RecallSelected>(entityName: "RecallSelected")
-            do {
-                selectedArray = try coreDataStack.viewContext.fetch(request)
-                completion(selectedArray)
-                convertSelectedToRecall()
-            } catch {
-                completion([])
-            }
-        }
-
-    func convertSelectedToRecall() {
-        for select in selectedArray {
-            let converted = self.convertIntoRecall(selected: select)
-            recallSelected.append(converted)
+    func fetchSelected() {
+        recallSelected.removeAll()
+        let request = NSFetchRequest<RecallSelected>(entityName: "RecallSelected")
+        do {
+            let fetched = try coreDataStack.viewContext.fetch(request)
+            recallSelected = fetched.map({ convertIntoRecall(selected: $0)})
+        } catch {
+            recallSelected = []
         }
     }
 

@@ -22,9 +22,11 @@ struct HomeListView: View {
                 }
                 .isDetailLink(false)
                 .onAppear(perform: {
+                    // Launch new request for following records
                     homeViewModel.getFollowingRecords(recordItem: recall)
                 })
                 .onAppear {
+                    // Set persistence state
                     recall.isSelected()
                 }
             }
@@ -41,6 +43,7 @@ struct HomeListView: View {
             homeViewModel.requestProduct(fromService: homeViewModel.client, endpoint: homeViewModel.getEndpoint())
         }
         .onChange(of: homeViewModel.selectedCategory.name) { _ in
+            // launch new request with other category
             homeViewModel.getNewList()
             homeViewModel.searchWithNewCategory = false
         }

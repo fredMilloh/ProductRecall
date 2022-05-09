@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PersistenceButton: View {
 
+    /// Button to select or deselect a recall
+
     @ObservedObject var recall: RecallViewModel
     @Binding var isSelected: Bool
 

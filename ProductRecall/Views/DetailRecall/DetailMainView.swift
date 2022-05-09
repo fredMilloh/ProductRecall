@@ -36,7 +36,9 @@ struct DetailMainView: View {
                 }
             }
             .onChange(of: recall.isPersistent, perform: { _ in
-                presentationMode.wrappedValue.dismiss()
+                withAnimation {
+                    presentationMode.wrappedValue.dismiss()
+                }
             })
             .padding(.top, -15)
         }

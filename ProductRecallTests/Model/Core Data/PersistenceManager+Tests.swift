@@ -56,7 +56,7 @@ class PersistenceManagerTests: XCTestCase {
         // arrange
         guard let sut = sut else { return }
         // act
-        sut.fetchSelected { _ in}
+        sut.fetchSelected()
         // assert
         XCTAssertTrue(sut.recallSelected.isEmpty)
     }
@@ -65,11 +65,11 @@ class PersistenceManagerTests: XCTestCase {
         // arrange
         guard let sut = sut else { return }
         sut.save(recall: recallTest) { _ in}
-        sut.fetchSelected { _ in}
+        sut.fetchSelected()
         XCTAssertEqual(sut.recallSelected.count, 1)
         // act
         sut.save(recall: recallTest2) { _ in}
-        sut.fetchSelected { _ in}
+        sut.fetchSelected()
         let numberOfSelectedShouldBe = 2
         // assert
         XCTAssertEqual(sut.recallSelected.count, numberOfSelectedShouldBe)
@@ -80,12 +80,12 @@ class PersistenceManagerTests: XCTestCase {
         guard let sut = sut else { return }
         sut.save(recall: recallTest) { _ in}
         sut.save(recall: recallTest2) { _ in}
-        sut.fetchSelected { _ in}
-        XCTAssertEqual(sut.selectedArray.count, 2)
+        sut.fetchSelected()
+        XCTAssertEqual(sut.recallSelected.count, 2)
         let ref = recallTest.cardRef
         // act
         sut.delete(cardRef: ref) { _ in}
-        sut.fetchSelected { _ in}
+        sut.fetchSelected()
         let numberOfSelectedShouldBe = 1
         // assert
         XCTAssertEqual(sut.recallSelected.count, numberOfSelectedShouldBe)

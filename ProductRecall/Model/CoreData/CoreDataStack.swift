@@ -10,6 +10,7 @@ import CoreData
 
 class CoreDataStack {
 
+    /// Instantiates NSPersistentContainer with the model name
     public lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "RecallSelected")
         container.loadPersistentStores { _, error in
@@ -20,6 +21,7 @@ class CoreDataStack {
         return container
     }()
 
+    /// Get the viewContext property of the NSPersistentContainer instance
     public lazy var viewContext: NSManagedObjectContext = {
         return persistentContainer.viewContext
     }()

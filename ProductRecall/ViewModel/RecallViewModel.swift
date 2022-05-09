@@ -84,6 +84,7 @@ class RecallViewModel: ObservableObject, Identifiable {
 
 	// MARK: - Images properties
 
+    /// Retrieves the first link in the list
     var imagesLink: String {
         guard let links = recall.imagesLink else { return "" }
         let arrayOfLink = links.split(separator: " ").map {

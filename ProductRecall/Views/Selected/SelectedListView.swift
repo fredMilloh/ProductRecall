@@ -21,7 +21,9 @@ struct SelectedListView: View {
                     RecallMainRow(recall: recall)
                 }
                 .onChange(of: recall.isPersistent, perform: { _ in
-                    persistence.fetchSelected { _ in}
+                    withAnimation {
+                        persistence.fetchSelected()
+                    }
                 })
             }
             if persistence.recallSelected.isEmpty {
@@ -35,7 +37,7 @@ struct SelectedListView: View {
         .listStyle(.inset)
         .navigationTitle("Rappels Retenus")
         .onAppear {
-            persistence.fetchSelected { _ in}
+            persistence.fetchSelected()
         }
     }
 }

@@ -24,7 +24,7 @@ struct RecallBaseRow: View {
                     .lineLimit(2)
                 Text("**Risques** : \(recall.risksIncurred)")
                     .font(.caption2)
-                    .lineLimit(3)
+                	.lineLimit(3)
                 Text("**Motif** : \(recall.reasonRecall)")
                     .font(.caption2)
                     .lineLimit(2)

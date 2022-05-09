@@ -8,6 +8,7 @@
 import Foundation
 
 enum ProductsEndpoint: Equatable {
+    /// Case of endpoints with or without category and/or text
     case allProduct
     case whereCategoryIs(category: String)
     case whereItemInAllCategoryIs(item: String)
@@ -25,12 +26,14 @@ extension ProductsEndpoint: Endpoint {
         }
     }
 
+    /// Definition of patameters according to the research case
     func addURLQuery(toUrl url: URL, paginationOffset: Int) -> URL {
         guard var urlComponents = URLComponents(
             url: url,
             resolvingAgainstBaseURL: false
         ) else { return url }
 
+        /// Common array of parameters
         var queryItems = [
             URLQueryItem(name: "order_by", value: "reference_fiche desc"),
             URLQueryItem(name: "limit", value: "100"),
@@ -39,6 +42,7 @@ extension ProductsEndpoint: Endpoint {
 
         var additionalQueryItem: URLQueryItem?
 
+        /// Adding parameters to the array according to the search case
         switch self {
         case .whereCategoryIs(let category):
             additionalQueryItem = URLQueryItem(name: "where", value: "categorie_de_produit = \"\(category)\"")
