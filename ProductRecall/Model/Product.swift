@@ -6,18 +6,19 @@
 //
 
 import Foundation
-
+// swiftlint:disable all
 // MARK: - Product
 struct Product: Codable {
+   let count: Int?
    let records: [Record]
 }
 
 // MARK: - Record
+/// Identifiable protocol - makes it possible to use value types that need to have a stable notion of identity
 struct Record: Codable, Identifiable {
-   let count: Int?
-   let id: String?
+   /// UUID - A universally unique identifier to identify a particular datafield and types
+   var id = UUID().uuidString
    let isPersistent: Bool
-   let timestamp: String?
    let cardRef: String?
    let legalCharacter: String?
    let category: String?
@@ -42,7 +43,6 @@ struct Record: Codable, Identifiable {
    let endDateRecall: String?
    let otherInfos: String?
    let imagesLink: String?
-   let productsLink: String?
    let flyerLink: String?
    let dateRef: String?
 }
@@ -57,7 +57,7 @@ extension Product {
          case record
 
          enum RecordKeys: String, CodingKey {
-            case id, timestamp, fields
+            case fields
 
             enum FieldsKeys: String, CodingKey {
                 case cardRef = "reference_fiche"
@@ -84,7 +84,6 @@ extension Product {
                 case endDateRecall = "date_de_fin_de_la_procedure_de_rappel"
                 case otherInfos = "informations_complementaires_publiques"
                 case imagesLink = "liens_vers_les_images"
-                case productsLink = "lien_vers_la_liste_des_produits"
                 case flyerLink = "lien_vers_affichette_pdf"
                 case dateRef = "date_ref"
             }
@@ -97,25 +96,26 @@ extension Product {
       let container = try decoder.container(keyedBy: MainKeys.self)
 
       /// totalCount
-      let count = try container.decodeIfPresent(Int.self, forKey: .totalCount)
+       self.count = try container.decodeIfPresent(Int.self, forKey: .totalCount)
 
       /// records array
       var recordsArray = try container.nestedUnkeyedContainer(forKey: .records)
 
       var records = [Record]()
-      
+
       while !recordsArray.isAtEnd {
 
          /// container of one element (links + record)
          let elementContainer = try recordsArray.nestedContainer(keyedBy: MainKeys.RecordsKeys.self)
          /// record container
-         let recordContainer = try elementContainer.nestedContainer(keyedBy: MainKeys.RecordsKeys.RecordKeys.self, forKey: .record)
-         
-         let id = try recordContainer.decodeIfPresent(String.self, forKey: .id)
-         let timestamp = try recordContainer.decodeIfPresent(String.self, forKey: .timestamp)
+         let recordContainer = try elementContainer.nestedContainer(
+            keyedBy: MainKeys.RecordsKeys.RecordKeys.self,
+            forKey: .record)
 
          /// fields container
-         let fieldsContainer = try recordContainer.nestedContainer(keyedBy: MainKeys.RecordsKeys.RecordKeys.FieldsKeys.self, forKey: .fields)
+         let fieldsContainer = try recordContainer.nestedContainer(
+            keyedBy: MainKeys.RecordsKeys.RecordKeys.FieldsKeys.self,
+            forKey: .fields)
 
          let cardRef = try fieldsContainer.decodeIfPresent(String.self, forKey: .cardRef)
          let legalCharacter = try fieldsContainer.decodeIfPresent(String.self, forKey: .legalCharacter)
@@ -134,22 +134,20 @@ extension Product {
          let reasonRecall = try fieldsContainer.decodeIfPresent(String.self, forKey: .reasonRecall)
          let risksIncurred = try fieldsContainer.decodeIfPresent(String.self, forKey: .risksIncurred)
          let healthRecommendations = try fieldsContainer.decodeIfPresent(String.self, forKey: .healthRecommendations)
-         let additionalRiskDescription = try fieldsContainer.decodeIfPresent(String.self, forKey: .additionalRiskDescription)
+         let additionalRiskDescription = try fieldsContainer.decodeIfPresent(
+            String.self,
+            forKey: .additionalRiskDescription)
          let actionsToTake = try fieldsContainer.decodeIfPresent(String.self, forKey: .actionsToTake)
          let contactNumber = try fieldsContainer.decodeIfPresent(String.self, forKey: .contactNumber)
          let compensationTerms = try fieldsContainer.decodeIfPresent(String.self, forKey: .compensationTerms)
          let endDateRecall = try fieldsContainer.decodeIfPresent(String.self, forKey: .endDateRecall)
          let otherInfos = try fieldsContainer.decodeIfPresent(String.self, forKey: .otherInfos)
          let imagesLink = try fieldsContainer.decodeIfPresent(String.self, forKey: .imagesLink)
-         let productsLink = try fieldsContainer.decodeIfPresent(String.self, forKey: .productsLink)
          let flyerLink = try fieldsContainer.decodeIfPresent(String.self, forKey: .flyerLink)
          let dateRef = try fieldsContainer.decodeIfPresent(String.self, forKey: .dateRef)
 
           let record = Record(
-            count: count,
-            id: id,
             isPersistent: false,
-            timestamp: timestamp,
             cardRef: cardRef,
             legalCharacter: legalCharacter,
             category: category,
@@ -174,7 +172,6 @@ extension Product {
             endDateRecall: endDateRecall,
             otherInfos: otherInfos,
             imagesLink: imagesLink,
-            productsLink: productsLink,
             flyerLink: flyerLink,
             dateRef: dateRef
           )
@@ -184,3 +181,4 @@ extension Product {
       self.records = records
    }
 }
+// swiftlint:enable all

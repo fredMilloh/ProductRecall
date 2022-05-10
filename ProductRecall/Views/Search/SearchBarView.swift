@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct SearchBarView: View {
-    
+
     @Binding var searching: Bool
     @Binding var searchText: String
     @Environment(\.presentationMode) var presentationMode
     @FocusState var isTextFieldFocused: Bool
-    
+
     var body: some View {
         HStack {
             ZStack {
@@ -28,7 +28,7 @@ struct SearchBarView: View {
                         if startedEditing {
                             withAnimation { searching = true }
                         }
-                    } onCommit: { // action when user tap return key
+                    } onCommit: { // dismiss view when user tap return key
                         withAnimation {
                             searching = false
                             UIApplication.shared.dismissKeyboard()
@@ -36,14 +36,15 @@ struct SearchBarView: View {
                         }
                     }
                     .focused($isTextFieldFocused)
-                    .onAppear() {
+                    .onAppear {
+                        // activate keyboard when view appears
                         withAnimation {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 self.isTextFieldFocused = true
                             }
                         }
                     }
-                    .submitLabel(.search)
+                    .submitLabel(.search) // Set the return keyboard key to search
                     if searching {
                         Button {
                             searchText = ""
@@ -60,7 +61,7 @@ struct SearchBarView: View {
             .frame(height: 40)
             .cornerRadius(13)
             .shadow(color: .gray.opacity(0.5), radius: 5, x: 1, y: 1)
-            
+
             Button {
                 withAnimation {
                     searching = false

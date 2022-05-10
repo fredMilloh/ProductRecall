@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct CategoriesView: View {
-    
+
     @Binding var selectCategory: Category
-    
+
     @State var currentTab = 1
     @Environment(\.colorScheme) var scheme
-    
+
     var body: some View {
         ScrollViewReader { proxy in
-            
+
             ScrollView(.horizontal, showsIndicators: false) {
-                
+
                 HStack(spacing: 10) {
                     ForEach(Category.categories) { category in
-                        
+
                         VStack {
                             Button {
                                 currentTab = category.id
@@ -42,8 +42,8 @@ struct CategoriesView: View {
                                 }
                             }
                             .frame(width: 70, height: 45, alignment: .center)
-                            
-                            /// line indicating the selected category
+
+                            // line indicating the selected category
                             if currentTab == category.id {
                                 Capsule()
                                     .fill(.primary)
@@ -65,18 +65,13 @@ struct CategoriesView: View {
                 currentTab = selectCategory.id
                 proxy.scrollTo(selectCategory.id, anchor: .center)
             }
-            .onChange(of: selectCategory.name) { newCategory in
+            .onChange(of: selectCategory.name) { _ in
                 currentTab = selectCategory.id
                 proxy.scrollTo(selectCategory.id, anchor: .center)
             }
         }
         .padding(.top)
         .background(scheme == .dark ? Color.black : Color.white)
-        .overlay(
-            Divider()
-                .padding(.horizontal, -10)
-            ,alignment: .bottom
-        )
     }
 }
 

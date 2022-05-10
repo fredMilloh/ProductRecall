@@ -9,13 +9,14 @@ import SwiftUI
 
 @main
 struct ProductRecallApp: App {
-    
+
     let persistenceManager = PersistenceManager.shared
-   
+	let coreDataStack = CoreDataStack()
+
     var body: some Scene {
         WindowGroup {
             AppNavigationView()
-                .environment(\.managedObjectContext, persistenceManager.container.viewContext)
+                .environment(\.managedObjectContext, coreDataStack.viewContext)
         }
     }
 }

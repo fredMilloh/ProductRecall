@@ -8,22 +8,36 @@
 import SwiftUI
 
 struct SelectedListView: View {
-    
+
     @ObservedObject var persistence: PersistenceManager
-    
+
     var body: some View {
-        
-        List(persistence.recallSelected) { recall in
-            NavigationLink {
-                DetailMainView(recall: recall)
-            } label: {
-                RecallMainRow(recall: recall)
+
+        List {
+            ForEach(persistence.recallSelected) { recall in
+                NavigationLink {
+                    DetailMainView(recall: recall)
+                } label: {
+                    RecallMainRow(recall: recall)
+                }
+                .onChange(of: recall.isPersistent, perform: { _ in
+                    withAnimation {
+                        persistence.fetchSelected()
+                    }
+                })
             }
-            .navigationTitle("Rappels Retenus")
+            if persistence.recallSelected.isEmpty {
+                HStack {
+                    Spacer()
+                    EmptySelectedMessage()
+                    Spacer()
+                }
+            }
         }
         .listStyle(.inset)
-        .onAppear() {
-            PersistenceManager.shared.fetchSelected()
+        .navigationTitle("Rappels Retenus")
+        .onAppear {
+            persistence.fetchSelected()
         }
     }
 }

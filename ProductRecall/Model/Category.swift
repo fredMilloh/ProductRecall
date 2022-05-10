@@ -8,7 +8,7 @@
 import Foundation
 
 struct Category: Identifiable {
-    
+
     var id: Int
     let name: String
     let description: String
