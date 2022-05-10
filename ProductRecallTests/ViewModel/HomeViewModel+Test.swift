@@ -20,7 +20,7 @@ class HomeViewModelTest: XCTestCase {
     var sut: HomeViewModel?
 
     override func setUpWithError() throws {
-        sut = HomeViewModel()
+        sut = HomeViewModel(client: clientMock)
         try super.setUpWithError()
     }
 
@@ -140,47 +140,9 @@ class HomeViewModelTest: XCTestCase {
         let expectation = self.expectation(description: "parsing")
 
         sut.requestProduct(fromService: clientMock, endpoint: .allProduct)
-        requestProduct(fromService: clientMock, endpoint: .allProduct)
         expectation.fulfill()
 
         waitForExpectations(timeout: 10)
         XCTAssertEqual(sut.pageStatus, .loading(paginationOffset: 0))
-        XCTAssertEqual(recallListMock.count, 0)
     }
 }
-
- extension HomeViewModelTest: HomeProtocol {
-
-    func requestProduct<Service>(fromService: Service, endpoint: ProductsEndpoint) where Service: ClientProtocol {
-        guard let sut = sut else { return }
-        guard case let .ready(offset) = sut.pageStatus else {
-            return
-        }
-        sut.pageStatus = .loading(paginationOffset: offset)
-
-        let jsonMock = clientMock.get(dataType: Product.self,
-                                      endPoint: endpoint,
-                                      paginationOffset: 15)
-        jsonMock.map { product in
-            product.records.map { record in
-                RecallViewModel(recall: record)
-            }
-        }
-        .receive(on: DispatchQueue.main)
-        .sink { mockResponse in
-            if case let .failure(error) = mockResponse {
-                print(error)
-                sut.endOfList = true
-                sut.pageStatus = .done
-            }
-        } receiveValue: { [weak self] recall in
-            guard let self = self else { return }
-            let totalCount = recall.count
-            if totalCount != 0 { sut.pageStatus = .done }
-            sut.endOfList = self.recallListMock.count == totalCount ? true : false
-            sut.pageStatus = .ready(nextPaginationOffset: offset + 100)
-            self.recallListMock.append(contentsOf: recall)
-        }
-        .store(in: &cancellable)
-    }
- }

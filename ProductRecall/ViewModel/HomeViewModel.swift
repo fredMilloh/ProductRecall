@@ -22,7 +22,11 @@ protocol HomeProtocol {
 
 class HomeViewModel: ObservableObject {
 
-    var client = HTTPClient()
+    var client: HTTPClient
+
+    init(client: HTTPClient) {
+        self.client = client
+    }
 
 	// MARK: - Network properties
 

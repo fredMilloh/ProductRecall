@@ -52,6 +52,6 @@ struct HomeSearchButton: View {
 
 struct SearchButton_Previews: PreviewProvider {
     static var previews: some View {
-        HomeSearchButton(homeViewModel: HomeViewModel())
+        HomeSearchButton(homeViewModel: HomeViewModel(client: HTTPClient()))
     }
 }

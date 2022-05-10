@@ -15,10 +15,11 @@ struct EmptyListMessage: View {
             Text("trouvé")
         }
         .font(.title2)
-        .foregroundColor(.white)
+        .foregroundColor(.primary)
         .frame(width: 200, height: 200, alignment: .center)
-        .background(Color.teal)
+        .background(Color("searchGray"))
         .clipShape(Circle())
+        .shadow(color: .gray.opacity(0.5), radius: 5, x: 1, y: 1)
     }
 }
 
