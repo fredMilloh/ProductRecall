@@ -8,25 +8,37 @@
 import SwiftUI
 
 struct DetailCondition: View {
-    
+
     let recall: RecallViewModel
-    
+
     var body: some View {
-        VStack {
-            Text("Conditions Particulières")
-                .font(.title2)
-                .bold()
-                .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 80, alignment: .center)
-                .foregroundColor(Color.primary.opacity(0.5))
-                .background(.orange)
+        let content = recall.actionsToTake + recall.compensationTerms +
+        recall.endDateRecall + recall.otherInfos + recall.legalCharacter
+
+        if !content.isEmpty {
             VStack {
-                DetailContainer(title: "Conduite à tenir", content: recall.actionsToTake)
-                DetailContainer(title: "Modalités de compensation", content: recall.compensationTerms)
-                DetailContainer(title: "Date de fin du rappel", content: recall.endDateRecall)
-                DetailContainer(title: "Informations complèmentaires", content: recall.otherInfos)
-                DetailContainer(title: "Nature juridique du rappel", content: recall.legalCharacter)
+                Divider()
+                Text("Conditions Particulières")
+                    .font(.title)
+                VStack {
+                    DetailContainer(
+                        title: "Conduite à tenir",
+                        content: recall.actionsToTake)
+                    DetailContainer(
+                        title: "Modalités de compensation",
+                        content: recall.compensationTerms)
+                    DetailContainer(
+                        title: "Date de fin du rappel",
+                        content: recall.endDateRecall)
+                    DetailContainer(
+                        title: "Informations complèmentaires",
+                        content: recall.otherInfos)
+                    DetailContainer(
+                        title: "Nature juridique du rappel",
+                        content: recall.legalCharacter)
+                }
+                .padding()
             }
-            .padding()
         }
     }
 }
@@ -36,4 +48,3 @@ struct DetailCondition_Previews: PreviewProvider {
         DetailCondition(recall: RecallViewModel.example).previewLayout(.sizeThatFits)
     }
 }
-

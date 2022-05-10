@@ -10,12 +10,14 @@ import SwiftUI
 import XCTest
 @testable import ProductRecall
 
-class HomeViewModel_Test: XCTestCase {
-    
+class HomeViewModelTest: XCTestCase {
+
+    private var cancellable = Set<AnyCancellable>()
+
     var recallListMock: [RecallViewModel] = []
-    
-    let clientMock = HTTPClientMock()
-    var sut:HomeViewModel?
+
+    var clientMock = HTTPClientMock()
+    var sut: HomeViewModel?
 
     override func setUpWithError() throws {
         sut = HomeViewModel(client: clientMock)
@@ -26,7 +28,7 @@ class HomeViewModel_Test: XCTestCase {
         sut = nil
         try super.tearDownWithError()
     }
-    
+
     func test_given_searchText_when_greater_than_one_then_searchWithText_is_true() {
         // arrange
         let searchtext = "orange"
@@ -35,16 +37,16 @@ class HomeViewModel_Test: XCTestCase {
         // assert
         XCTAssertEqual(sut?.searchWithText, true)
     }
-    
+
     func test_given_category_when_is_all_then_searchInAllCategory_is_true() {
-        //arrange
+        // arrange
         let category = Category(id: 1, name: "Toutes", description: "Toutes catégories", icon: "all")
         // act
         sut?.selectedCategory = category
         // assert
         XCTAssertEqual(sut?.searchInAllCategory, true)
     }
-    
+
     func test_given_searchWithText_when_search_in_allCategory_then_ProductEndpoint_case_is_whereItemInAllCategoryIs() {
         // arrange
         guard let sut = sut else { return }
@@ -52,11 +54,11 @@ class HomeViewModel_Test: XCTestCase {
         sut.searchText = "lemon"
         // act
         let endpoint = sut.getEndpoint()
-        
+
         // assert
         XCTAssertEqual(endpoint, .whereItemInAllCategoryIs(item: "lemon"))
     }
-    
+
     func test_given_searchText_isEmpty_when_search_in_allCategory_then_ProductEnpoint_case_is_allProduct() {
         // arrange
         guard let sut = sut else { return }
@@ -67,8 +69,8 @@ class HomeViewModel_Test: XCTestCase {
         // assert
         XCTAssertEqual(endpoint, .allProduct)
     }
-    
-    func test_given_searchWithText_when_search_in_specific_category_then_ProductEndpoint_case_is_whereItemInOneCategoryIs() {
+
+    func test_given_searchWithText_when_search_in_specific_category_then_ProductEndpoint_case_is_correct() {
         // arrange
         guard let sut = sut else { return }
         sut.selectedCategory = Category(id: 5, name: "Hygiène", description: "Hygiène-Beauté", icon: "hygiene")
@@ -78,7 +80,7 @@ class HomeViewModel_Test: XCTestCase {
         // assert
         XCTAssertEqual(endpoint, .whereItemInOneCategoryIs(item: "savon", category: "Hygiène-Beauté"))
     }
-    
+
     func test_given_searchText_isEmpty_when_search_in_specific_category_then_ProductEndpoint_case_is_whereCategoryIs() {
         // arrange
         guard let sut = sut else { return }
@@ -89,7 +91,7 @@ class HomeViewModel_Test: XCTestCase {
         // assert
         XCTAssertEqual(endpoint, .whereCategoryIs(category: "Alimentation"))
     }
-    
+
     func test_given_empty_recallList_when_requestProduct_then_recallList_is_completed() {
         // arrange
         recallListMock = []
@@ -101,25 +103,25 @@ class HomeViewModel_Test: XCTestCase {
         // assert
         XCTAssertFalse(recallListMock.isEmpty)
     }
-    
+
     func test_given_recallList_with_recall_when_request_with_new_category_then_recallList_becomes_empty() {
         // arrange
         sut?.selectedCategory = Category(id: 7, name: "Sports", description: "Sports-loisirs", icon: "sport")
-        //act
+        // act
         sut?.getNewList()
         guard let newRecallList = sut?.recallList else { return }
         // assert
         XCTAssertTrue(newRecallList.isEmpty)
     }
-    
+
     func test_given_last_recallList_when_user_scrolls_then_shouldLoadMore() {
         // arrange
-        
+
         for record in listMock.records {
             let converted = RecallViewModel(recall: record)
             recallListMock.append(converted)
         }
-        
+
         sut?.recallList = recallListMock
         let middleRecall = recallListMock[1]
         let lastRecall = recallListMock[9]
@@ -132,47 +134,15 @@ class HomeViewModel_Test: XCTestCase {
         XCTAssertFalse(doNotLoadMore)
         XCTAssertTrue(loadMore)
     }
-    
+
     func test_requestProduct_with_mock_data() {
         guard let sut = sut else { return }
         let expectation = self.expectation(description: "parsing")
-        requestProduct(endpoint: .allProduct)
+
+        sut.requestProduct(fromService: clientMock, endpoint: .allProduct)
         expectation.fulfill()
-        
+
         waitForExpectations(timeout: 10)
         XCTAssertEqual(sut.pageStatus, .loading(paginationOffset: 0))
-        
     }
-    
-    
-//    func testParse() {
-//        guard let sut = sut else { return }
-//        let response = Result<Product, RequestError>
-//            .Publisher(Product(records: listMock))
-//            .eraseToAnyPublisher()
-//        let expectation = self.expectation(description: "parsing")
-//        sut.parse(response, with: 100)
-//        expectation.fulfill()
-//        
-//        waitForExpectations(timeout: 10)
-//        XCTAssertEqual(sut.recallList.count, 10)
-//    }
 }
-
-extension HomeViewModel_Test: HomeProtocol {
-    
-    func requestProduct(endpoint: ProductsEndpoint) {
-        
-        guard case let .ready(offset) = sut?.pageStatus else {
-            return
-        }
-        
-        sut?.pageStatus = .loading(paginationOffset: offset)
-        
-        let response = clientMock.get(dataType: Product.self, endPoint: endpoint, paginationOffset: offset)
-        sut?.parse(response, with: 100)
-    }
-    
-    
-}
-

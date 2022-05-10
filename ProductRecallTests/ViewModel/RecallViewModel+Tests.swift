@@ -9,8 +9,8 @@ import XCTest
 @testable import ProductRecall
 import SwiftUI
 
-class RecallViewModel_Tests: XCTestCase {
-    
+class RecallViewModelTests: XCTestCase {
+
     var sut: RecallViewModel?
     let record = example
 
@@ -25,8 +25,6 @@ class RecallViewModel_Tests: XCTestCase {
     }
 
     func test_given_properties_when_display_then_fields_matched() {
-        XCTAssertEqual(sut?.totalCount, record.count)
-        XCTAssertEqual(sut?.timestamp, record.timestamp)
         XCTAssertEqual(sut?.category, record.category)
         XCTAssertEqual(sut?.subCategory, record.subCategory)
         XCTAssertEqual(sut?.brandName, record.brandName)
@@ -50,27 +48,18 @@ class RecallViewModel_Tests: XCTestCase {
         XCTAssertEqual(sut?.otherInfos, record.otherInfos)
         XCTAssertEqual(sut?.legalCharacter, record.legalCharacter)
     }
-    
+
     func test_given_imageUrlString_when_image_called_then_first_image_URL_is_returned() {
         // arrange
-        let urlImageShouldBe = URL(string: "http://rappel.conso.gouv.fr/image/998281b2-5ede-450b-b3a4-666c9903db63.jpg")
+        let urlImageShouldBe = URL(string: "http://rappel.conso.gouv.fr/image/998281b2-5ede.jpg")
         // act & assert
         XCTAssertEqual(sut?.imageUrl, urlImageShouldBe)
     }
-    
-    func test_given_productStringImage_when_image_called_then_image_URL_is_returned() {
-        // arrange
-        let productUrlShouldBe = URL(string: "http://rappel.conso.gouv.fr/document/2f1b8d02-db59-4d04-ae0d-96c6c2f5476f/Interne/ListeDesProduits")
-        // act & assert
-        XCTAssertEqual(sut?.productImageUrl, productUrlShouldBe)
-    }
-    
+
     func test_given_flyerStringImage_when_image_called_then_flyer_URL_is_returned() {
         // arrange
         let flyerUrlShouldBe = URL(string: "http://rappel.conso.gouv.fr/affichettePDF/6347/Interne")
         // act & assert
         XCTAssertEqual(sut?.flyerImageLink, flyerUrlShouldBe)
     }
-
-    
 }

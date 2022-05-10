@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct HomeSearchButton: View {
-    
+
     @ObservedObject var homeViewModel: HomeViewModel
     @State var showView = false
-    
+
     var body: some View {
 
         Button {

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol ClientProtocol {
-    
+
     func get<T: Decodable>(
         dataType: T.Type,
         endPoint: Endpoint,

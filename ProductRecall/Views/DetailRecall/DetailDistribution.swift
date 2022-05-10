@@ -8,23 +8,30 @@
 import SwiftUI
 
 struct DetailDistribution: View {
-    
+
     let recall: RecallViewModel
-    
+
     var body: some View {
-        VStack {
-            Text("Points de vente")
-                .font(.title2)
-                .bold()
-                .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 80, alignment: .center)
-                .foregroundColor(Color.primary.opacity(0.5))
-                .background(.green)
+        let content = recall.distributor + recall.saleGeoArea + recall.contactNumber
+
+        if !content.isEmpty {
             VStack {
-                DetailContainer(title: "Magasin", content: recall.distributor)
-                DetailContainer(title: "Région", content: recall.saleGeoArea)
-                DetailContainer(title: "Contact", content: recall.contactNumber)
+                Divider()
+                Text("Points de vente")
+                    .font(.title)
+                VStack {
+                    DetailContainer(
+                        title: "Magasin",
+                        content: recall.distributor)
+                    DetailContainer(
+                        title: "Région",
+                        content: recall.saleGeoArea)
+                    DetailContainer(
+                        title: "Contact",
+                        content: recall.contactNumber)
+                }
+                .padding()
             }
-            .padding()
         }
     }
 }
@@ -34,4 +41,3 @@ struct DetailDistribution_Previews: PreviewProvider {
         DetailDistribution(recall: RecallViewModel.example).previewLayout(.sizeThatFits)
     }
 }
-

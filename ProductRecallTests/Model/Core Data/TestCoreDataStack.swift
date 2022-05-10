@@ -8,21 +8,21 @@
 import CoreData
 @testable import ProductRecall
 
-class TestCoreDataStack: PersistenceManager {
-    
+class TestCoreDataStack: CoreDataStack {
+
     override init() {
-       super.init()
-    
-    let persistentStoreDescription = NSPersistentStoreDescription()
-    persistentStoreDescription.type = NSInMemoryStoreType
-    
-    let testPersistentContainer = NSPersistentContainer(name: "RecallSelected")
+        super.init()
+
+        let persistentStoreDescription = NSPersistentStoreDescription()
+        persistentStoreDescription.type = NSInMemoryStoreType
+
+        let testPersistentContainer = NSPersistentContainer(name: "RecallSelected")
         testPersistentContainer.persistentStoreDescriptions = [persistentStoreDescription]
         testPersistentContainer.loadPersistentStores { (_, error: Error?) in
-            if let _ = error {
-                fatalError()
+            if let loadError = error {
+                print(loadError)
             }
         }
-      container = testPersistentContainer
+        persistentContainer = testPersistentContainer
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 enum ProductsEndpoint: Equatable {
+    /// Case of endpoints with or without category and/or text
     case allProduct
     case whereCategoryIs(category: String)
     case whereItemInAllCategoryIs(item: String)
@@ -15,42 +16,49 @@ enum ProductsEndpoint: Equatable {
 }
 
 extension ProductsEndpoint: Endpoint {
-    
+
+    /// Construction of the url with parameters according to the Endpoint protocol
+
     var path: String {
         switch self {
         case .allProduct, .whereCategoryIs, .whereItemInAllCategoryIs, .whereItemInOneCategoryIs:
             return "catalog/datasets/rappelconso0/records?"
         }
     }
-    
+
+    /// Definition of patameters according to the research case
     func addURLQuery(toUrl url: URL, paginationOffset: Int) -> URL {
         guard var urlComponents = URLComponents(
             url: url,
             resolvingAgainstBaseURL: false
         ) else { return url }
-        
+
+        /// Common array of parameters
         var queryItems = [
             URLQueryItem(name: "order_by", value: "reference_fiche desc"),
             URLQueryItem(name: "limit", value: "100"),
             URLQueryItem(name: "offset", value: String(paginationOffset))
         ]
-        
+
         var additionalQueryItem: URLQueryItem?
-    
+
+        /// Adding parameters to the array according to the search case
         switch self {
         case .whereCategoryIs(let category):
             additionalQueryItem = URLQueryItem(name: "where", value: "categorie_de_produit = \"\(category)\"")
         case .whereItemInAllCategoryIs(let item):
             additionalQueryItem = URLQueryItem(name: "where", value: "\"\(item)\"")
         case .whereItemInOneCategoryIs(let item, let category):
-            additionalQueryItem = URLQueryItem(name: "where", value: "\"\(item)\" and categorie_de_produit like \"\(category)\"")
+            additionalQueryItem = URLQueryItem(
+                name: "where",
+                value: "\"\(item)\" and categorie_de_produit like \"\(category)\"")
         default: break
         }
-        
+
         if let queryItem = additionalQueryItem {
             queryItems.append(queryItem)
         }
-        
+
         urlComponents.queryItems = queryItems
         guard let updatedUrl = urlComponents.url else { return url }
         return updatedUrl
@@ -63,5 +71,3 @@ extension ProductsEndpoint: Endpoint {
         }
     }
 }
-
-

@@ -8,30 +8,42 @@
 import SwiftUI
 
 struct HomeListView: View {
-    
+
     @ObservedObject var homeViewModel: HomeViewModel
-    
+
     var body: some View {
-        
-        List(homeViewModel.recallList) { recall in
+
+        List {
+            ForEach(homeViewModel.recallList) { recall in
                 NavigationLink {
                     DetailMainView(recall: recall)
                 } label: {
                     RecallMainRow(recall: recall)
                 }
+                .isDetailLink(false)
                 .onAppear(perform: {
+                    // Launch new request for following records
                     homeViewModel.getFollowingRecords(recordItem: recall)
                 })
                 .onAppear {
+                    // Set persistence state
                     recall.isSelected()
                 }
+            }
+            if homeViewModel.recallList.isEmpty {
+                HStack {
+                    Spacer()
+                    EmptyListMessage()
+                    Spacer()
+                }
+            }
         }
         .listStyle(.inset)
-        .padding(.top, -10)
-        .onAppear() {
-            homeViewModel.requestProduct(endpoint: homeViewModel.getEndpoint())
+        .onAppear {
+            homeViewModel.requestProduct(fromService: homeViewModel.client, endpoint: homeViewModel.getEndpoint())
         }
-        .onChange(of: homeViewModel.selectedCategory.name) { newValue in
+        .onChange(of: homeViewModel.selectedCategory.name) { _ in
+            // launch new request with other category
             homeViewModel.getNewList()
             homeViewModel.searchWithNewCategory = false
         }

@@ -17,29 +17,32 @@ enum PageStatus: Equatable {
 }
 
 protocol HomeProtocol {
-    func requestProduct(endpoint: ProductsEndpoint)
+    func requestProduct<Service: ClientProtocol>(fromService: Service, endpoint: ProductsEndpoint)
 }
 
 class HomeViewModel: ObservableObject {
-    
-    @ObservedObject var client: HTTPClient
-    
+
+    var client: HTTPClient
+
     init(client: HTTPClient) {
         self.client = client
     }
 
-// MARK: - Network properties
+	// MARK: - Network properties
 
     @Published var recallList: [RecallViewModel] = []
     @Published var endOfList = false
+    @Published var fetchError: RequestError = .unknown
+
+    var totalCount = 0
     var cancellable = Set<AnyCancellable>()
     var pageStatus = PageStatus.ready(nextPaginationOffset: 0)
-     
-// MARK: - Search properties
-        
+
+	// MARK: - Search properties
+
     @Published var selectedCategory = Category.categories[1]
     @Published var searchText: String = ""
-        
+
     /// Avoids having two network calls, one when the category is selected, another when the display is requested
     var searchWithNewCategory = true
     var searchInAllCategory: Bool {
@@ -48,33 +51,33 @@ class HomeViewModel: ObservableObject {
     var searchWithText: Bool {
         searchText.count > 1
     }
-     
-// MARK: - Request Methods
-    
+
+	// MARK: - Request Methods
+
+    /// Set the endpoint according to the category and possible search text
     func getEndpoint() -> ProductsEndpoint {
         if searchInAllCategory {
             return searchWithText ?
                 .whereItemInAllCategoryIs(item: searchText) :
                 .allProduct
-        } else {
-            return searchWithText ?
-                .whereItemInOneCategoryIs(item: searchText, category: selectedCategory.description) :
-                .whereCategoryIs(category: selectedCategory.description)
         }
+        return searchWithText ?
+            .whereItemInOneCategoryIs(item: searchText, category: selectedCategory.description) :
+            .whereCategoryIs(category: selectedCategory.description)
     }
-	 
+
     func getNewList() {
         pageStatus = PageStatus.ready(nextPaginationOffset: 0)
         recallList.removeAll()
-        requestProduct(endpoint: getEndpoint())
+        requestProduct(fromService: client, endpoint: getEndpoint())
     }
 
     func getFollowingRecords(recordItem: RecallViewModel) {
         if !endOfList, shouldLoadMore(recordItem: recordItem) {
-            requestProduct(endpoint: getEndpoint())
+            requestProduct(fromService: client, endpoint: getEndpoint())
         }
     }
-    
+
     func shouldLoadMore(recordItem: RecallViewModel) -> Bool {
         if let lastId = recallList.last?.id {
             return recordItem.id == lastId
@@ -84,19 +87,28 @@ class HomeViewModel: ObservableObject {
 }
 
 extension HomeViewModel: HomeProtocol {
-    
-    func requestProduct(endpoint: ProductsEndpoint) {
-        
+
+    func requestProduct<Service>(fromService: Service, endpoint: ProductsEndpoint) where Service: ClientProtocol {
+
         guard case let .ready(offset) = pageStatus else {
             return
         }
         /// Pending a result, the status is loading
         pageStatus = .loading(paginationOffset: offset)
-        
+
         let response = client.get(dataType: Product.self, endPoint: endpoint, paginationOffset: offset)
-        self.parse(response, with: offset)
+        response
+            .receive(on: DispatchQueue.main)
+        	.sink { _ in
+        	} receiveValue: { product in
+           	 guard let count = product.count else { return }
+            	self.totalCount = count
+        	}
+        	.store(in: &cancellable)
+
+        	self.parse(response, with: offset)
     }
-    
+
     func parse(_ response: AnyPublisher<Product, RequestError>, with offset: Int) {
         response.map { product in
             product.records.map { record in
@@ -106,15 +118,14 @@ extension HomeViewModel: HomeProtocol {
         .receive(on: DispatchQueue.main)
         .sink { [weak self] response in
             if case let .failure(error) = response {
-                print(error)
+                self?.fetchError = error
                 self?.endOfList = true
                 self?.pageStatus = .done
             }
         } receiveValue: { [weak self] recall in
             guard let self = self else { return }
-            let totalCount = recall.count
-            if totalCount != 0 { self.pageStatus = .done }
-            self.endOfList = self.recallList.count == totalCount ? true : false
+            if self.totalCount != 0 { self.pageStatus = .done }
+            self.endOfList = self.recallList.count == self.totalCount ? true : false
             self.pageStatus = .ready(nextPaginationOffset: offset + 100)
             self.recallList.append(contentsOf: recall)
         }
