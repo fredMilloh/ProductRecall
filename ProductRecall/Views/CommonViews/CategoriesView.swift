@@ -43,7 +43,6 @@ struct CategoriesView: View {
                             }
                             .frame(width: 70, height: 45, alignment: .center)
 
-                            // line indicating the selected category
                             if currentTab == category.id {
                                 Capsule()
                                     .fill(.primary)

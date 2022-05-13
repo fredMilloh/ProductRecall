@@ -22,8 +22,8 @@ struct HomeListView: View {
                 }
                 .isDetailLink(false)
                 .onAppear(perform: {
-                    // Launch new request for following records
                     homeViewModel.getFollowingRecords(recordItem: recall)
+                    // Launch new request for following records
                 })
                 .onAppear {
                     recall.isSelected()
@@ -42,9 +42,9 @@ struct HomeListView: View {
             homeViewModel.requestProduct(fromService: homeViewModel.client, endpoint: homeViewModel.getEndpoint())
         }
         .onChange(of: homeViewModel.selectedCategory.name) { _ in
-            // launch new request with other category
             homeViewModel.getNewList()
             homeViewModel.searchWithNewCategory = false
+            // launch new request with other category
         }
     }
 }

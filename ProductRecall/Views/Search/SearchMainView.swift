@@ -46,10 +46,10 @@ struct SearchMainView: View {
             homeViewModel.searchWithNewCategory = true
         }
         .onSubmit {
-            // action when the user presses the search keyboard button
             homeViewModel.searchWithNewCategory ?
             homeViewModel.getNewList() :
             presentationMode.wrappedValue.dismiss()
+            // action when the user presses the search keyboard button
         }
     }
 }

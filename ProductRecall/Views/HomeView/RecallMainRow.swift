@@ -23,8 +23,8 @@ struct RecallMainRow: View {
                 }
                 .onTapGesture {
                     recall.togglePersistence()
-                    // update selected recall state after toggle
                     PersistenceManager.shared.fetchSelected()
+                    // update selected recall state after toggle
                 }
                 ZStack {
                     Image(systemName: "square.and.arrow.up")
