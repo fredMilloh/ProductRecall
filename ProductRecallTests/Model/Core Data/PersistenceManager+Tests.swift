@@ -12,7 +12,7 @@ import CoreData
 class PersistenceManagerTests: XCTestCase {
 
     var sut: PersistenceManager?
-    var testCoreDataStack: TestCoreDataStack!
+    var testCoreDataStack: TestCoreDataStack?
 
     let recallTest = RecallViewModel(recall: example)
     let recallTest2 = RecallViewModel(recall: example2)
@@ -20,7 +20,7 @@ class PersistenceManagerTests: XCTestCase {
     override func setUpWithError() throws {
         testCoreDataStack = TestCoreDataStack()
         sut = PersistenceManager(
-            coreDataStack: testCoreDataStack
+            coreDataStack: testCoreDataStack ?? TestCoreDataStack()
         )
         try super.setUpWithError()
     }
@@ -40,12 +40,15 @@ class PersistenceManagerTests: XCTestCase {
         // assert
             XCTAssertTrue(sut.getIsSelected(from: ref))
         }
+        // reset
+        sut.delete(cardRef: ref) { _ in}
     }
 
     func test_given_there_is_one_persistent_when_it_is_deleted_then_is_not_longer_persistent() {
         // arrange
         guard let sut = sut else { return }
         let ref = recallTest.cardRef
+        sut.save(recall: recallTest) { _ in}
         // act
         sut.delete(cardRef: ref) { _ in}
         // assert
@@ -73,11 +76,16 @@ class PersistenceManagerTests: XCTestCase {
         let numberOfSelectedShouldBe = 2
         // assert
         XCTAssertEqual(sut.recallSelected.count, numberOfSelectedShouldBe)
+        // reset
+        sut.delete(cardRef: recallTest.cardRef) { _ in}
+        sut.delete(cardRef: recallTest2.cardRef) { _ in}
     }
 
     func test_given_there_is_two_persistent_when_deleted_one_and_fetch_then_array_count_is_one() {
         // arrange
         guard let sut = sut else { return }
+        sut.save(recall: recallTest) { _ in}
+        sut.save(recall: recallTest2) { _ in}
         sut.fetchSelected()
         XCTAssertEqual(sut.recallSelected.count, 2)
         let ref = recallTest.cardRef
@@ -87,6 +95,8 @@ class PersistenceManagerTests: XCTestCase {
         let numberOfSelectedShouldBe = 1
         // assert
         XCTAssertEqual(sut.recallSelected.count, numberOfSelectedShouldBe)
+        // reset
+        sut.delete(cardRef: recallTest2.cardRef) { _ in}
     }
 
     func test_given_recall_is_persistent_when_toggle_persistence_then_is_no_longer_persistent() {

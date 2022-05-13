@@ -24,8 +24,10 @@ struct HomeListView: View {
                 .onAppear(perform: {
                     // Launch new request for following records
                     homeViewModel.getFollowingRecords(recordItem: recall)
-                    recall.isSelected()
                 })
+                .onAppear {
+                    recall.isSelected()
+                }
             }
             if homeViewModel.recallList.isEmpty {
                 HStack {
