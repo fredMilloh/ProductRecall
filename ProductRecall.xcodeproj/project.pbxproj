@@ -236,6 +236,7 @@
 		B606D57C27E8DC7900573498 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B6FD8230282AB7B800999D53 /* Launch Screen.storyboard */,
 				B606D57B27E8DC6400573498 /* Info.plist */,
 				B606D55227E8DAA800573498 /* Assets.xcassets */,
 			);
@@ -285,7 +286,6 @@
 		B606D5A527EA5BB100573498 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B6FD8230282AB7B800999D53 /* Launch Screen.storyboard */,
 				B68B89F728008D1B004EC026 /* AppNavigationView.swift */,
 				B6FD81FA282427DF00999D53 /* CommonViews */,
 				B6FDE31827F74514006DAD86 /* HomeView */,

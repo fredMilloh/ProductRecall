@@ -24,11 +24,8 @@ struct HomeListView: View {
                 .onAppear(perform: {
                     // Launch new request for following records
                     homeViewModel.getFollowingRecords(recordItem: recall)
-                })
-                .onAppear {
-                    // Set persistence state
                     recall.isSelected()
-                }
+                })
             }
             if homeViewModel.recallList.isEmpty {
                 HStack {

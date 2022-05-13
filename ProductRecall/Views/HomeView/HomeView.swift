@@ -12,6 +12,7 @@ struct HomeView: View {
     @StateObject var homeViewModel = HomeViewModel(client: HTTPClient())
 
     var body: some View {
+		// Use ScrollViewReader for better management of constraints than NavigationView
         ScrollViewReader { _ in
             VStack {
                 CategoriesView(
