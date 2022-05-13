@@ -49,7 +49,7 @@ struct HomeListView: View {
 
 struct HomeListView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeListView(homeViewModel: HomeViewModel(client: HTTPClient()))
+        HomeListView(homeViewModel: HomeViewModel())
             .previewLayout(.sizeThatFits)
     }
 }

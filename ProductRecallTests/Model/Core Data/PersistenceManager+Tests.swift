@@ -78,8 +78,6 @@ class PersistenceManagerTests: XCTestCase {
     func test_given_there_is_two_persistent_when_deleted_one_and_fetch_then_array_count_is_one() {
         // arrange
         guard let sut = sut else { return }
-        sut.save(recall: recallTest) { _ in}
-        sut.save(recall: recallTest2) { _ in}
         sut.fetchSelected()
         XCTAssertEqual(sut.recallSelected.count, 2)
         let ref = recallTest.cardRef
@@ -114,5 +112,6 @@ class PersistenceManagerTests: XCTestCase {
         XCTAssertTrue(sut.getIsSelected(from: ref))
         // reset
         sut.delete(cardRef: ref) { _ in}
+        sut.delete(cardRef: recallTest2.cardRef) { _ in}
     }
 }

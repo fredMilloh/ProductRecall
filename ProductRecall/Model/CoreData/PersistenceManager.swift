@@ -39,7 +39,6 @@ class PersistenceManager: ObservableObject {
         let context = coreDataStack.viewContext
         let recallSelected = RecallSelected(context: context)
         recallSelected.id = recall.id
-        recallSelected.isSelected = recall.isPersistent
         recallSelected.cardRef = recall.cardRef
         recallSelected.legalCharacter = recall.legalCharacter
         recallSelected.category = recall.category
@@ -130,7 +129,6 @@ extension PersistenceManager {
 
     func convertIntoRecall(selected: RecallSelected) -> RecallViewModel {
         let record = Record(
-            isPersistent: selected.isSelected,
             cardRef: selected.cardRef,
             legalCharacter: selected.legalCharacter,
             category: selected.category,
@@ -155,8 +153,7 @@ extension PersistenceManager {
             endDateRecall: selected.endDateRecall,
             otherInfos: selected.otherInfos,
             imagesLink: selected.imagesLink,
-            flyerLink: selected.flyerLink,
-            dateRef: ""
+            flyerLink: selected.flyerLink
         )
         return RecallViewModel(recall: record)
     }

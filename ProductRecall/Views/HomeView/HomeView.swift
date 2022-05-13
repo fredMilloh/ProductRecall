@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @StateObject var homeViewModel = HomeViewModel(client: HTTPClient())
+    @StateObject var homeViewModel = HomeViewModel()
 
     var body: some View {
 		// Use ScrollViewReader for better management of constraints than NavigationView

@@ -9,9 +9,9 @@ import Foundation
 import Combine
 @testable import ProductRecall
 
-class HTTPClientMock: HTTPClient {
+class HTTPClientMock: ClientProtocol {
 
-    override func get<T>(
+    func get<T>(
         dataType: T.Type,
         endPoint: Endpoint,
         paginationOffset: Int
