@@ -20,7 +20,7 @@ class HomeViewModelTest: XCTestCase {
     var sut: HomeViewModel?
 
     override func setUpWithError() throws {
-        sut = HomeViewModel(client: clientMock)
+        sut = HomeViewModel()
         try super.setUpWithError()
     }
 

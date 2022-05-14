@@ -46,16 +46,16 @@ struct SearchMainView: View {
             homeViewModel.searchWithNewCategory = true
         }
         .onSubmit {
-            // action when the user presses the search keyboard button
             homeViewModel.searchWithNewCategory ?
             homeViewModel.getNewList() :
             presentationMode.wrappedValue.dismiss()
+            // action when the user presses the search keyboard button
         }
     }
 }
 
 struct TextSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchMainView(homeViewModel: HomeViewModel(client: HTTPClient())).previewLayout(.sizeThatFits)
+        SearchMainView(homeViewModel: HomeViewModel()).previewLayout(.sizeThatFits)
     }
 }

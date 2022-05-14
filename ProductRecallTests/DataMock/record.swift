@@ -9,7 +9,6 @@
 
 let example = Record(
     id: "",
-    isPersistent: false,
     cardRef: "2022-03-0002",
     legalCharacter: "Volontaire (sans arrêté préfectoral)",
     category: "Bébés-Enfants (hors alimentaire)",
@@ -34,13 +33,11 @@ let example = Record(
     endDateRecall: "jeudi 31 mars 2022",
     otherInfos: "Si vous souhaitez garder les produits : \r\nJetez simplement le pare-chocs",
     imagesLink: "http://rappel.conso.gouv.fr/image/998281b2-5ede.jpg",
-    flyerLink: "http://rappel.conso.gouv.fr/affichettePDF/6347/Interne",
-    dateRef: "2022-03"
+    flyerLink: "http://rappel.conso.gouv.fr/affichettePDF/6347/Interne"
 )
 
 let example2 = Record(
     id: "",
-    isPersistent: false,
     cardRef: "2022-04-0023",
     legalCharacter: "Volontaire (sans arrêté préfectoral)",
     category: "Sports-loisirs",
@@ -65,6 +62,5 @@ let example2 = Record(
     endDateRecall: "",
     otherInfos: "",
     imagesLink: "http://rappel.conso.gouv.fr/image/ff0593eb-635b-4863-acbc-755f5eb4c207.jpg",
-    flyerLink: "http://rappel.conso.gouv.fr/affichettePDF/6356/Interne",
-    dateRef: "2022-03"
+    flyerLink: "http://rappel.conso.gouv.fr/affichettePDF/6356/Interne"
 )
