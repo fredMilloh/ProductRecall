@@ -8,16 +8,17 @@
 import UIKit
 import SwiftUI
 
+// Protocol to use UIActivityController in the SwiftUI project
 struct ShareSheet: UIViewControllerRepresentable {
 
     @Binding var activityItems: [Any]
 
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        return controller
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ShareSheet>) -> UIActivityViewController {
+        UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
     }
 
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: UIActivityViewController,
+                                context: UIViewControllerRepresentableContext<ShareSheet>) {
     }
 
     class Coordinator: NSObject, UINavigationControllerDelegate {

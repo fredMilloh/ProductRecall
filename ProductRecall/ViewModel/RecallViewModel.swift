@@ -161,7 +161,6 @@ class RecallViewModel: ObservableObject, Identifiable {
 extension RecallViewModel {
 #if DEBUG
     static let record = Record(
-        isPersistent: false,
         cardRef: "2022-03-0002",
         legalCharacter: "Volontaire (sans arrêté préfectoral)",
         category: "Bébés-Enfants (hors alimentaire)",
@@ -186,8 +185,7 @@ extension RecallViewModel {
         endDateRecall: "jeudi 31 mars 2022",
         otherInfos: "Si vous souhaitez garder les produits : Jetez simplement le pare-chocs.",
         imagesLink: "http://rappel.conso.gouv.fr/image/998281b2-5ede-450b-b3a4-666c9903db63.jpg",
-        flyerLink: "http://rappel.conso.gouv.fr/affichettePDF/6347/Interne",
-        dateRef: "2022-03"
+        flyerLink: "http://rappel.conso.gouv.fr/affichettePDF/6347/Interne"
     )
     static let example = RecallViewModel(recall: RecallViewModel.record)
 #endif

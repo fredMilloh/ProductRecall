@@ -10,9 +10,12 @@ import SwiftUI
 struct EmptyListMessage: View {
     var body: some View {
         VStack {
+            Image(systemName: "rectangle.on.rectangle.slash")
+                .imageScale(.large)
+                .font(.largeTitle)
+                .foregroundColor(.blue)
             Text("Oups...")
-            Text("aucun résultat")
-            Text("trouvé")
+            Text("pas de rappel")
         }
         .font(.title2)
         .foregroundColor(.primary)

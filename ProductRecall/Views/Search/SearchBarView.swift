@@ -37,11 +37,11 @@ struct SearchBarView: View {
                     }
                     .focused($isTextFieldFocused)
                     .onAppear {
-                        // activate keyboard when view appears
                         withAnimation {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 self.isTextFieldFocused = true
                             }
+                            // activate keyboard when view appears
                         }
                     }
                     .submitLabel(.search) // Set the return keyboard key to search

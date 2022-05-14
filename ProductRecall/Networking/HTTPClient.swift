@@ -8,9 +8,22 @@
 import Foundation
 import Combine
 
-class HTTPClient: ClientProtocol {
+class HTTPClient {
 
     var session = URLSession.shared
+
+    /// Decode data
+    func parse<T: Decodable>(_ data: Data) -> AnyPublisher<T, RequestError> {
+        return Just(data)
+            .decode(type: T.self, decoder: JSONDecoder())
+            .mapError { _ in
+                RequestError.decode
+            }
+            .eraseToAnyPublisher()
+    }
+}
+
+extension HTTPClient: ClientProtocol {
 
     func get<T: Decodable>(
         dataType: T.Type,
@@ -32,16 +45,6 @@ class HTTPClient: ClientProtocol {
             }
             .flatMap(maxPublishers: .unlimited) { output in
                 self.parse(output.data)
-            }
-            .eraseToAnyPublisher()
-    }
-
-    /// Decode data
-    func parse<T: Decodable>(_ data: Data) -> AnyPublisher<T, RequestError> {
-        return Just(data)
-            .decode(type: T.self, decoder: JSONDecoder())
-            .mapError { _ in
-                RequestError.decode
             }
             .eraseToAnyPublisher()
     }

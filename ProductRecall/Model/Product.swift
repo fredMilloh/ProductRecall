@@ -18,7 +18,6 @@ struct Product: Codable {
 struct Record: Codable, Identifiable {
    /// UUID - A universally unique identifier to identify a particular datafield and types
    var id = UUID().uuidString
-   let isPersistent: Bool
    let cardRef: String?
    let legalCharacter: String?
    let category: String?
@@ -44,7 +43,6 @@ struct Record: Codable, Identifiable {
    let otherInfos: String?
    let imagesLink: String?
    let flyerLink: String?
-   let dateRef: String?
 }
 
 extension Product {
@@ -85,7 +83,6 @@ extension Product {
                 case otherInfos = "informations_complementaires_publiques"
                 case imagesLink = "liens_vers_les_images"
                 case flyerLink = "lien_vers_affichette_pdf"
-                case dateRef = "date_ref"
             }
          }
       }
@@ -144,10 +141,8 @@ extension Product {
          let otherInfos = try fieldsContainer.decodeIfPresent(String.self, forKey: .otherInfos)
          let imagesLink = try fieldsContainer.decodeIfPresent(String.self, forKey: .imagesLink)
          let flyerLink = try fieldsContainer.decodeIfPresent(String.self, forKey: .flyerLink)
-         let dateRef = try fieldsContainer.decodeIfPresent(String.self, forKey: .dateRef)
 
           let record = Record(
-            isPersistent: false,
             cardRef: cardRef,
             legalCharacter: legalCharacter,
             category: category,
@@ -172,8 +167,7 @@ extension Product {
             endDateRecall: endDateRecall,
             otherInfos: otherInfos,
             imagesLink: imagesLink,
-            flyerLink: flyerLink,
-            dateRef: dateRef
+            flyerLink: flyerLink
           )
 
          records.append(record)
