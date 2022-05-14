@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeSearchButton: View {
 
     @ObservedObject var homeViewModel: HomeViewModel
+    /// Source of truth to show or not the search popup view
     @State var showView = false
 
     var body: some View {

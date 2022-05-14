@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeListView: View {
 
+    /// Subscription to the observable HomeViewModel
     @ObservedObject var homeViewModel: HomeViewModel
 
     var body: some View {
@@ -23,7 +24,7 @@ struct HomeListView: View {
                 .isDetailLink(false)
                 .onAppear(perform: {
                     homeViewModel.getFollowingRecords(recordItem: recall)
-                    // Launch new request for following records
+                    /// Launch new request for following records
                 })
                 .onAppear {
                     recall.isSelected()
@@ -44,7 +45,7 @@ struct HomeListView: View {
         .onChange(of: homeViewModel.selectedCategory.name) { _ in
             homeViewModel.getNewList()
             homeViewModel.searchWithNewCategory = false
-            // launch new request with other category
+            /// launch new request with other category
         }
     }
 }

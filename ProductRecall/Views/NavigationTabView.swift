@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-struct AppNavigationView: View {
+struct NavigationTabView: View {
 
     enum Tab {
-        case rappels
-        case retenus
+        case recalls
+        case retained
     }
 
-    @State private var selection: Tab = .rappels
+    /// Source of truth to selection tab
+    @State private var selection: Tab = .recalls
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
@@ -30,7 +31,7 @@ struct AppNavigationView: View {
                         .foregroundColor(.blue)
                 }
             }
-            .tag(Tab.rappels)
+            .tag(Tab.recalls)
             .navigationViewStyle(StackNavigationViewStyle())
 
             NavigationView {
@@ -43,14 +44,14 @@ struct AppNavigationView: View {
                     Image(systemName: "tray.and.arrow.down")
                 }
             }
-            .tag(Tab.retenus)
+            .tag(Tab.retained)
             .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
 
-struct AppNavigationView_Previews: PreviewProvider {
+struct NavigationTabView_Previews: PreviewProvider {
     static var previews: some View {
-        AppNavigationView()
+        NavigationTabView()
     }
 }

@@ -9,8 +9,11 @@ import SwiftUI
 
 struct RecallMainRow: View {
 
+    /// Subscription to the observable RecallViewModel
     @ObservedObject var recall: RecallViewModel
+    /// Source of truth to share recall
     @State var items: [Any] = []
+    /// Source of truth to show or not the share view
     @State var showView = false
 
     var body: some View {

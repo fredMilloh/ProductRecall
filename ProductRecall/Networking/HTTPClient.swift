@@ -25,6 +25,8 @@ class HTTPClient {
 
 extension HTTPClient: ClientProtocol {
 
+    /// Implementation of the protocol function for network calls
+
     func get<T: Decodable>(
         dataType: T.Type,
         endPoint: Endpoint,

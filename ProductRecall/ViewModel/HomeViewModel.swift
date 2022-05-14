@@ -16,6 +16,7 @@ enum PageStatus: Equatable {
     case done
 }
 
+/// Allows to implement the requestProduct function differently for unit tests
 protocol HomeProtocol {
     func requestProduct<Service: ClientProtocol>(fromService: Service, endpoint: ProductsEndpoint)
 }
