@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchMainView: View {
 
     @ObservedObject var homeViewModel: HomeViewModel
+    /// Source of truth to searching
     @State var searching = false
     @Environment(\.presentationMode) var presentationMode
 

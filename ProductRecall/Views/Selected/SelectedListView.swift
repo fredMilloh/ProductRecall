@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SelectedListView: View {
 
+    /// Subscription to the observable PersistenceManager
     @ObservedObject var persistence: PersistenceManager
 
     var body: some View {

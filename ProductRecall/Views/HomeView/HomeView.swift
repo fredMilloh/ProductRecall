@@ -9,10 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
 
+    /// Source of truth HomeViewModel
     @StateObject var homeViewModel = HomeViewModel()
 
     var body: some View {
-		// Use ScrollViewReader for better management of constraints than NavigationView
+		/// Use ScrollViewReader for better management of constraints than NavigationView
         ScrollViewReader { _ in
             VStack {
                 CategoriesView(

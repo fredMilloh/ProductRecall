@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailMainView: View {
 
+    /// Subscription to the observable RecallViewModel
     @ObservedObject var recall: RecallViewModel
     @Environment(\.presentationMode) var presentationMode
 

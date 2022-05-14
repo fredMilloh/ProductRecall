@@ -15,7 +15,7 @@ struct ProductRecallApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppNavigationView()
+            NavigationTabView()
                 .environment(\.managedObjectContext, coreDataStack.viewContext)
         }
     }

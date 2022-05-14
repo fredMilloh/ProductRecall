@@ -10,6 +10,8 @@ import Combine
 
 protocol ClientProtocol {
 
+    /// Allows to implement the function differently for unit tests
+
     func get<T: Decodable>(
         dataType: T.Type,
         endPoint: Endpoint,

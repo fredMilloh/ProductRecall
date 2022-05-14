@@ -12,6 +12,7 @@ struct SearchBarView: View {
     @Binding var searching: Bool
     @Binding var searchText: String
     @Environment(\.presentationMode) var presentationMode
+    /// Allow to make the textField firstResponder
     @FocusState var isTextFieldFocused: Bool
 
     var body: some View {

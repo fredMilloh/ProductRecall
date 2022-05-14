@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-// Protocol to use UIActivityController in the SwiftUI project
+/// Inherits the protocol UIViewControllerRepresentable to use UIActivityController in the SwiftUI project
 struct ShareSheet: UIViewControllerRepresentable {
 
     @Binding var activityItems: [Any]
