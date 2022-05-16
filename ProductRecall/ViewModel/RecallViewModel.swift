@@ -64,7 +64,7 @@ class RecallViewModel: ObservableObject, Identifiable {
         recall.cardRef.orEmpty
     }
 
-    var id: String {
+    var idRecall: String {
         recall.id
     }
 

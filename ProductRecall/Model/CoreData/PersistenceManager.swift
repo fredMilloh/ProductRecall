@@ -38,7 +38,7 @@ class PersistenceManager: ObservableObject {
     func save(recall: RecallViewModel, completion: @escaping (Error?) -> Void) {
         let context = coreDataStack.viewContext
         let recallSelected = RecallSelected(context: context)
-        recallSelected.id = recall.id
+        recallSelected.id = recall.idRecall
         recallSelected.cardRef = recall.cardRef
         recallSelected.legalCharacter = recall.legalCharacter
         recallSelected.category = recall.category
