@@ -12,7 +12,7 @@ struct CategoriesView: View {
     /// Binding captures the information needed to update the view
     @Binding var selectCategory: Category
 
-    /// Sourec of truth to tab position
+    /// Source of truth to tab position
     @State var currentTab = 1
 
     /// Reference to the display mode of the screen

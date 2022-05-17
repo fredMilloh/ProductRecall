@@ -64,10 +64,6 @@ class RecallViewModel: ObservableObject, Identifiable {
         recall.cardRef.orEmpty
     }
 
-    var idRecall: String {
-        recall.id
-    }
-
 	// MARK: - Distribution properties
 
     var distributor: String {
@@ -189,12 +185,4 @@ extension RecallViewModel {
     )
     static let example = RecallViewModel(recall: RecallViewModel.record)
 #endif
-}
-
-// MARK: - Conform to Equatable
-
-extension RecallViewModel: Equatable {
-    static func == (lhs: RecallViewModel, rhs: RecallViewModel) -> Bool {
-        return lhs.id == rhs.id
-    }
 }
