@@ -19,7 +19,7 @@ struct SearchBarView: View {
         HStack {
             ZStack {
                 Rectangle()
-                    .foregroundColor(Color("searchGray"))
+                    .foregroundColor(Color("searchgray"))
                 HStack {
                     Image(systemName: "magnifyingglass")
                     TextField(
