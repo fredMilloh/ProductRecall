@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// swiftlint:disable all
 struct Category: Identifiable {
 
     var id: Int
@@ -29,3 +29,4 @@ extension Category {
         Category(id: 11, name: "Autres", description: "Autres", icon: "other")
     ]
 }
+// swiftlint:enable all
