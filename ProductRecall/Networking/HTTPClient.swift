@@ -10,7 +10,7 @@ import Combine
 
 class HTTPClient {
 
-    var session = URLSession.shared
+    var session = URLSession(configuration: .default)
 
     /// Decode data
     func parse<T: Decodable>(_ data: Data) -> AnyPublisher<T, RequestError> {
