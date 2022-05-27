@@ -16,7 +16,7 @@ struct SearchElementsView: View {
             Text("Renseignez votre mot-clé puis sélectionnez une catégorie pour affiner votre recherche")
                 .foregroundColor(.primary)
                 .font(.title3)
-                .minimumScaleFactor(0.5)
+                .minimumScaleFactor(0.7)
                 .multilineTextAlignment(.center)
                 .padding()
 

@@ -59,7 +59,7 @@ struct CategoriesView: View {
                                     .padding(.horizontal)
                             }
                         }
-                        .frame(width: 80, height: 60)
+                        .frame(width: 80, height: 75)
                     }
                 }
                 .padding(.horizontal, 30)
