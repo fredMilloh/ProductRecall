@@ -62,15 +62,14 @@ https://user-images.githubusercontent.com/47221695/184690690-5b605fb0-6b7f-477a-
 
 ## How To Use
 
-From your terminal :
  - Fork the project
+
+From your terminal :
+ 
  - Create a branch and work on it
  - Publish the branch on its fork
  - Create the pull-request
-
-```
-$ git clone https://github.com/fredMilloh/ProductRecall
-```
+ 
 
 **API**
 
