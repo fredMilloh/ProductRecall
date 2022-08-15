@@ -14,40 +14,9 @@
 
 ## Introduction
 
-Application permettant de partager des rappels de produits de consommation non conformes. L'utilisateur peut retenir, dans une liste persitante, les rappels qu'il veut consulter ou partager ultérieurement. 
-
-
-English version :
-
 Application for sharing reminders of non-compliant consumer products. The user can select, in a persistent list, the reminders he wants to consult or share later.
 
 ## Features
-
-Page d'accueil :
- - Propose la liste des derniers rappels dans la catégorie "Alimentation".
- - L'utilisateur peut changer de catégorie, la liste est alors mise à jour.
- - Un bouton en bas de page permet une recherche plus ciblée.
- - Chaque cellule de rappel comprend un bouton de partage, et un autre de sauvegarde.
-
-La recherche :
- - Le bouton recherche ouvre une page en popup.
- - L'utilisateur peut renseigné un produit, une marque, un mot-clé.
- - Puis choisir une catégorie.
- - Quand sa requête est complétée, l'utilisateur appui sur le bouton "recherche" du clavier.
- - La popup disparaît pour permettre l'affichage de la liste des résultats.
- - Le bouton recherche indique le mot-clé de la recherche.
- - Une croix permet de réinitialiser la recherche.
- - La liste affiche alors les derniers rappels dans la catégorie en cours.
-
-La sauvegarde des rappels
- - Chaque cellule de rappel propose un bouton de partage.
- - Quand l'utilisateur appui dessus, une popup d'activité apparaît.
- - Le rappel peut être partagé avec les applications installées sur le smartphone de l'utilisateur.
- - Le rappel est sous forme de fiche au format PDF.
- - Dans la vue détaillée du rappel, un bouton permet de voir cette fiche avant de la partager.
-
-
-English version :
 
 Home page:
  - Provides a list of the latest reminders in the "Food" category.
@@ -93,12 +62,6 @@ Saving reminders
 
 ## How To Use
 
-Depuis votre terminal : 
- - Forker le projet
- - Créer une branche et travailler dessus
- - Publier la branche sur son fork
- - Créer la pull-request
-
 From your terminal :
  - Fork the project
  - Create a branch and work on it
@@ -111,11 +74,9 @@ $ git clone https://github.com/fredMilloh/ProductRecall
 
 **API**
 
-Cette application utilise une API en data open source : 
-
 This application uses an open source data API :
 
-Documentation Rappel Conso : https://api.gouv.fr/documentation/api-rappel-conso
+Documentation *API Rappel Conso* : https://api.gouv.fr/documentation/api-rappel-conso
 
 
 ## License
@@ -124,7 +85,4 @@ Documentation Rappel Conso : https://api.gouv.fr/documentation/api-rappel-conso
 
 ----------------------------------------------------------------------------------------
 
-Cette application a été crée par l'étudiant.
-
 application coded from scratch.
-
