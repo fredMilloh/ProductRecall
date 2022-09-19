@@ -22,7 +22,6 @@ struct ImageAsync: View {
         }
         .background(Color("lightGray"))
         .cornerRadius(10)
-        .shadow(color: .gray, radius: 2, x: 1, y: 1)
     }
 }
 

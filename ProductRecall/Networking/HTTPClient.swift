@@ -8,9 +8,13 @@
 import Foundation
 import Combine
 
-class HTTPClient {
+class HTTPClient<T: URLSessionProtocol> {
 
-    var session = URLSession(configuration: .default)
+    let session: T
+
+    required init(session: T) {
+        self.session = session
+    }
 
     /// Decode data
     func parse<T: Decodable>(_ data: Data) -> AnyPublisher<T, RequestError> {
@@ -23,10 +27,9 @@ class HTTPClient {
     }
 }
 
-extension HTTPClient: ClientProtocol {
+extension HTTPClient: HTTPClientProtocol {
 
     /// Implementation of the protocol function for network calls
-
     func get<T: Decodable>(
         dataType: T.Type,
         endPoint: Endpoint,
@@ -35,13 +38,12 @@ extension HTTPClient: ClientProtocol {
 
         /// Constitution of the URLRequest according to the Endpoint protocol
         guard let url = URL(string: endPoint.baseURL + endPoint.path) else {
-            let urlError = RequestError.invalidURL
-            return Fail(error: urlError).eraseToAnyPublisher()
+            return Fail(outputType: T.self, failure: RequestError.invalidURL).eraseToAnyPublisher()
         }
         var request = URLRequest(url: endPoint.addURLQuery(toUrl: url, paginationOffset: paginationOffset))
         request.httpMethod = endPoint.method.rawValue
 
-        return session.dataTaskPublisher(for: request)
+        return session.response(for: request)
             .mapError { _ in
                 RequestError.unauthorized
             }

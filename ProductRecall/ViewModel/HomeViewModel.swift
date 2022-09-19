@@ -18,12 +18,12 @@ enum PageStatus: Equatable {
 
 /// Allows to implement the requestProduct function differently for unit tests
 protocol HomeProtocol {
-    func requestProduct<Service: ClientProtocol>(fromService: Service, endpoint: ProductsEndpoint)
+    func requestProduct<Service: HTTPClientProtocol>(fromService: Service, endpoint: ProductsEndpoint)
 }
 
 class HomeViewModel: ObservableObject {
 
-    var client = HTTPClient()
+    var client = HTTPClient(session: URLSession.shared)
 
 	// MARK: - Network properties
 
@@ -85,7 +85,7 @@ class HomeViewModel: ObservableObject {
 
 extension HomeViewModel: HomeProtocol {
 
-    func requestProduct<Service>(fromService: Service, endpoint: ProductsEndpoint) where Service: ClientProtocol {
+    func requestProduct<Service>(fromService: Service, endpoint: ProductsEndpoint) where Service: HTTPClientProtocol {
 
         guard case let .ready(offset) = pageStatus else {
             return

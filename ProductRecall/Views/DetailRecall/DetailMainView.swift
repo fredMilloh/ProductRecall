@@ -33,7 +33,11 @@ struct DetailMainView: View {
         }
         .toolbar {
             ToolbarItem {
-                PersistenceButton(recall: recall, isSelected: $recall.isPersistent)
+                Image(systemName: recall.isPersistent ? "flag.fill" : "flag")
+                    .foregroundColor(.pink)
+                    .onTapGesture {
+                        recall.togglePersistence()
+                    }
             }
         }
         .onChange(of: recall.isPersistent, perform: { _ in

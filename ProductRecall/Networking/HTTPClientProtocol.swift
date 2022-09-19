@@ -8,10 +8,14 @@
 import Foundation
 import Combine
 
-protocol ClientProtocol {
+protocol HTTPClientProtocol {
+
+    associatedtype Atype
+
+    var session: Atype { get }
+    init(session: Atype)
 
     /// Allows to implement the function differently for unit tests
-
     func get<T: Decodable>(
         dataType: T.Type,
         endPoint: Endpoint,

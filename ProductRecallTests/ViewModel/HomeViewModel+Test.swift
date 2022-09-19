@@ -15,8 +15,6 @@ class HomeViewModelTest: XCTestCase {
     private var cancellable = Set<AnyCancellable>()
 
     var recallListMock: [RecallViewModel] = []
-
-    var clientMock = HTTPClientMock()
     var sut: HomeViewModel?
 
     override func setUpWithError() throws {
@@ -97,9 +95,9 @@ class HomeViewModelTest: XCTestCase {
         recallListMock = []
         // act
         for record in listMock.records {
-        	let converted = RecallViewModel(recall: record)
-        	recallListMock.append(converted)
-    	}
+            let converted = RecallViewModel(recall: record)
+            recallListMock.append(converted)
+        }
         // assert
         XCTAssertFalse(recallListMock.isEmpty)
     }
@@ -116,7 +114,6 @@ class HomeViewModelTest: XCTestCase {
 
     func test_given_last_recallList_when_user_scrolls_then_shouldLoadMore() {
         // arrange
-
         for record in listMock.records {
             let converted = RecallViewModel(recall: record)
             recallListMock.append(converted)
@@ -135,14 +132,30 @@ class HomeViewModelTest: XCTestCase {
         XCTAssertTrue(loadMore)
     }
 
-    func test_requestProduct_with_mock_data() {
+    func test_parse_response_with_mock_data() {
         guard let sut = sut else { return }
-        let expectation = self.expectation(description: "parsing")
+        let urlSession = URLSessionMock()
+        urlSession.jsonName = "product.json"
+        let httpClient = HTTPClientMock(session: urlSession)
 
-        sut.requestProduct(fromService: clientMock, endpoint: .allProduct)
-        expectation.fulfill()
+        let response = httpClient.get(dataType: Product.self, endPoint: ProductEndpointMock.test, paginationOffset: 10)
 
-        waitForExpectations(timeout: 10)
-        XCTAssertEqual(sut.pageStatus, .loading(paginationOffset: 0))
+        response
+            .sink(receiveCompletion: {
+                print($0)
+                switch $0 {
+                case .finished: break
+                case .failure(let error):
+                    XCTAssertEqual( (error as NSError).code, 0 )
+                }
+            }, receiveValue: { product in
+                guard let count = product.count else { return }
+                sut.totalCount = count
+                sut.parse(response, with: 10)
+            })
+            .store(in: &cancellable)
+
+        XCTAssertEqual(httpClient.getCallCount, 1)
+        XCTAssertEqual(sut.pageStatus, .ready(nextPaginationOffset: 0))
     }
 }

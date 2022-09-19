@@ -12,12 +12,14 @@ struct LinkView: View {
     let url: URL
 
     var body: some View {
-        HStack {
-            Image(systemName: "square.and.arrow.up")
-                .foregroundColor(.blue)
-            Link("Partager le PDF du rappel", destination: url)
+            Link(destination: url) {
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Voir et partager en PDF")
+                    Image(systemName: "square.and.arrow.up")
+                        .foregroundColor(.blue)
+                }
+            }
         }
-    }
 }
 
 struct LinkView_Previews: PreviewProvider {

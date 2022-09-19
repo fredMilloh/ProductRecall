@@ -19,18 +19,14 @@ struct CategoriesView: View {
     @Environment(\.colorScheme) var scheme
 
     var body: some View {
-        ScrollViewReader { proxy in
+            ScrollViewReader { proxy in
 
-            ScrollView(.horizontal, showsIndicators: false) {
+                ScrollView(.horizontal, showsIndicators: false) {
 
-                HStack(spacing: 10) {
-                    ForEach(Category.categories) { category in
+                    HStack(spacing: 10) {
+                        ForEach(Category.categories) { category in
 
-                        VStack {
-                            Button {
-                                currentTab = category.id
-                                selectCategory = category
-                            } label: {
+                            VStack {
                                 VStack {
                                     Image(category.icon)
                                         .resizable()
@@ -44,38 +40,41 @@ struct CategoriesView: View {
                                         .font(.caption2)
                                         .allowsTightening(true)
                                 }
-                            }
-                            .frame(width: 70, height: 45, alignment: .center)
+                                .onTapGesture {
+                                    currentTab = category.id
+                                    selectCategory = category
+                                }
+                                .frame(width: 70, height: 45, alignment: .center)
 
-                            if currentTab == category.id {
-                                Capsule()
-                                    .fill(.primary)
-                                    .frame(height: 3)
-                                    .padding(.horizontal, 5)
-                            } else {
-                                Capsule()
-                                    .fill(.clear)
-                                    .frame(height: 3)
-                                    .padding(.horizontal)
+                                if currentTab == category.id {
+                                    Capsule()
+                                        .fill(.primary)
+                                        .frame(height: 3)
+                                        .padding(.horizontal, 5)
+                                } else {
+                                    Capsule()
+                                        .fill(.clear)
+                                        .frame(height: 3)
+                                        .padding(.horizontal)
+                                }
                             }
+                            .frame(width: 80, height: 75)
                         }
-                        .frame(width: 80, height: 75)
                     }
+                    .padding(.horizontal, 30)
                 }
-                .padding(.horizontal, 30)
+                .onAppear {
+                    currentTab = selectCategory.id
+                    proxy.scrollTo(selectCategory.id, anchor: .center)
+                }
+                .onChange(of: selectCategory.name) { _ in
+                    currentTab = selectCategory.id
+                    proxy.scrollTo(selectCategory.id, anchor: .center)
+                }
             }
-            .onAppear {
-                currentTab = selectCategory.id
-                proxy.scrollTo(selectCategory.id, anchor: .center)
-            }
-            .onChange(of: selectCategory.name) { _ in
-                currentTab = selectCategory.id
-                proxy.scrollTo(selectCategory.id, anchor: .center)
-            }
+            .padding(.top)
+            .background(scheme == .dark ? Color.black : Color.white)
         }
-        .padding(.top)
-        .background(scheme == .dark ? Color.black : Color.white)
-    }
 }
 
 struct CategoriesView_Previews: PreviewProvider {
