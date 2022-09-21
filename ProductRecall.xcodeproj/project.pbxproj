@@ -183,6 +183,69 @@
 			path = "Networking+Test";
 			sourceTree = "<group>";
 		};
+		76CA3D8028DB751E00D6EF64 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				B68B89F728008D1B004EC026 /* NavigationTabView.swift */,
+				76CA3D8128DB754000D6EF64 /* HomeList */,
+				B66C182C2809F318004E7651 /* Selected */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		76CA3D8128DB754000D6EF64 /* HomeList */ = {
+			isa = PBXGroup;
+			children = (
+				B606D5BB27EB68CD00573498 /* HomeViewModel.swift */,
+				B606D59727E9142300573498 /* HomeView.swift */,
+				76CA3D8228DB757500D6EF64 /* Views */,
+				B6FDE31727F744D2006DAD86 /* DetailRecall */,
+				B68B8A0A2805BB09004EC026 /* Search */,
+			);
+			path = HomeList;
+			sourceTree = "<group>";
+		};
+		76CA3D8228DB757500D6EF64 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B6FDE31927F7452B006DAD86 /* HomeListView.swift */,
+				B68B8A082805BA02004EC026 /* HomeSearchButton.swift */,
+				B606D59527E90A3000573498 /* RecallMainRow.swift */,
+				B66C182A2809DBFE004E7651 /* RecallBaseRow.swift */,
+				B6FD81FB28243E0700999D53 /* EmptyListMessage.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		76CA3D8328DB75CA00D6EF64 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B606D5A827EA5C3500573498 /* DetailDescription.swift */,
+				B606D5AA27EA5C9F00573498 /* DetailDistribution.swift */,
+				B606D5AC27EA5CE700573498 /* DetailRecall.swift */,
+				B606D5AE27EA5D2800573498 /* DetailCondition.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		76CA3D8428DB75FC00D6EF64 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B68B8A0D2805BB64004EC026 /* SearchElementsView.swift */,
+				B68B8A0B2805BB2C004EC026 /* SearchBarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		76CA3D8528DB760F00D6EF64 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B66C182D2809F365004E7651 /* SelectedListView.swift */,
+				B66C1842280D8F51004E7651 /* EmptySelectedMessage.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B606D54227E8DAA500573498 = {
 			isa = PBXGroup;
 			children = (
@@ -211,8 +274,7 @@
 				B606D5C127ECF0C500573498 /* Utils */,
 				B606D57D27E8DE6C00573498 /* Networking */,
 				B606D57827E8DC0400573498 /* Model */,
-				B606D5A527EA5BB100573498 /* Views */,
-				B606D58727E8E1D200573498 /* ViewModel */,
+				76CA3D8028DB751E00D6EF64 /* Features */,
 				B606D57C27E8DC7900573498 /* Resources */,
 				B606D55427E8DAA800573498 /* Preview Content */,
 			);
@@ -233,7 +295,7 @@
 				B606D58D27E8E3BE00573498 /* DataMock */,
 				76CA3D7328D8E4CF00D6EF64 /* Networking+Test */,
 				B64955CD2812D5DA0057CD99 /* Model */,
-				B606D5B627EB67FA00573498 /* ViewModel */,
+				B606D5B627EB67FA00573498 /* Features */,
 			);
 			path = ProductRecallTests;
 			sourceTree = "<group>";
@@ -260,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				B6FD8230282AB7B800999D53 /* Launch Screen.storyboard */,
+				B66C183B280C819A004E7651 /* RecallSelected.xcdatamodeld */,
 				B606D57B27E8DC6400573498 /* Info.plist */,
 				B606D55227E8DAA800573498 /* Assets.xcassets */,
 			);
@@ -288,15 +351,6 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		B606D58727E8E1D200573498 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				B606D5BB27EB68CD00573498 /* HomeViewModel.swift */,
-				B606D59027E8E46B00573498 /* RecallViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		B606D58D27E8E3BE00573498 /* DataMock */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,40 +362,20 @@
 			path = DataMock;
 			sourceTree = "<group>";
 		};
-		B606D5A527EA5BB100573498 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B68B89F728008D1B004EC026 /* NavigationTabView.swift */,
-				B6FD81FA282427DF00999D53 /* CommonViews */,
-				B6FDE31827F74514006DAD86 /* HomeView */,
-				B6FDE31727F744D2006DAD86 /* DetailRecall */,
-				B68B8A0A2805BB09004EC026 /* Search */,
-				B66C182C2809F318004E7651 /* Selected */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		B606D5B027EA5D7000573498 /* CommonView */ = {
-			isa = PBXGroup;
-			children = (
-				B606D5A627EA5BD200573498 /* DetailContainer.swift */,
-			);
-			path = CommonView;
-			sourceTree = "<group>";
-		};
-		B606D5B627EB67FA00573498 /* ViewModel */ = {
+		B606D5B627EB67FA00573498 /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				B606D5B927EB687900573498 /* HomeViewModel+Test.swift */,
 				B606D58E27E8E3F600573498 /* RecallViewModel+Tests.swift */,
 			);
-			path = ViewModel;
+			path = Features;
 			sourceTree = "<group>";
 		};
 		B606D5C127ECF0C500573498 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				B606D5C227ECF0E600573498 /* Extension */,
+				B6FD81FA282427DF00999D53 /* CommonViews */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -377,7 +411,6 @@
 			children = (
 				B6FD81FD28244ED400999D53 /* CoreDataStack.swift */,
 				B66C181D280978CC004E7651 /* PersistenceManager.swift */,
-				B66C183B280C819A004E7651 /* RecallSelected.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -386,8 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				B66C18282809C41C004E7651 /* SelectedMainView.swift */,
-				B66C182D2809F365004E7651 /* SelectedListView.swift */,
-				B66C1842280D8F51004E7651 /* EmptySelectedMessage.swift */,
+				76CA3D8528DB760F00D6EF64 /* Views */,
 			);
 			path = Selected;
 			sourceTree = "<group>";
@@ -396,8 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				B68B8A0F2805BB8F004EC026 /* SearchMainView.swift */,
-				B68B8A0D2805BB64004EC026 /* SearchElementsView.swift */,
-				B68B8A0B2805BB2C004EC026 /* SearchBarView.swift */,
+				76CA3D8428DB75FC00D6EF64 /* Views */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -409,6 +440,7 @@
 				B6BF966627FDDDCE0025D453 /* CategoriesView.swift */,
 				B6D2187F281AFB5C0043A501 /* ImageAsync.swift */,
 				B6D21881281B0F150043A501 /* LinkView.swift */,
+				B606D5A627EA5BD200573498 /* DetailContainer.swift */,
 				B64955C9281288520057CD99 /* ShareSheet.swift */,
 			);
 			path = CommonViews;
@@ -417,27 +449,11 @@
 		B6FDE31727F744D2006DAD86 /* DetailRecall */ = {
 			isa = PBXGroup;
 			children = (
+				B606D59027E8E46B00573498 /* RecallViewModel.swift */,
 				B606D5B227EA5DFA00573498 /* DetailMainView.swift */,
-				B606D5A827EA5C3500573498 /* DetailDescription.swift */,
-				B606D5AA27EA5C9F00573498 /* DetailDistribution.swift */,
-				B606D5AC27EA5CE700573498 /* DetailRecall.swift */,
-				B606D5AE27EA5D2800573498 /* DetailCondition.swift */,
-				B606D5B027EA5D7000573498 /* CommonView */,
+				76CA3D8328DB75CA00D6EF64 /* Views */,
 			);
 			path = DetailRecall;
-			sourceTree = "<group>";
-		};
-		B6FDE31827F74514006DAD86 /* HomeView */ = {
-			isa = PBXGroup;
-			children = (
-				B606D59727E9142300573498 /* HomeView.swift */,
-				B6FDE31927F7452B006DAD86 /* HomeListView.swift */,
-				B68B8A082805BA02004EC026 /* HomeSearchButton.swift */,
-				B606D59527E90A3000573498 /* RecallMainRow.swift */,
-				B66C182A2809DBFE004E7651 /* RecallBaseRow.swift */,
-				B6FD81FB28243E0700999D53 /* EmptyListMessage.swift */,
-			);
-			path = HomeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
