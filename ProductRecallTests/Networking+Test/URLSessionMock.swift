@@ -30,11 +30,6 @@ class URLSessionMock: URLSessionProtocol {
             .setFailureType(to: URLError.self)
             .eraseToAnyPublisher()
     }
-
-    typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
-    // data and error can be set to provide data or an error
-    var data: Data?
-    var error: Error?
 }
 
 class URLSessionDataTaskMock: URLSessionDataTaskProtocol {

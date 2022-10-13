@@ -16,6 +16,8 @@ class HTTPClient<T: URLSessionProtocol> {
         self.session = session
     }
 
+    var getCallCount = 0
+
     /// Decode data
     func parse<T: Decodable>(_ data: Data) -> AnyPublisher<T, RequestError> {
         return Just(data)
@@ -35,6 +37,8 @@ extension HTTPClient: HTTPClientProtocol {
         endPoint: Endpoint,
         paginationOffset: Int
     ) -> AnyPublisher<T, RequestError> {
+
+        getCallCount += 1
 
         /// Constitution of the URLRequest according to the Endpoint protocol
         guard let url = URL(string: endPoint.baseURL + endPoint.path) else {

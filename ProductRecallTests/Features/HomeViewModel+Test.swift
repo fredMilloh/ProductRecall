@@ -136,7 +136,7 @@ class HomeViewModelTest: XCTestCase {
         guard let sut = sut else { return }
         let urlSession = URLSessionMock()
         urlSession.jsonName = "product.json"
-        let httpClient = HTTPClientMock(session: urlSession)
+        let httpClient = HTTPClient(session: urlSession)
 
         let response = httpClient.get(dataType: Product.self, endPoint: ProductEndpointMock.test, paginationOffset: 10)
 

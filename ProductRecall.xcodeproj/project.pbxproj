@@ -42,7 +42,6 @@
 		B64955CC2812A1850057CD99 /* listMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64955CB2812A1850057CD99 /* listMock.swift */; };
 		B64955D02812D61B0057CD99 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64955CF2812D61B0057CD99 /* TestCoreDataStack.swift */; };
 		B64955D22812DCBB0057CD99 /* PersistenceManager+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64955D12812DCBB0057CD99 /* PersistenceManager+Tests.swift */; };
-		B649561A2818521A0057CD99 /* HTTPClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64956192818521A0057CD99 /* HTTPClientMock.swift */; };
 		B66C181E280978CC004E7651 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C181D280978CC004E7651 /* PersistenceManager.swift */; };
 		B66C182528099B14004E7651 /* PersistenceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C182428099B14004E7651 /* PersistenceButton.swift */; };
 		B66C18292809C41C004E7651 /* SelectedMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66C18282809C41C004E7651 /* SelectedMainView.swift */; };
@@ -123,7 +122,6 @@
 		B64955CB2812A1850057CD99 /* listMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listMock.swift; sourceTree = "<group>"; };
 		B64955CF2812D61B0057CD99 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		B64955D12812DCBB0057CD99 /* PersistenceManager+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceManager+Tests.swift"; sourceTree = "<group>"; };
-		B64956192818521A0057CD99 /* HTTPClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientMock.swift; sourceTree = "<group>"; };
 		B66C181D280978CC004E7651 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		B66C182428099B14004E7651 /* PersistenceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceButton.swift; sourceTree = "<group>"; };
 		B66C18282809C41C004E7651 /* SelectedMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMainView.swift; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 		76CA3D7328D8E4CF00D6EF64 /* Networking+Test */ = {
 			isa = PBXGroup;
 			children = (
-				B64956192818521A0057CD99 /* HTTPClientMock.swift */,
 				76CA3D7128D8E4B200D6EF64 /* ProductEndpointMock.swift */,
 				76CA3D7428D8E59200D6EF64 /* URLSessionMock.swift */,
 				76CA3D7628D8E5E400D6EF64 /* HTTPClient+Tests.swift */,
@@ -588,6 +585,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		B621148128227122003C3D4C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -667,7 +665,6 @@
 				B64955CC2812A1850057CD99 /* listMock.swift in Sources */,
 				76CA3D7728D8E5E400D6EF64 /* HTTPClient+Tests.swift in Sources */,
 				B64955D02812D61B0057CD99 /* TestCoreDataStack.swift in Sources */,
-				B649561A2818521A0057CD99 /* HTTPClientMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,6 +819,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProductRecall/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -855,6 +853,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProductRecall/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
