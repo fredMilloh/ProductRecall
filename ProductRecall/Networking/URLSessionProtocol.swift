@@ -18,10 +18,3 @@ extension URLSession: URLSessionProtocol {
         return dataTaskPublisher(for: request).eraseToAnyPublisher()
     }
 }
-
-protocol URLSessionDataTaskProtocol {
-    func resume()
-}
-
-extension URLSessionDataTask: URLSessionDataTaskProtocol {
-}
