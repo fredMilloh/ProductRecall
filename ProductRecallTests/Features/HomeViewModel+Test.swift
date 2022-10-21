@@ -151,11 +151,11 @@ class HomeViewModelTest: XCTestCase {
             }, receiveValue: { product in
                 guard let count = product.count else { return }
                 sut.totalCount = count
-                sut.parse(response, with: 10)
+                XCTAssertEqual(sut.totalCount, 5101)
             })
             .store(in: &cancellable)
 
-        XCTAssertEqual(httpClient.getCallCount, 1)
+        XCTAssertEqual(httpClient.callCount, 1)
         XCTAssertEqual(sut.pageStatus, .ready(nextPaginationOffset: 0))
     }
 }

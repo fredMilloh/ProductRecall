@@ -16,11 +16,6 @@ enum PageStatus: Equatable {
     case done
 }
 
-/// Allows to implement the requestProduct function differently for unit tests
-protocol HomeProtocol {
-    func requestProduct<Service: HTTPClientProtocol>(fromService: Service, endpoint: ProductsEndpoint)
-}
-
 class HomeViewModel: ObservableObject {
 
     var client = HTTPClient(session: URLSession.shared)
@@ -29,7 +24,6 @@ class HomeViewModel: ObservableObject {
 
     @Published var recallList: [RecallViewModel] = []
     @Published var endOfList = false
-    @Published var fetchError: RequestError = .unknown
 
     var totalCount = 0
     var cancellable = Set<AnyCancellable>()
@@ -51,6 +45,38 @@ class HomeViewModel: ObservableObject {
 
 	// MARK: - Request Methods
 
+    func requestProduct(endpoint: ProductsEndpoint) {
+
+        guard case let .ready(offset) = pageStatus else { return }
+        /// Pending a result, the status is loading
+        pageStatus = .loading(paginationOffset: offset)
+
+        let response = client.get(dataType: Product.self, endPoint: endpoint, paginationOffset: offset)
+        response
+            .receive(on: DispatchQueue.main)
+        // Subscriber failure type
+            .sink { [weak self] response in
+                if case let .failure(error) = response {
+                    print(error)
+                    self?.endOfList = true
+                    self?.pageStatus = .done
+                }
+        // subscriber input type
+            } receiveValue: { [weak self] product in
+                guard let self = self, let count = product.count else { return }
+                self.totalCount = count
+                self.endOfList = self.recallList.count == self.totalCount ? true : false
+                self.pageStatus = .ready(nextPaginationOffset: offset + 100)
+
+                product.records.forEach { record in
+                    let recall = RecallViewModel(recall: record)
+                    self.recallList.append(recall)
+                }
+            }
+        // Store subscription
+            .store(in: &cancellable)
+    }
+
     /// Set the endpoint according to the category and possible search text
     func getEndpoint() -> ProductsEndpoint {
         if searchInAllCategory {
@@ -66,12 +92,12 @@ class HomeViewModel: ObservableObject {
     func getNewList() {
         pageStatus = PageStatus.ready(nextPaginationOffset: 0)
         recallList.removeAll()
-        requestProduct(fromService: client, endpoint: getEndpoint())
+        requestProduct(endpoint: getEndpoint())
     }
 
     func getFollowingRecords(recordItem: RecallViewModel) {
         if !endOfList, shouldLoadMore(recordItem: recordItem) {
-            requestProduct(fromService: client, endpoint: getEndpoint())
+            requestProduct(endpoint: getEndpoint())
         }
     }
 
@@ -80,52 +106,5 @@ class HomeViewModel: ObservableObject {
             return recordItem.id == lastId
         }
         return false
-    }
-}
-
-extension HomeViewModel: HomeProtocol {
-
-    func requestProduct<Service>(fromService: Service, endpoint: ProductsEndpoint) where Service: HTTPClientProtocol {
-
-        guard case let .ready(offset) = pageStatus else {
-            return
-        }
-        /// Pending a result, the status is loading
-        pageStatus = .loading(paginationOffset: offset)
-
-        let response = client.get(dataType: Product.self, endPoint: endpoint, paginationOffset: offset)
-        response
-            .receive(on: DispatchQueue.main)
-        	.sink { _ in
-        	} receiveValue: { product in
-           	 guard let count = product.count else { return }
-            	self.totalCount = count
-        	}
-        	.store(in: &cancellable)
-
-        	self.parse(response, with: offset)
-    }
-
-    func parse(_ response: AnyPublisher<Product, RequestError>, with offset: Int) {
-        response.map { product in
-            product.records.map { record in
-                RecallViewModel(recall: record)
-            }
-        }
-        .receive(on: DispatchQueue.main)
-        .sink { [weak self] response in
-            if case let .failure(error) = response {
-                self?.fetchError = error
-                self?.endOfList = true
-                self?.pageStatus = .done
-            }
-        } receiveValue: { [weak self] recall in
-            guard let self = self else { return }
-            if self.totalCount != 0 { self.pageStatus = .done }
-            self.endOfList = self.recallList.count == self.totalCount ? true : false
-            self.pageStatus = .ready(nextPaginationOffset: offset + 100)
-            self.recallList.append(contentsOf: recall)
-        }
-        .store(in: &cancellable)
     }
 }

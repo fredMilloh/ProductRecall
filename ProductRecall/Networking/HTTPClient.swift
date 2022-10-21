@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class HTTPClient<T: URLSessionProtocol> {
+class HTTPClient<T: URLSessionProtocol>: HTTPClientProtocol {
 
     let session: T
 
@@ -16,21 +16,7 @@ class HTTPClient<T: URLSessionProtocol> {
         self.session = session
     }
 
-    var getCallCount = 0
-
-    /// Decode data
-    func parse<T: Decodable>(_ data: Data) -> AnyPublisher<T, RequestError> {
-        return Just(data)
-            .decode(type: T.self, decoder: JSONDecoder())
-            .mapError { _ in
-                RequestError.decode
-            }
-            .eraseToAnyPublisher()
-    }
-}
-
-extension HTTPClient: HTTPClientProtocol {
-
+    var callCount = 0
     /// Implementation of the protocol function for network calls
     func get<T: Decodable>(
         dataType: T.Type,
@@ -38,7 +24,7 @@ extension HTTPClient: HTTPClientProtocol {
         paginationOffset: Int
     ) -> AnyPublisher<T, RequestError> {
 
-        getCallCount += 1
+        callCount += 1
 
         /// Constitution of the URLRequest according to the Endpoint protocol
         guard let url = URL(string: endPoint.baseURL + endPoint.path) else {
@@ -52,7 +38,11 @@ extension HTTPClient: HTTPClientProtocol {
                 RequestError.unauthorized
             }
             .flatMap(maxPublishers: .unlimited) { output in
-                self.parse(output.data)
+                return Just(output.data)
+                    .decode(type: T.self, decoder: JSONDecoder())
+                    .mapError { _ in
+                        RequestError.decode
+                    }
             }
             .eraseToAnyPublisher()
     }

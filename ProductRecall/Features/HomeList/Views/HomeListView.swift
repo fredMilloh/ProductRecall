@@ -40,7 +40,7 @@ struct HomeListView: View {
         }
         .listStyle(.inset)
         .onAppear {
-            homeViewModel.requestProduct(fromService: homeViewModel.client, endpoint: homeViewModel.getEndpoint())
+            homeViewModel.requestProduct(endpoint: homeViewModel.getEndpoint())
         }
         .onChange(of: homeViewModel.selectedCategory.name) { _ in
             homeViewModel.getNewList()
